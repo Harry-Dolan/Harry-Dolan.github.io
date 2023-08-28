@@ -7,22 +7,23 @@ body {
 }
 
 
-
 .about {
-
-background-color: black;
+    background-color: black;
     color: white;
     padding: 10px;
+    box-shadow: 0px 0px 10px 2px black;
 }
 
-
-
 .projects {
-
-    background-color: yellow;
-
+    background-color: white;
+    color: black;
+    box-shadow: 0px 0px 10px 2px black;
     padding: 10px;
+    margin: 500px 50px 50px 50px;
+}
 
+.project {
+    margin: 70px;
 }
 
 .project-content {
@@ -35,4 +36,24 @@ background-color: black;
 .project-thumbnail {
     display: inline-block;
     height: 256px;
+    border: 2px solid lightgray;
+}
+
+.project-content button {
+    font-family: "Montserrat";
+    font-weight: 700;
+    height: 50px;
+    width: 125px;
+    margin-top: 10px;
+    color: gray;
+    background-color: white;
+    border-radius: 20px;
+    border: 1px solid gray;
+    box-shadow: 0px 2px 6px 0px #000000A0;
+}
+
+.project-content button:hover {
+    color: black;
+    border: 3px solid rgb(119, 176, 223);
+    cursor: pointer;
 }
