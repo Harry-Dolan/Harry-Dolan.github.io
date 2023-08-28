@@ -1,21 +1,18 @@
 body {
-
     text-align: center;
-
-    margin: 0px;
-
     font-family: "Montserrat";
-
+    margin: 0px;
+    background-image: url("background.png");
+    background-size: 100%;
 }
 
 
 
 .about {
 
-    background-color: yellow;
-
-    padding: 0px;
-
+background-color: black;
+    color: white;
+    padding: 10px;
 }
 
 
@@ -26,4 +23,16 @@ body {
 
     padding: 10px;
 
+}
+
+.project-content {
+    display: inline-block;
+    text-align: left;
+    vertical-align: top;
+    margin: 45px 50px 50px 50px;
+}
+
+.project-thumbnail {
+    display: inline-block;
+    height: 256px;
 }
