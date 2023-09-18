@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<title>WebGestalt (WEB-based GEne SeT AnaLysis Toolkit)</title>
+<link rel="icon" type="image/png" href="https://s3-us-west-2.amazonaws.com/webgestalt/favicon.png">
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-42098540-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?flags=gated&features=es2015%2Ces2016%2Cfetch"></script>
+<script src="https://www.webgestalt.org/assets/0.4/build/vendor.min.js"></script>
+	
+	<script>window.cytoscape = null;</script>
+	<link rel="stylesheet" href="https://www.webgestalt.org/assets/0.4/build/vendor.css">
+	<link rel="stylesheet" href="https://www.webgestalt.org/assets/0.4/build/wg.css">
+<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+</head>
+<body>
+<header>
+	<div id="header-img"><a href="https://www.webgestalt.org"><img border="0" src="https://www.webgestalt.org/images/gsa.png"></a></div>
+	<div id="header-title">
+		<p id="header-title-text">WEB-based GEne SeT AnaLysis Toolkit</p>
+		<p id="header-subtitle-text">Translating gene lists into biological insights...</p>
+	</div>
+</header>
+<hr><main>
+<div id="app">
+<div class="loading-preinit" v-cloak><div class="loading-icon"></div></div>
+<div class="wrapper" v-cloak>
+<div class="level">
+	<div class="level-left">
+		<div class="level-item">
+			<h4 class="title is-4 has-text-primary">Summary</h4>
+		</div>
+	</div>
+	<div class="level-right">
+		<div class="level-item">
+			<a class="button is-text" href="Project_wg_result1694861046.zip" target="_blank">Result Download</a>
+		</div>
+	</div>
+</div>
+
+<section id="summary" class="summary">
+<div class="card" v-bind:class="{active: summaryShown}" >
+	<div class="card-header" v-on:click="summaryShown=!summaryShown">
+		<p class="card-header-title">Job summary</p>
+		<a href="#" class="card-header-icon">
+			<b-icon :icon="summaryShown ? 'chevron-up' : 'chevron-down'"></b-icon>
+		</a>
+	</div>
+	<div class="card-content content" v-show="summaryShown">
+		<ul id="summary-list"> 
+		<li><b>Enrichment method:</b> ORA</li>
+		<li><b>Organism: </b>rnorvegicus</li>
+		<li>
+				<b>Enrichment Categories: </b>pathway_Wikipathway
+				<a class="has-text-info" href="https://www.webgestalt.org/api/geneset?organism=rnorvegicus&database=pathway_Wikipathway&fileType=gmt">
+					<b-icon icon="download" size="is-small"></b-icon>
+				</a>
+					</li>
+		
+			<li><b>Interesting list: </b>textAreaUpload_1694861046.txt. <b>ID type: </b>genesymbol</li>
+						<li>The interesting list contains <b>1449</b> user IDs in which <b>1191</b> user IDs are unambiguously mapped to <b>1191</b> unique entrezgene IDs and <b>258</b> user IDs can not be mapped to any entrezgene ID.</li>
+			<li>The GO Slim summary are based upon the <b>1191</b> unique entrezgene IDs.</li>
+		
+
+		<li>Among <b>1191</b> unique entrezgene IDs, <b>165</b> IDs are annotated to the selected functional categories and also in the reference list, which are used for the enrichment analysis.</li>
+		
+		<li><b>Reference list: </b> all mapped entrezgene IDs from the selected platform genome
+			<a class="has-text-info" href="https://www.webgestalt.org/api/reference?organism=rnorvegicus&referenceSet=genome">
+				<b-icon icon="download" size="is-small"></b-icon>
+			</a>
+		</li>
+	
+	<li>The reference list can be mapped to <b>47958</b> entrezgene IDs and <b> 3278</b> IDs are annotated to the selected functional categories that are used as the reference for the enrichment analysis.</li>
+</ul> 
+
+<p><b>Parameters for the enrichment analysis:</b></p>
+<ul><li><b>Minimum number of IDs in the category: </b>5</li>
+<li><b>Maximum number of IDs in the category: </b>2000</li>
+<li><b>FDR Method: </b>BH</li>
+
+<li><b>Significance Level:</b> Top 10</li>
+</ul>
+	
+	<p>Based on the above parameters, <b>10</b> categories are identified as enriched categories and all are shown in this report.</p>
+	
+
+	</div>
+</div>
+</section>
+<section id="go-summary" class="summary">
+<div class="card" v-bind:class="{active: goShown}" >
+	<div class="card-header" v-on:click="goShown=!goShown">
+		<p class="card-header-title">GO Slim summary for the user uploaded IDs</p>
+		<a href="#" class="card-header-icon">
+			<b-icon :icon="goShown ? 'chevron-up' : 'chevron-down'"></b-icon>
+		</a>
+	</div>
+	<div v-show="goShown">
+		<div class="card-content">
+			<p>Each Biological Process, Cellular Component and Molecular Function category is represented by a red, blue and green bar, repectively.</p>
+			<p>The height of the bar represents the number of IDs in the user list and also in the category.</p>
+		</div>
+		<div class="card-image">
+			<img src="goslim_summary_wg_result1694861046.png" width="100%" height="100%" alt="Bar charts of enriched GO Slim terms"/>
+		</div>
+	</div>
+</div>
+</section> <h4 class="title is-4 has-text-primary">Enrichment Results</h4>
+<section id="enrich-result">
+	<p class="select-redundancy">
+		<b-tooltip label="Enriched gene sets are post-processed by two methods to reduce redundancy." type="is-dark" animated multilined dashed>
+			Redundancy reduction:
+		</b-tooltip>
+		<b-radio v-model="redundancy" native-value="all">All</b-radio>
+		<b-radio v-model="redundancy" native-value="ap">
+			<b-tooltip label="R package apcluster is used to cluster gene sets." type="is-dark" animated multilined dashed>
+				Affinity propagation
+			</b-tooltip>
+		</b-radio>
+		
+		<b-radio v-model="redundancy" native-value="wsc">
+			<b-tooltip label="Find top gene sets while maximizing gene coverage." type="is-dark" animated multilined dashed>
+				Weighted set cover
+			</b-tooltip>
+		</b-radio>
+	</p>
+	<b-tabs v-model="activeTab" type="is-toggle">
+		<b-tab-item label="Table">
+			<wg-result-table
+				:data="enrichmentData"
+				:method="enrichMethod"
+			></wg-result-table>
+		</b-tab-item>
+		<b-tab-item label="Bar chart">
+		<div class="vertical-center-container">
+			<wg-bar-plot
+				:dimensions="bar.dimensions"
+				:label-width="bar.labelWidth"
+				:data="enrichmentData"
+				:value-key="bar.valueKey"
+				:x-label="bar.xLabel">
+			</wg-bar-plot>
+		</div>
+		</b-tab-item>
+		<b-tab-item label="Volcano plot">
+		<div class="vertical-center-container">
+			<wg-volcano-plot
+				:data="volcanoData"
+				:x="volcano.x"
+				:y="volcano.y"
+				:dimensions="volcano.dimensions"
+				:x-label="volcano.xLabel"
+				:label-types="volcano.labelTypes"
+				:x-transform="volcano.xTransform"
+				:radius="volcano.radius"
+				:color="volcano.color"
+				:tooltip-content="volcano.tooltipContent"
+				:show-all-labels="false"
+				:auto-place-labels="true"
+			></wg-volcano-plot>
+		</div>
+		</b-tab-item>
+	</b-tabs>
+	<wg-gene-table
+		:data="geneTables"
+		:info="enrichment"
+		:standard-id="standardId"
+		:method="enrichMethod"
+		:mapped-input-size="mappedInputSize"
+		:organism="organism"
+		:host-name="hostName"
+		:sets-with-net="false"
+	></wg-gene-table>
+</section> 
+
+</div>
+</div>
+</main>
+	<script type="text/javascript" src="https://www.webgestalt.org/assets/0.4/build/wg.min.js"></script>
+<script type="text/javascript">
+var enrichment = [{"geneSet":"WP529","description":"mRNA Processing","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP529&label[]=Srsf7&label[]=Srsf1&label[]=Ptbp2&label[]=Prpf40a&label[]=Clk1&label[]=Rbm39&label[]=Rnmt&label[]=Srsf5&label[]=Clk4&label[]=Prpf4b&label[]=Srp54a&label[]=Hnrnph1&label[]=Sf3b1&colors=steelblue","size":112,"overlap":13,"expect":5.63758389261745,"enrichmentRatio":2.30595238095238,"pValue":0.0035939276365462,"FDR":0.535495217845384,"overlapId":"29667;116650;362687;140931;301434;689890;310820;291078;84486;295607;287269;362251;291534"},{"geneSet":"WP1301","description":"Mitochondrial Gene Expression","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP1301&label[]=Tfb2m&label[]=Myef2&label[]=Creb1&label[]=Ppp3ca&colors=steelblue","size":21,"overlap":4,"expect":1.05704697986577,"enrichmentRatio":3.78412698412698,"pValue":0.0189174212543265,"FDR":0.851512411321281,"overlapId":"289307;679712;24674;81646"},{"geneSet":"WP429","description":"Cell cycle","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP429&label[]=Ccnh&label[]=Ccne2&label[]=Mad2l1&label[]=Orc4&label[]=Orc2&label[]=Rbl1&label[]=Bub1&label[]=Prkdc&label[]=Atm&colors=steelblue","size":83,"overlap":9,"expect":4.17785234899329,"enrichmentRatio":2.15421686746988,"pValue":0.0221719758140538,"FDR":0.851512411321281,"overlapId":"300711;295596;297176;296137;362485;360748;84389;301430;680111"},{"geneSet":"WP655","description":"p53 pathway","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP655&label[]=Ccng1&label[]=Pten&label[]=Mdm4&label[]=Cycs&label[]=Pmaip1&label[]=Atm&colors=steelblue","size":47,"overlap":6,"expect":2.36577181208054,"enrichmentRatio":2.53617021276596,"pValue":0.0287345065215112,"FDR":0.851512411321281,"overlapId":"25309;300711;25405;50557;304798;492821"},{"geneSet":"WP1277","description":"Non-homologous end joining","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP1277&label[]=Prkdc&label[]=Rad50&colors=steelblue","size":7,"overlap":2,"expect":0.352348993288591,"enrichmentRatio":5.67619047619048,"pValue":0.0447529101924048,"FDR":0.851512411321281,"overlapId":"64012;360748"},{"geneSet":"WP348","description":"G1 to S cell cycle control","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP348&label[]=Ccnh&label[]=Ccne2&label[]=Orc4&label[]=Orc2&label[]=Rbl1&label[]=Creb1&label[]=Atm&colors=steelblue","size":67,"overlap":7,"expect":3.37248322147651,"enrichmentRatio":2.07562189054726,"pValue":0.0493340192652981,"FDR":0.851512411321281,"overlapId":"300711;295596;81646;362485;84389;301430;680111"},{"geneSet":"WP1278","description":"EBV LMP1 signaling","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP1278&label[]=Hsp90aa1&label[]=Chuk&label[]=Mapk8&colors=steelblue","size":17,"overlap":3,"expect":0.855704697986577,"enrichmentRatio":3.50588235294118,"pValue":0.0506324407117207,"FDR":0.851512411321281,"overlapId":"299331;309361;116554"},{"geneSet":"WP1294","description":"NLR Proteins","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP1294&label[]=Chuk&label[]=Mapk8&colors=steelblue","size":8,"overlap":2,"expect":0.402684563758389,"enrichmentRatio":4.96666666666667,"pValue":0.0577320994753097,"FDR":0.851512411321281,"overlapId":"309361;116554"},{"geneSet":"WP504","description":"Fatty Acid Biosynthesis","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP504&label[]=Acsl3&label[]=Echdc1&label[]=Acsl4&colors=steelblue","size":19,"overlap":3,"expect":0.956375838926174,"enrichmentRatio":3.13684210526316,"pValue":0.0670835775772313,"FDR":0.851512411321281,"overlapId":"113976;361465;114024"},{"geneSet":"WP520","description":"G13 Signaling Pathway","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP520&label[]=Ppp1cb&label[]=Rock1&label[]=Rps6kb1&label[]=Rock2&colors=steelblue","size":31,"overlap":4,"expect":1.56040268456376,"enrichmentRatio":2.56344086021505,"pValue":0.0675427186183644,"FDR":0.851512411321281,"overlapId":"25537;25594;83840;81762"}];
+var background = [{"geneSet":"WP149","enrichmentRatio":2.20740740740741,"FDR":0.851512411321281,"overlap":5},{"geneSet":"WP547","enrichmentRatio":2.02033898305085,"FDR":0.851512411321281,"overlap":6},{"geneSet":"WP372","enrichmentRatio":2.48333333333333,"FDR":0.851512411321281,"overlap":4},{"geneSet":"WP569","enrichmentRatio":1.82982456140351,"FDR":0.881811134295859,"overlap":7},{"geneSet":"WP1307","enrichmentRatio":2.33725490196078,"FDR":0.881811134295859,"overlap":4},{"geneSet":"WP3901","enrichmentRatio":2.48333333333333,"FDR":0.96369966089602,"overlap":3},{"geneSet":"WP502","enrichmentRatio":3.31111111111111,"FDR":0.96369966089602,"overlap":2},{"geneSet":"WP1296","enrichmentRatio":3.31111111111111,"FDR":0.96369966089602,"overlap":2},{"geneSet":"WP2433","enrichmentRatio":1.60538720538721,"FDR":0.96369966089602,"overlap":8},{"geneSet":"WP1279","enrichmentRatio":1.72753623188406,"FDR":0.979241702336445,"overlap":6},{"geneSet":"WP3887","enrichmentRatio":2.20740740740741,"FDR":1,"overlap":3},{"geneSet":"WP654","enrichmentRatio":2.20740740740741,"FDR":1,"overlap":3},{"geneSet":"WP419","enrichmentRatio":2.48333333333333,"FDR":1,"overlap":2},{"geneSet":"WP81","enrichmentRatio":2.48333333333333,"FDR":1,"overlap":2},{"geneSet":"WP145","enrichmentRatio":2.20740740740741,"FDR":1,"overlap":2},{"geneSet":"WP506","enrichmentRatio":1.80606060606061,"FDR":1,"overlap":3},{"geneSet":"WP505","enrichmentRatio":1.58933333333333,"FDR":1,"overlap":4},{"geneSet":"WP73","enrichmentRatio":1.40235294117647,"FDR":1,"overlap":6},{"geneSet":"WP147","enrichmentRatio":1.46078431372549,"FDR":1,"overlap":5},{"geneSet":"WP94","enrichmentRatio":1.70285714285714,"FDR":1,"overlap":3},{"geneSet":"WP442","enrichmentRatio":1.98666666666667,"FDR":1,"overlap":2},{"geneSet":"WP574","enrichmentRatio":1.98666666666667,"FDR":1,"overlap":2},{"geneSet":"WP2811","enrichmentRatio":3.31111111111111,"FDR":1,"overlap":1},{"geneSet":"WP282","enrichmentRatio":3.31111111111111,"FDR":1,"overlap":1},{"geneSet":"WP355","enrichmentRatio":1.61081081081081,"FDR":1,"overlap":3},{"geneSet":"WP294","enrichmentRatio":1.61081081081081,"FDR":1,"overlap":3},{"geneSet":"WP378","enrichmentRatio":1.89206349206349,"FDR":1,"overlap":2},{"geneSet":"WP89","enrichmentRatio":1.56842105263158,"FDR":1,"overlap":3},{"geneSet":"WP1487","enrichmentRatio":1.72753623188406,"FDR":1,"overlap":2},{"geneSet":"WP1290","enrichmentRatio":1.32444444444444,"FDR":1,"overlap":5},{"geneSet":"WP491","enrichmentRatio":1.49,"FDR":1,"overlap":3},{"geneSet":"WP557","enrichmentRatio":2.48333333333333,"FDR":1,"overlap":1},{"geneSet":"WP1282","enrichmentRatio":2.48333333333333,"FDR":1,"overlap":1},{"geneSet":"WP439","enrichmentRatio":1.17631578947368,"FDR":1,"overlap":9},{"geneSet":"WP2562","enrichmentRatio":1.32444444444444,"FDR":1,"overlap":4},{"geneSet":"WP188","enrichmentRatio":1.15017543859649,"FDR":1,"overlap":11},{"geneSet":"WP1968","enrichmentRatio":1.52820512820513,"FDR":1,"overlap":2},{"geneSet":"WP347","enrichmentRatio":1.52820512820513,"FDR":1,"overlap":2},{"geneSet":"WP4268","enrichmentRatio":1.98666666666667,"FDR":1,"overlap":1},{"geneSet":"WP1281","enrichmentRatio":1.41904761904762,"FDR":1,"overlap":2},{"geneSet":"WP133","enrichmentRatio":1.65555555555556,"FDR":1,"overlap":1},{"geneSet":"WP1963","enrichmentRatio":1.65555555555556,"FDR":1,"overlap":1},{"geneSet":"WP1309","enrichmentRatio":1.1037037037037,"FDR":1,"overlap":5},{"geneSet":"WP303","enrichmentRatio":1.24166666666667,"FDR":1,"overlap":2},{"geneSet":"WP2132","enrichmentRatio":1.52820512820513,"FDR":1,"overlap":1},{"geneSet":"WP1280","enrichmentRatio":1.52820512820513,"FDR":1,"overlap":1},{"geneSet":"WP66","enrichmentRatio":1.52820512820513,"FDR":1,"overlap":1},{"geneSet":"WP5","enrichmentRatio":1.03352601156069,"FDR":1,"overlap":9},{"geneSet":"WP74","enrichmentRatio":1.05673758865248,"FDR":1,"overlap":5},{"geneSet":"WP457","enrichmentRatio":1.02758620689655,"FDR":1,"overlap":9},{"geneSet":"WP358","enrichmentRatio":1.01880341880342,"FDR":1,"overlap":12},{"geneSet":"WP461","enrichmentRatio":1.32444444444444,"FDR":1,"overlap":1},{"geneSet":"WP217","enrichmentRatio":1.07387387387387,"FDR":1,"overlap":2},{"geneSet":"WP2376","enrichmentRatio":0.981069958847737,"FDR":1,"overlap":8},{"geneSet":"WP484","enrichmentRatio":1.04561403508772,"FDR":1,"overlap":2},{"geneSet":"WP1488","enrichmentRatio":1.16862745098039,"FDR":1,"overlap":1},{"geneSet":"WP1308","enrichmentRatio":0.993333333333333,"FDR":1,"overlap":3},{"geneSet":"WP293","enrichmentRatio":1.1037037037037,"FDR":1,"overlap":1},{"geneSet":"WP161","enrichmentRatio":1.04561403508772,"FDR":1,"overlap":1},{"geneSet":"WP1276","enrichmentRatio":1.04561403508772,"FDR":1,"overlap":1},{"geneSet":"WP255","enrichmentRatio":1.04561403508772,"FDR":1,"overlap":1},{"geneSet":"WP487","enrichmentRatio":0.993333333333333,"FDR":1,"overlap":1},{"geneSet":"WP270","enrichmentRatio":0.845390070921986,"FDR":1,"overlap":2},{"geneSet":"WP632","enrichmentRatio":0.863768115942029,"FDR":1,"overlap":1},{"geneSet":"WP302","enrichmentRatio":0.827777777777778,"FDR":1,"overlap":2},{"geneSet":"WP1286","enrichmentRatio":0.857553956834532,"FDR":1,"overlap":6},{"geneSet":"WP1299","enrichmentRatio":0.810884353741497,"FDR":1,"overlap":2},{"geneSet":"WP397","enrichmentRatio":0.810884353741497,"FDR":1,"overlap":2},{"geneSet":"WP1965","enrichmentRatio":0.794666666666667,"FDR":1,"overlap":1},{"geneSet":"WP1312","enrichmentRatio":0.794666666666667,"FDR":1,"overlap":1},{"geneSet":"WP1292","enrichmentRatio":0.764102564102564,"FDR":1,"overlap":1},{"geneSet":"WP271","enrichmentRatio":0.764102564102564,"FDR":1,"overlap":1},{"geneSet":"WP409","enrichmentRatio":0.78421052631579,"FDR":1,"overlap":3},{"geneSet":"WP1284","enrichmentRatio":0.735802469135802,"FDR":1,"overlap":1},{"geneSet":"WP656","enrichmentRatio":0.70952380952381,"FDR":1,"overlap":1},{"geneSet":"WP160","enrichmentRatio":0.685057471264368,"FDR":1,"overlap":1},{"geneSet":"WP263","enrichmentRatio":0.685057471264368,"FDR":1,"overlap":1},{"geneSet":"WP30","enrichmentRatio":0.735802469135802,"FDR":1,"overlap":4},{"geneSet":"WP1293","enrichmentRatio":0.584313725490196,"FDR":1,"overlap":1},{"geneSet":"WP4229","enrichmentRatio":0.584313725490196,"FDR":1,"overlap":1},{"geneSet":"WP590","enrichmentRatio":0.536936936936937,"FDR":1,"overlap":1},{"geneSet":"WP351","enrichmentRatio":0.689814814814815,"FDR":1,"overlap":5},{"geneSet":"WP517","enrichmentRatio":0.52280701754386,"FDR":1,"overlap":1},{"geneSet":"WP131","enrichmentRatio":0.575845410628019,"FDR":1,"overlap":2},{"geneSet":"WP135","enrichmentRatio":0.620833333333333,"FDR":1,"overlap":3},{"geneSet":"WP1289","enrichmentRatio":0.484552845528455,"FDR":1,"overlap":1},{"geneSet":"WP155","enrichmentRatio":0.625721784776903,"FDR":1,"overlap":4},{"geneSet":"WP375","enrichmentRatio":0.584313725490196,"FDR":1,"overlap":3},{"geneSet":"WP199","enrichmentRatio":0.529777777777778,"FDR":1,"overlap":2},{"geneSet":"WP140","enrichmentRatio":0.588641975308642,"FDR":1,"overlap":4},{"geneSet":"WP3916","enrichmentRatio":0.361212121212121,"FDR":1,"overlap":1},{"geneSet":"WP376","enrichmentRatio":0.342528735632184,"FDR":1,"overlap":1},{"geneSet":"WP485","enrichmentRatio":0.305641025641026,"FDR":1,"overlap":1},{"geneSet":"WP319","enrichmentRatio":0.382051282051282,"FDR":1,"overlap":2},{"geneSet":"WP1288","enrichmentRatio":0.225757575757576,"FDR":1,"overlap":1},{"geneSet":"WP326","enrichmentRatio":0.301010101010101,"FDR":1,"overlap":2},{"geneSet":"WP59","enrichmentRatio":0.213620071684588,"FDR":1,"overlap":1},{"geneSet":"WP473","enrichmentRatio":0.348538011695906,"FDR":1,"overlap":4}];
+var geneTables = {"WP529":[{"userId":"Srsf7","geneSymbol":"Srsf7","geneName":"serine and arginine rich splicing factor 7","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=362687","entrezgene":"362687"},{"userId":"Srsf1","geneSymbol":"Srsf1","geneName":"serine and arginine rich splicing factor 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=689890","entrezgene":"689890"},{"userId":"Ptbp2","geneSymbol":"Ptbp2","geneName":"polypyrimidine tract binding protein 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=310820","entrezgene":"310820"},{"userId":"Prpf40a","geneSymbol":"Prpf40a","geneName":"pre-mRNA processing factor 40 homolog A","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=295607","entrezgene":"295607"},{"userId":"Clk1","geneSymbol":"Clk1","geneName":"CDC-like kinase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=301434","entrezgene":"301434"},{"userId":"Rbm39","geneSymbol":"Rbm39","geneName":"RNA binding motif protein 39","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=362251","entrezgene":"362251"},{"userId":"Rnmt","geneSymbol":"Rnmt","geneName":"RNA (guanine-7-) methyltransferase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=291534","entrezgene":"291534"},{"userId":"Srsf5","geneSymbol":"Srsf5","geneName":"serine and arginine rich splicing factor 5","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=29667","entrezgene":"29667"},{"userId":"Clk4","geneSymbol":"Clk4","geneName":"CDC-like kinase 4","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=287269","entrezgene":"287269"},{"userId":"Prpf4b","geneSymbol":"Prpf4b","geneName":"pre-mRNA processing factor 4B","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=291078","entrezgene":"291078"},{"userId":"Srp54a","geneSymbol":"Srp54a","geneName":"signal recognition particle 54A","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=116650","entrezgene":"116650"},{"userId":"Hnrnph1","geneSymbol":"Hnrnph1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=140931","entrezgene":"140931"},{"userId":"Sf3b1","geneSymbol":"Sf3b1","geneName":"splicing factor 3b, subunit 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=84486","entrezgene":"84486"}],"WP1301":[{"userId":"Tfb2m","geneSymbol":"Tfb2m","geneName":"transcription factor B2, mitochondrial","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=289307","entrezgene":"289307"},{"userId":"Myef2","geneSymbol":"Myef2","geneName":"myelin expression factor 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=679712","entrezgene":"679712"},{"userId":"Creb1","geneSymbol":"Creb1","geneName":"cAMP responsive element binding protein 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=81646","entrezgene":"81646"},{"userId":"Ppp3ca","geneSymbol":"Ppp3ca","geneName":"protein phosphatase 3 catalytic subunit alpha","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=24674","entrezgene":"24674"}],"WP429":[{"userId":"Ccnh","geneSymbol":"Ccnh","geneName":"cyclin H","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=84389","entrezgene":"84389"},{"userId":"Ccne2","geneSymbol":"Ccne2","geneName":"cyclin E2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=362485","entrezgene":"362485"},{"userId":"Mad2l1","geneSymbol":"Mad2l1","geneName":"mitotic arrest deficient 2 like 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=297176","entrezgene":"297176"},{"userId":"Orc4","geneSymbol":"Orc4","geneName":"origin recognition complex, subunit 4","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=295596","entrezgene":"295596"},{"userId":"Orc2","geneSymbol":"Orc2","geneName":"origin recognition complex, subunit 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=301430","entrezgene":"301430"},{"userId":"Rbl1","geneSymbol":"Rbl1","geneName":"RB transcriptional corepressor like 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=680111","entrezgene":"680111"},{"userId":"Bub1","geneSymbol":"Bub1","geneName":"BUB1 mitotic checkpoint serine/threonine kinase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=296137","entrezgene":"296137"},{"userId":"Prkdc","geneSymbol":"Prkdc","geneName":"protein kinase, DNA-activated, catalytic subunit","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=360748","entrezgene":"360748"},{"userId":"Atm","geneSymbol":"Atm","geneName":"ATM serine/threonine kinase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=300711","entrezgene":"300711"}],"WP655":[{"userId":"Ccng1","geneSymbol":"Ccng1","geneName":"cyclin G1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25405","entrezgene":"25405"},{"userId":"Pten","geneSymbol":"Pten","geneName":"phosphatase and tensin homolog","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=50557","entrezgene":"50557"},{"userId":"Mdm4","geneSymbol":"Mdm4","geneName":"MDM4, p53 regulator","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=304798","entrezgene":"304798"},{"userId":"Cycs","geneSymbol":"Cycs","geneName":"cytochrome c, somatic","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25309","entrezgene":"25309"},{"userId":"Pmaip1","geneSymbol":"Pmaip1","geneName":"phorbol-12-myristate-13-acetate-induced protein 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=492821","entrezgene":"492821"},{"userId":"Atm","geneSymbol":"Atm","geneName":"ATM serine/threonine kinase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=300711","entrezgene":"300711"}],"WP1277":[{"userId":"Prkdc","geneSymbol":"Prkdc","geneName":"protein kinase, DNA-activated, catalytic subunit","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=360748","entrezgene":"360748"},{"userId":"Rad50","geneSymbol":"Rad50","geneName":"RAD50 double strand break repair protein","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=64012","entrezgene":"64012"}],"WP348":[{"userId":"Ccnh","geneSymbol":"Ccnh","geneName":"cyclin H","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=84389","entrezgene":"84389"},{"userId":"Ccne2","geneSymbol":"Ccne2","geneName":"cyclin E2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=362485","entrezgene":"362485"},{"userId":"Orc4","geneSymbol":"Orc4","geneName":"origin recognition complex, subunit 4","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=295596","entrezgene":"295596"},{"userId":"Orc2","geneSymbol":"Orc2","geneName":"origin recognition complex, subunit 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=301430","entrezgene":"301430"},{"userId":"Rbl1","geneSymbol":"Rbl1","geneName":"RB transcriptional corepressor like 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=680111","entrezgene":"680111"},{"userId":"Creb1","geneSymbol":"Creb1","geneName":"cAMP responsive element binding protein 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=81646","entrezgene":"81646"},{"userId":"Atm","geneSymbol":"Atm","geneName":"ATM serine/threonine kinase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=300711","entrezgene":"300711"}],"WP1278":[{"userId":"Hsp90aa1","geneSymbol":"Hsp90aa1","geneName":"heat shock protein 90 alpha family class A member 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=299331","entrezgene":"299331"},{"userId":"Chuk","geneSymbol":"Chuk","geneName":"conserved helix-loop-helix ubiquitous kinase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=309361","entrezgene":"309361"},{"userId":"Mapk8","geneSymbol":"Mapk8","geneName":"mitogen-activated protein kinase 8","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=116554","entrezgene":"116554"}],"WP1294":[{"userId":"Chuk","geneSymbol":"Chuk","geneName":"conserved helix-loop-helix ubiquitous kinase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=309361","entrezgene":"309361"},{"userId":"Mapk8","geneSymbol":"Mapk8","geneName":"mitogen-activated protein kinase 8","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=116554","entrezgene":"116554"}],"WP504":[{"userId":"Acsl3","geneSymbol":"Acsl3","geneName":"acyl-CoA synthetase long-chain family member 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=114024","entrezgene":"114024"},{"userId":"Echdc1","geneSymbol":"Echdc1","geneName":"ethylmalonyl-CoA decarboxylase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=361465","entrezgene":"361465"},{"userId":"Acsl4","geneSymbol":"Acsl4","geneName":"acyl-CoA synthetase long-chain family member 4","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=113976","entrezgene":"113976"}],"WP520":[{"userId":"Ppp1cb","geneSymbol":"Ppp1cb","geneName":"protein phosphatase 1 catalytic subunit beta","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25594","entrezgene":"25594"},{"userId":"Rock1","geneSymbol":"Rock1","geneName":"Rho-associated coiled-coil containing protein kinase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=81762","entrezgene":"81762"},{"userId":"Rps6kb1","geneSymbol":"Rps6kb1","geneName":"ribosomal protein S6 kinase B1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=83840","entrezgene":"83840"},{"userId":"Rock2","geneSymbol":"Rock2","geneName":"Rho-associated coiled-coil containing protein kinase 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25537","entrezgene":"25537"}]};
+var clusters = {"ap":{"clusters":[["WP529"],["WP1301"],["WP429","WP1277","WP348"],["WP655"],["WP1278","WP1294"],["WP504"],["WP520"]],"representatives":["WP529","WP1301","WP429","WP655","WP1278","WP504","WP520"]},"wsc":{"representatives":["WP529","WP429","WP655","WP1301","WP520","WP1278","WP504","WP1277"],"coverage":[1]}};
+
+wgLib({
+	enrichDatabase: "pathway_Wikipathway",
+	organism: "rnorvegicus",
+	hostName: "https://www.webgestalt.org",
+	enrichment: enrichment,
+	background: background,
+	geneTables: geneTables,
+	clusters: clusters,
+	
+	enrichMethod: "ora",
+	mappedInputSize: 165,
+	standardId: "entrezgene",
+	volcano: {
+		labelTypes: ["geneSet", "description"],
+				dimensions: { width: 960, height: 500 },
+		autoPlaceLabels: true,
+		y: "FDR",
+
+
+		x: "enrichmentRatio",
+		xLabel: "log2 of enrichment ratio",
+		radius: "overlap",
+		color: "overlap",
+			tooltipContent: ["geneSet", "description", "enrichmentRatio", "FDR", "pValue", "overlap"]
+					
+	},
+	bar: {
+		dimensions: { width: 960, height: 300 },
+		labelWidth: 200,
+		tooltipContent: ["geneSet", "description", "enrichmentRatio", "FDR", "pValue", "overlap"],
+		
+		valueKey: "enrichmentRatio",
+		xLabel: "Enrichment ratio"
+	}
+})
+
+
+</script>
+<footer class="footer has-text-centered">
+<p>WebGestalt is currently developed and maintained by Yuxing Liao, Suhas Vasaikar, Zhiao Shi and Bing Zhang at the <a target="_new" href=http://www.zhang-lab.org> Zhang Lab</a>. Other people who have made significant contribution to the project include Jing Wang, Dexter Duncan, Stefan Kirov and Jay Snoddy.</p>
+<p><b>Funding credits:</b> NIH/NCI (U24 CA210954); Leidos (15X038); CPRIT (RR160027); NIH/NIAAA (U01 AA016662, U01 AA013512); NIH/NIDA (P01 DA015027); NIH/NIMH (P50 MH078028, P50 MH096972); NIH/NCI (U24 CA159988); NIH/NIGMS (R01 GM088822).
+</p>
+</footer></body>
+</html>
