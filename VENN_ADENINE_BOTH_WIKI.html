@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<title>WebGestalt (WEB-based GEne SeT AnaLysis Toolkit)</title>
+<link rel="icon" type="image/png" href="https://s3-us-west-2.amazonaws.com/webgestalt/favicon.png">
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-42098540-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?flags=gated&features=es2015%2Ces2016%2Cfetch"></script>
+<script src="https://www.webgestalt.org/assets/0.4/build/vendor.min.js"></script>
+	
+	<script>window.cytoscape = null;</script>
+	<link rel="stylesheet" href="https://www.webgestalt.org/assets/0.4/build/vendor.css">
+	<link rel="stylesheet" href="https://www.webgestalt.org/assets/0.4/build/wg.css">
+<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+</head>
+<body>
+<header>
+	<div id="header-img"><a href="https://www.webgestalt.org"><img border="0" src="https://www.webgestalt.org/images/gsa.png"></a></div>
+	<div id="header-title">
+		<p id="header-title-text">WEB-based GEne SeT AnaLysis Toolkit</p>
+		<p id="header-subtitle-text">Translating gene lists into biological insights...</p>
+	</div>
+</header>
+<hr><main>
+<div id="app">
+<div class="loading-preinit" v-cloak><div class="loading-icon"></div></div>
+<div class="wrapper" v-cloak>
+<div class="level">
+	<div class="level-left">
+		<div class="level-item">
+			<h4 class="title is-4 has-text-primary">Summary</h4>
+		</div>
+	</div>
+	<div class="level-right">
+		<div class="level-item">
+			<a class="button is-text" href="Project_wg_result1695086722.zip" target="_blank">Result Download</a>
+		</div>
+	</div>
+</div>
+
+<section id="summary" class="summary">
+<div class="card" v-bind:class="{active: summaryShown}" >
+	<div class="card-header" v-on:click="summaryShown=!summaryShown">
+		<p class="card-header-title">Job summary</p>
+		<a href="#" class="card-header-icon">
+			<b-icon :icon="summaryShown ? 'chevron-up' : 'chevron-down'"></b-icon>
+		</a>
+	</div>
+	<div class="card-content content" v-show="summaryShown">
+		<ul id="summary-list"> 
+		<li><b>Enrichment method:</b> ORA</li>
+		<li><b>Organism: </b>rnorvegicus</li>
+		<li>
+				<b>Enrichment Categories: </b>pathway_Wikipathway
+				<a class="has-text-info" href="https://www.webgestalt.org/api/geneset?organism=rnorvegicus&database=pathway_Wikipathway&fileType=gmt">
+					<b-icon icon="download" size="is-small"></b-icon>
+				</a>
+					</li>
+		
+			<li><b>Interesting list: </b>textAreaUpload_1695086722.txt. <b>ID type: </b>genesymbol</li>
+						<li>The interesting list contains <b>27</b> user IDs in which <b>23</b> user IDs are unambiguously mapped to <b>23</b> unique entrezgene IDs and <b>4</b> user IDs can not be mapped to any entrezgene ID.</li>
+			<li>The GO Slim summary are based upon the <b>23</b> unique entrezgene IDs.</li>
+		
+
+		<li>Among <b>23</b> unique entrezgene IDs, <b>9</b> IDs are annotated to the selected functional categories and also in the reference list, which are used for the enrichment analysis.</li>
+		
+		<li><b>Reference list: </b> all mapped entrezgene IDs from the selected platform genome
+			<a class="has-text-info" href="https://www.webgestalt.org/api/reference?organism=rnorvegicus&referenceSet=genome">
+				<b-icon icon="download" size="is-small"></b-icon>
+			</a>
+		</li>
+	
+	<li>The reference list can be mapped to <b>47958</b> entrezgene IDs and <b> 3278</b> IDs are annotated to the selected functional categories that are used as the reference for the enrichment analysis.</li>
+</ul> 
+
+<p><b>Parameters for the enrichment analysis:</b></p>
+<ul><li><b>Minimum number of IDs in the category: </b>5</li>
+<li><b>Maximum number of IDs in the category: </b>2000</li>
+<li><b>FDR Method: </b>BH</li>
+
+<li><b>Significance Level:</b> Top 10</li>
+</ul>
+	
+	<p>Based on the above parameters, <b>10</b> categories are identified as enriched categories and all are shown in this report.</p>
+	
+
+	</div>
+</div>
+</section>
+<section id="go-summary" class="summary">
+<div class="card" v-bind:class="{active: goShown}" >
+	<div class="card-header" v-on:click="goShown=!goShown">
+		<p class="card-header-title">GO Slim summary for the user uploaded IDs</p>
+		<a href="#" class="card-header-icon">
+			<b-icon :icon="goShown ? 'chevron-up' : 'chevron-down'"></b-icon>
+		</a>
+	</div>
+	<div v-show="goShown">
+		<div class="card-content">
+			<p>Each Biological Process, Cellular Component and Molecular Function category is represented by a red, blue and green bar, repectively.</p>
+			<p>The height of the bar represents the number of IDs in the user list and also in the category.</p>
+		</div>
+		<div class="card-image">
+			<img src="goslim_summary_wg_result1695086722.png" width="100%" height="100%" alt="Bar charts of enriched GO Slim terms"/>
+		</div>
+	</div>
+</div>
+</section> <h4 class="title is-4 has-text-primary">Enrichment Results</h4>
+<section id="enrich-result">
+	<p class="select-redundancy">
+		<b-tooltip label="Enriched gene sets are post-processed by two methods to reduce redundancy." type="is-dark" animated multilined dashed>
+			Redundancy reduction:
+		</b-tooltip>
+		<b-radio v-model="redundancy" native-value="all">All</b-radio>
+		<b-radio v-model="redundancy" native-value="ap">
+			<b-tooltip label="R package apcluster is used to cluster gene sets." type="is-dark" animated multilined dashed>
+				Affinity propagation
+			</b-tooltip>
+		</b-radio>
+		
+		<b-radio v-model="redundancy" native-value="wsc">
+			<b-tooltip label="Find top gene sets while maximizing gene coverage." type="is-dark" animated multilined dashed>
+				Weighted set cover
+			</b-tooltip>
+		</b-radio>
+	</p>
+	<b-tabs v-model="activeTab" type="is-toggle">
+		<b-tab-item label="Table">
+			<wg-result-table
+				:data="enrichmentData"
+				:method="enrichMethod"
+			></wg-result-table>
+		</b-tab-item>
+		<b-tab-item label="Bar chart">
+		<div class="vertical-center-container">
+			<wg-bar-plot
+				:dimensions="bar.dimensions"
+				:label-width="bar.labelWidth"
+				:data="enrichmentData"
+				:value-key="bar.valueKey"
+				:x-label="bar.xLabel">
+			</wg-bar-plot>
+		</div>
+		</b-tab-item>
+		<b-tab-item label="Volcano plot">
+		<div class="vertical-center-container">
+			<wg-volcano-plot
+				:data="volcanoData"
+				:x="volcano.x"
+				:y="volcano.y"
+				:dimensions="volcano.dimensions"
+				:x-label="volcano.xLabel"
+				:label-types="volcano.labelTypes"
+				:x-transform="volcano.xTransform"
+				:radius="volcano.radius"
+				:color="volcano.color"
+				:tooltip-content="volcano.tooltipContent"
+				:show-all-labels="false"
+				:auto-place-labels="true"
+			></wg-volcano-plot>
+		</div>
+		</b-tab-item>
+	</b-tabs>
+	<wg-gene-table
+		:data="geneTables"
+		:info="enrichment"
+		:standard-id="standardId"
+		:method="enrichMethod"
+		:mapped-input-size="mappedInputSize"
+		:organism="organism"
+		:host-name="hostName"
+		:sets-with-net="false"
+	></wg-gene-table>
+</section> 
+
+</div>
+</div>
+</main>
+	<script type="text/javascript" src="https://www.webgestalt.org/assets/0.4/build/wg.min.js"></script>
+<script type="text/javascript">
+var enrichment = [{"geneSet":"WP1286","description":"Metapathway biotransformation","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP1286&label[]=Cyp26b1&label[]=Cyp24a1&label[]=Cyp11a1&colors=steelblue","size":139,"overlap":3,"expect":0.38163514338011,"enrichmentRatio":7.86091127098321,"pValue":0.00519302117957021,"FDR":0.773760155755962,"overlapId":"25279;29680;312495"},{"geneSet":"WP305","description":"Glucocorticoid Metabolism","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP305&label[]=Cyp11a1&colors=steelblue","size":6,"overlap":1,"expect":0.0164734594264796,"enrichmentRatio":60.7037037037037,"pValue":0.0163732055910066,"FDR":1,"overlapId":"29680"},{"geneSet":"WP508","description":"Biosynthesis of Aldosterone and Cortisol","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP508&label[]=Cyp11a1&colors=steelblue","size":9,"overlap":1,"expect":0.0247101891397193,"enrichmentRatio":40.4691358024691,"pValue":0.0244700931667059,"FDR":1,"overlapId":"29680"},{"geneSet":"WP81","description":"Complement Activation, Classical Pathway","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP81&label[]=C3&colors=steelblue","size":16,"overlap":1,"expect":0.0439292251372788,"enrichmentRatio":22.7638888888889,"pValue":0.0431328787886573,"FDR":1,"overlapId":"24232"},{"geneSet":"WP155","description":"Adipogenesis","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP155&label[]=Cyp26b1&label[]=Sfrp4&colors=steelblue","size":127,"overlap":2,"expect":0.348688224527151,"enrichmentRatio":5.73578302712161,"pValue":0.0448528236503198,"FDR":1,"overlapId":"89803;312495"},{"geneSet":"WP1284","description":"EPO Receptor Signaling","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP1284&label[]=Cish&colors=steelblue","size":27,"overlap":1,"expect":0.074130567419158,"enrichmentRatio":13.4897119341564,"pValue":0.0718193685639043,"FDR":1,"overlapId":"83681"},{"geneSet":"WP278","description":"Matrix Metalloproteinases","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP278&label[]=Mmp12&colors=steelblue","size":28,"overlap":1,"expect":0.076876143990238,"enrichmentRatio":13.0079365079365,"pValue":0.0743889242953484,"FDR":1,"overlapId":"117033"},{"geneSet":"WP139","description":"Nuclear receptors in lipid metabolism and toxicity","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP139&label[]=Cyp24a1&colors=steelblue","size":31,"overlap":1,"expect":0.0851128737034777,"enrichmentRatio":11.7491039426523,"pValue":0.082059695612534,"FDR":1,"overlapId":"25279"},{"geneSet":"WP303","description":"Prostaglandin Synthesis and Regulation","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP303&label[]=Cyp11a1&colors=steelblue","size":32,"overlap":1,"expect":0.0878584502745577,"enrichmentRatio":11.3819444444444,"pValue":0.0846040327666722,"FDR":1,"overlapId":"29680"},{"geneSet":"WP1297","description":"Retinol metabolism","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP1297&label[]=Cyp26b1&colors=steelblue","size":40,"overlap":1,"expect":0.109823062843197,"enrichmentRatio":9.10555555555556,"pValue":0.104734117859137,"FDR":1,"overlapId":"312495"}];
+var background = [{"geneSet":"WP505","enrichmentRatio":7.28444444444444,"FDR":1,"overlap":1},{"geneSet":"WP564","enrichmentRatio":6.50396825396825,"FDR":1,"overlap":1},{"geneSet":"WP547","enrichmentRatio":6.17325800376648,"FDR":1,"overlap":1},{"geneSet":"WP1308","enrichmentRatio":6.07037037037037,"FDR":1,"overlap":1},{"geneSet":"WP147","enrichmentRatio":5.3562091503268,"FDR":1,"overlap":1},{"geneSet":"WP569","enrichmentRatio":4.79239766081871,"FDR":1,"overlap":1},{"geneSet":"WP2433","enrichmentRatio":3.67901234567901,"FDR":1,"overlap":1},{"geneSet":"WP375","enrichmentRatio":3.57080610021786,"FDR":1,"overlap":1},{"geneSet":"WP319","enrichmentRatio":3.50213675213675,"FDR":1,"overlap":1},{"geneSet":"WP457","enrichmentRatio":2.09323116219668,"FDR":1,"overlap":1}];
+var geneTables = {"WP1286":[{"userId":"Cyp26b1","geneSymbol":"Cyp26b1","geneName":"cytochrome P450, family 26, subfamily b, polypeptide 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=312495","entrezgene":"312495"},{"userId":"Cyp24a1","geneSymbol":"Cyp24a1","geneName":"cytochrome P450, family 24, subfamily a, polypeptide 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25279","entrezgene":"25279"},{"userId":"Cyp11a1","geneSymbol":"Cyp11a1","geneName":"cytochrome P450, family 11, subfamily a, polypeptide 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=29680","entrezgene":"29680"}],"WP305":[{"userId":"Cyp11a1","geneSymbol":"Cyp11a1","geneName":"cytochrome P450, family 11, subfamily a, polypeptide 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=29680","entrezgene":"29680"}],"WP508":[{"userId":"Cyp11a1","geneSymbol":"Cyp11a1","geneName":"cytochrome P450, family 11, subfamily a, polypeptide 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=29680","entrezgene":"29680"}],"WP81":[{"userId":"C3","geneSymbol":"C3","geneName":"complement C3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=24232","entrezgene":"24232"}],"WP155":[{"userId":"Cyp26b1","geneSymbol":"Cyp26b1","geneName":"cytochrome P450, family 26, subfamily b, polypeptide 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=312495","entrezgene":"312495"},{"userId":"Sfrp4","geneSymbol":"Sfrp4","geneName":"secreted frizzled-related protein 4","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=89803","entrezgene":"89803"}],"WP1284":[{"userId":"Cish","geneSymbol":"Cish","geneName":"cytokine inducible SH2-containing protein","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=83681","entrezgene":"83681"}],"WP278":[{"userId":"Mmp12","geneSymbol":"Mmp12","geneName":"matrix metallopeptidase 12","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=117033","entrezgene":"117033"}],"WP139":[{"userId":"Cyp24a1","geneSymbol":"Cyp24a1","geneName":"cytochrome P450, family 24, subfamily a, polypeptide 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25279","entrezgene":"25279"}],"WP303":[{"userId":"Cyp11a1","geneSymbol":"Cyp11a1","geneName":"cytochrome P450, family 11, subfamily a, polypeptide 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=29680","entrezgene":"29680"}],"WP1297":[{"userId":"Cyp26b1","geneSymbol":"Cyp26b1","geneName":"cytochrome P450, family 26, subfamily b, polypeptide 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=312495","entrezgene":"312495"}]};
+var clusters = {"ap":{"clusters":[["WP1286","WP139"],["WP305","WP508","WP303"],["WP81"],["WP155","WP1297"],["WP1284"],["WP278"]],"representatives":["WP1286","WP305","WP81","WP155","WP1284","WP278"]},"wsc":{"representatives":["WP1286","WP81","WP155","WP1284","WP278"],"coverage":[1]}};
+
+wgLib({
+	enrichDatabase: "pathway_Wikipathway",
+	organism: "rnorvegicus",
+	hostName: "https://www.webgestalt.org",
+	enrichment: enrichment,
+	background: background,
+	geneTables: geneTables,
+	clusters: clusters,
+	
+	enrichMethod: "ora",
+	mappedInputSize: 9,
+	standardId: "entrezgene",
+	volcano: {
+		labelTypes: ["geneSet", "description"],
+				dimensions: { width: 960, height: 500 },
+		autoPlaceLabels: true,
+		y: "FDR",
+
+
+		x: "enrichmentRatio",
+		xLabel: "log2 of enrichment ratio",
+		radius: "overlap",
+		color: "overlap",
+			tooltipContent: ["geneSet", "description", "enrichmentRatio", "FDR", "pValue", "overlap"]
+					
+	},
+	bar: {
+		dimensions: { width: 960, height: 300 },
+		labelWidth: 200,
+		tooltipContent: ["geneSet", "description", "enrichmentRatio", "FDR", "pValue", "overlap"],
+		
+		valueKey: "enrichmentRatio",
+		xLabel: "Enrichment ratio"
+	}
+})
+
+
+</script>
+<footer class="footer has-text-centered">
+<p>WebGestalt is currently developed and maintained by Yuxing Liao, Suhas Vasaikar, Zhiao Shi and Bing Zhang at the <a target="_new" href=http://www.zhang-lab.org> Zhang Lab</a>. Other people who have made significant contribution to the project include Jing Wang, Dexter Duncan, Stefan Kirov and Jay Snoddy.</p>
+<p><b>Funding credits:</b> NIH/NCI (U24 CA210954); Leidos (15X038); CPRIT (RR160027); NIH/NIAAA (U01 AA016662, U01 AA013512); NIH/NIDA (P01 DA015027); NIH/NIMH (P50 MH078028, P50 MH096972); NIH/NCI (U24 CA159988); NIH/NIGMS (R01 GM088822).
+</p>
+</footer></body>
+</html>

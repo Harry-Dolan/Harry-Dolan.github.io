@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<title>WebGestalt (WEB-based GEne SeT AnaLysis Toolkit)</title>
+<link rel="icon" type="image/png" href="https://s3-us-west-2.amazonaws.com/webgestalt/favicon.png">
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-42098540-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?flags=gated&features=es2015%2Ces2016%2Cfetch"></script>
+<script src="https://www.webgestalt.org/assets/0.4/build/vendor.min.js"></script>
+	<script src="https://www.webgestalt.org/assets/0.4/build/cytoscape.min.js"></script>
+		<link rel="stylesheet" href="https://www.webgestalt.org/assets/0.4/build/vendor.css">
+	<link rel="stylesheet" href="https://www.webgestalt.org/assets/0.4/build/wg.css">
+<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+</head>
+<body>
+<header>
+	<div id="header-img"><a href="https://www.webgestalt.org"><img border="0" src="https://www.webgestalt.org/images/gsa.png"></a></div>
+	<div id="header-title">
+		<p id="header-title-text">WEB-based GEne SeT AnaLysis Toolkit</p>
+		<p id="header-subtitle-text">Translating gene lists into biological insights...</p>
+	</div>
+</header>
+<hr><main>
+<div id="app">
+<div class="loading-preinit" v-cloak><div class="loading-icon"></div></div>
+<div class="wrapper" v-cloak>
+<div class="level">
+	<div class="level-left">
+		<div class="level-item">
+			<h4 class="title is-4 has-text-primary">Summary</h4>
+		</div>
+	</div>
+	<div class="level-right">
+		<div class="level-item">
+			<a class="button is-text" href="Project_wg_result1695087358.zip" target="_blank">Result Download</a>
+		</div>
+	</div>
+</div>
+
+<section id="summary" class="summary">
+<div class="card" v-bind:class="{active: summaryShown}" >
+	<div class="card-header" v-on:click="summaryShown=!summaryShown">
+		<p class="card-header-title">Job summary</p>
+		<a href="#" class="card-header-icon">
+			<b-icon :icon="summaryShown ? 'chevron-up' : 'chevron-down'"></b-icon>
+		</a>
+	</div>
+	<div class="card-content content" v-show="summaryShown">
+		<ul id="summary-list"> 
+		<li><b>Enrichment method:</b> ORA</li>
+		<li><b>Organism: </b>rnorvegicus</li>
+		<li>
+				<b>Enrichment Categories: </b>geneontology_Biological_Process
+				<a class="has-text-info" href="https://www.webgestalt.org/api/geneset?organism=rnorvegicus&database=geneontology_Biological_Process&fileType=gmt">
+					<b-icon icon="download" size="is-small"></b-icon>
+				</a>
+					</li>
+		
+			<li><b>Interesting list: </b>textAreaUpload_1695087358.txt. <b>ID type: </b>genesymbol</li>
+						<li>The interesting list contains <b>9</b> user IDs in which <b>9</b> user IDs are unambiguously mapped to <b>9</b> unique entrezgene IDs and <b>0</b> user IDs can not be mapped to any entrezgene ID.</li>
+			<li>The GO Slim summary are based upon the <b>9</b> unique entrezgene IDs.</li>
+		
+
+		<li>Among <b>9</b> unique entrezgene IDs, <b>7</b> IDs are annotated to the selected functional categories and also in the reference list, which are used for the enrichment analysis.</li>
+		
+		<li><b>Reference list: </b> all mapped entrezgene IDs from the selected platform genome
+			<a class="has-text-info" href="https://www.webgestalt.org/api/reference?organism=rnorvegicus&referenceSet=genome">
+				<b-icon icon="download" size="is-small"></b-icon>
+			</a>
+		</li>
+	
+	<li>The reference list can be mapped to <b>47958</b> entrezgene IDs and <b> 13359</b> IDs are annotated to the selected functional categories that are used as the reference for the enrichment analysis.</li>
+</ul> 
+
+<p><b>Parameters for the enrichment analysis:</b></p>
+<ul><li><b>Minimum number of IDs in the category: </b>5</li>
+<li><b>Maximum number of IDs in the category: </b>2000</li>
+<li><b>FDR Method: </b>BH</li>
+
+<li><b>Significance Level:</b> Top 10</li>
+</ul>
+	
+	<p>Based on the above parameters, <b>10</b> categories are identified as enriched categories and all are shown in this report.</p>
+	
+
+	</div>
+</div>
+</section>
+<section id="go-summary" class="summary">
+<div class="card" v-bind:class="{active: goShown}" >
+	<div class="card-header" v-on:click="goShown=!goShown">
+		<p class="card-header-title">GO Slim summary for the user uploaded IDs</p>
+		<a href="#" class="card-header-icon">
+			<b-icon :icon="goShown ? 'chevron-up' : 'chevron-down'"></b-icon>
+		</a>
+	</div>
+	<div v-show="goShown">
+		<div class="card-content">
+			<p>Each Biological Process, Cellular Component and Molecular Function category is represented by a red, blue and green bar, repectively.</p>
+			<p>The height of the bar represents the number of IDs in the user list and also in the category.</p>
+		</div>
+		<div class="card-image">
+			<img src="goslim_summary_wg_result1695087358.png" width="100%" height="100%" alt="Bar charts of enriched GO Slim terms"/>
+		</div>
+	</div>
+</div>
+</section> <h4 class="title is-4 has-text-primary">Enrichment Results</h4>
+<section id="enrich-result">
+	<p class="select-redundancy">
+		<b-tooltip label="Enriched gene sets are post-processed by two methods to reduce redundancy." type="is-dark" animated multilined dashed>
+			Redundancy reduction:
+		</b-tooltip>
+		<b-radio v-model="redundancy" native-value="all">All</b-radio>
+		<b-radio v-model="redundancy" native-value="ap">
+			<b-tooltip label="R package apcluster is used to cluster gene sets." type="is-dark" animated multilined dashed>
+				Affinity propagation
+			</b-tooltip>
+		</b-radio>
+		
+		<b-radio v-model="redundancy" native-value="wsc">
+			<b-tooltip label="Find top gene sets while maximizing gene coverage." type="is-dark" animated multilined dashed>
+				Weighted set cover
+			</b-tooltip>
+		</b-radio>
+	</p>
+	<b-tabs v-model="activeTab" type="is-toggle">
+		<b-tab-item label="Table">
+			<wg-result-table
+				:data="enrichmentData"
+				:method="enrichMethod"
+			></wg-result-table>
+		</b-tab-item>
+		<b-tab-item label="Bar chart">
+		<div class="vertical-center-container">
+			<wg-bar-plot
+				:dimensions="bar.dimensions"
+				:label-width="bar.labelWidth"
+				:data="enrichmentData"
+				:value-key="bar.valueKey"
+				:x-label="bar.xLabel">
+			</wg-bar-plot>
+		</div>
+		</b-tab-item>
+		<b-tab-item label="Volcano plot">
+		<div class="vertical-center-container">
+			<wg-volcano-plot
+				:data="volcanoData"
+				:x="volcano.x"
+				:y="volcano.y"
+				:dimensions="volcano.dimensions"
+				:x-label="volcano.xLabel"
+				:label-types="volcano.labelTypes"
+				:x-transform="volcano.xTransform"
+				:radius="volcano.radius"
+				:color="volcano.color"
+				:tooltip-content="volcano.tooltipContent"
+				:show-all-labels="false"
+				:auto-place-labels="true"
+			></wg-volcano-plot>
+		</div>
+		</b-tab-item>
+		<b-tab-item label="DAG">
+			<b-field>
+				<b-select v-model="activeDagDatabase">
+					<option v-for="(value, key) in dag"
+						:value="key"
+						:key="key"
+					>{{key}}</option>
+				</b-select>
+			</b-field>
+			<div style="width: 100%; height: 600px">
+			<wg-dag
+				container-id="wg_dag"
+				:data="dagData"
+			></wg-dag>
+			</div>
+		</b-tab-item>
+	</b-tabs>
+	<wg-gene-table
+		:data="geneTables"
+		:info="enrichment"
+		:standard-id="standardId"
+		:method="enrichMethod"
+		:mapped-input-size="mappedInputSize"
+		:organism="organism"
+		:host-name="hostName"
+		:sets-with-net="false"
+	></wg-gene-table>
+</section> 
+
+</div>
+</div>
+</main>
+	<script type="text/javascript" src="https://www.webgestalt.org/assets/0.4/build/wg.min.js"></script>
+<script type="text/javascript">
+var enrichment = [{"geneSet":"GO:0044283","description":"small molecule biosynthetic process","link":"http://amigo.geneontology.org/amigo/term/GO:0044283","size":487,"overlap":3,"expect":0.255183771240362,"enrichmentRatio":11.75623349956,"pValue":0.00151013111188214,"FDR":1,"overlapId":"298423;301416;362323"},{"geneSet":"GO:0006105","description":"succinate metabolic process","link":"http://amigo.geneontology.org/amigo/term/GO:0006105","size":6,"overlap":1,"expect":0.00314394790029194,"enrichmentRatio":318.071428571429,"pValue":0.0031404192518445,"FDR":1,"overlapId":"362323"},{"geneSet":"GO:0043651","description":"linoleic acid metabolic process","link":"http://amigo.geneontology.org/amigo/term/GO:0043651","size":8,"overlap":1,"expect":0.00419193053372258,"enrichmentRatio":238.553571428571,"pValue":0.00418534536678494,"FDR":1,"overlapId":"298423"},{"geneSet":"GO:0030575","description":"nuclear body organization","link":"http://amigo.geneontology.org/amigo/term/GO:0030575","size":10,"overlap":1,"expect":0.00523991316715323,"enrichmentRatio":190.842857142857,"pValue":0.00522933250369029,"FDR":1,"overlapId":"499669"},{"geneSet":"GO:0051791","description":"medium-chain fatty acid metabolic process","link":"http://amigo.geneontology.org/amigo/term/GO:0051791","size":12,"overlap":1,"expect":0.00628789580058388,"enrichmentRatio":159.035714285714,"pValue":0.00627238136581054,"FDR":1,"overlapId":"298423"},{"geneSet":"GO:0042178","description":"xenobiotic catabolic process","link":"http://amigo.geneontology.org/amigo/term/GO:0042178","size":13,"overlap":1,"expect":0.0068118871172992,"enrichmentRatio":146.802197802198,"pValue":0.00679355416347605,"FDR":1,"overlapId":"24423"},{"geneSet":"GO:0006744","description":"ubiquinone biosynthetic process","link":"http://amigo.geneontology.org/amigo/term/GO:0006744","size":14,"overlap":1,"expect":0.00733587843401452,"enrichmentRatio":136.316326530612,"pValue":0.00731449265597195,"FDR":1,"overlapId":"301416"},{"geneSet":"GO:1901663","description":"quinone biosynthetic process","link":"http://amigo.geneontology.org/amigo/term/GO:1901663","size":14,"overlap":1,"expect":0.00733587843401452,"enrichmentRatio":136.316326530612,"pValue":0.00731449265597195,"FDR":1,"overlapId":"301416"},{"geneSet":"GO:0006743","description":"ubiquinone metabolic process","link":"http://amigo.geneontology.org/amigo/term/GO:0006743","size":15,"overlap":1,"expect":0.00785986975072984,"enrichmentRatio":127.228571428571,"pValue":0.00783519693108659,"FDR":1,"overlapId":"301416"},{"geneSet":"GO:0010666","description":"positive regulation of cardiac muscle cell apoptotic process","link":"http://amigo.geneontology.org/amigo/term/GO:0010666","size":18,"overlap":1,"expect":0.00943184370087581,"enrichmentRatio":106.02380952381,"pValue":0.00939590532962498,"FDR":1,"overlapId":"308099"}];
+var background = [{"geneSet":"GO:0048026","enrichmentRatio":106.02380952381,"FDR":1,"overlap":1},{"geneSet":"GO:0010663","enrichmentRatio":100.443609022556,"FDR":1,"overlap":1},{"geneSet":"GO:1901661","enrichmentRatio":86.7467532467532,"FDR":1,"overlap":1},{"geneSet":"GO:0006376","enrichmentRatio":82.9751552795031,"FDR":1,"overlap":1},{"geneSet":"GO:0010661","enrichmentRatio":73.4010989010989,"FDR":1,"overlap":1},{"geneSet":"GO:0050685","enrichmentRatio":73.4010989010989,"FDR":1,"overlap":1},{"geneSet":"GO:0098781","enrichmentRatio":73.4010989010989,"FDR":1,"overlap":1},{"geneSet":"GO:0046456","enrichmentRatio":63.6142857142857,"FDR":1,"overlap":1},{"geneSet":"GO:0051186","enrichmentRatio":9.88823094004441,"FDR":1,"overlap":2},{"geneSet":"GO:0033120","enrichmentRatio":59.6383928571429,"FDR":1,"overlap":1},{"geneSet":"GO:0006111","enrichmentRatio":57.8311688311688,"FDR":1,"overlap":1},{"geneSet":"GO:0042181","enrichmentRatio":56.1302521008403,"FDR":1,"overlap":1},{"geneSet":"GO:0010226","enrichmentRatio":56.1302521008403,"FDR":1,"overlap":1},{"geneSet":"GO:0000245","enrichmentRatio":53.0119047619048,"FDR":1,"overlap":1},{"geneSet":"GO:0006749","enrichmentRatio":48.9340659340659,"FDR":1,"overlap":1},{"geneSet":"GO:0010665","enrichmentRatio":47.7107142857143,"FDR":1,"overlap":1},{"geneSet":"GO:0019369","enrichmentRatio":47.7107142857143,"FDR":1,"overlap":1},{"geneSet":"GO:0010662","enrichmentRatio":45.4387755102041,"FDR":1,"overlap":1},{"geneSet":"GO:0010288","enrichmentRatio":45.4387755102041,"FDR":1,"overlap":1},{"geneSet":"GO:0010659","enrichmentRatio":42.4095238095238,"FDR":1,"overlap":1},{"geneSet":"GO:0010658","enrichmentRatio":40.6048632218845,"FDR":1,"overlap":1},{"geneSet":"GO:1901570","enrichmentRatio":39.7589285714286,"FDR":1,"overlap":1},{"geneSet":"GO:0044281","enrichmentRatio":4.22530311017396,"FDR":1,"overlap":3},{"geneSet":"GO:0000381","enrichmentRatio":36.0080862533693,"FDR":1,"overlap":1},{"geneSet":"GO:0006094","enrichmentRatio":35.3412698412698,"FDR":1,"overlap":1},{"geneSet":"GO:0019319","enrichmentRatio":34.0790816326531,"FDR":1,"overlap":1},{"geneSet":"GO:0033108","enrichmentRatio":34.0790816326531,"FDR":1,"overlap":1},{"geneSet":"GO:0017144","enrichmentRatio":7.00340760157274,"FDR":1,"overlap":2},{"geneSet":"GO:0000380","enrichmentRatio":32.3462469733656,"FDR":1,"overlap":1},{"geneSet":"GO:0046364","enrichmentRatio":31.8071428571429,"FDR":1,"overlap":1},{"geneSet":"GO:1903313","enrichmentRatio":31.8071428571429,"FDR":1,"overlap":1},{"geneSet":"GO:0030317","enrichmentRatio":29.8191964285714,"FDR":1,"overlap":1},{"geneSet":"GO:0097722","enrichmentRatio":29.8191964285714,"FDR":1,"overlap":1},{"geneSet":"GO:0010660","enrichmentRatio":28.9155844155844,"FDR":1,"overlap":1},{"geneSet":"GO:0001676","enrichmentRatio":27.6583850931677,"FDR":1,"overlap":1},{"geneSet":"GO:0006805","enrichmentRatio":27.2632653061224,"FDR":1,"overlap":1},{"geneSet":"GO:0043255","enrichmentRatio":27.2632653061224,"FDR":1,"overlap":1},{"geneSet":"GO:0010657","enrichmentRatio":26.8792756539235,"FDR":1,"overlap":1},{"geneSet":"GO:0048024","enrichmentRatio":25.1109022556391,"FDR":1,"overlap":1},{"geneSet":"GO:0006690","enrichmentRatio":24.7847866419295,"FDR":1,"overlap":1},{"geneSet":"GO:0010906","enrichmentRatio":24.467032967033,"FDR":1,"overlap":1},{"geneSet":"GO:0043648","enrichmentRatio":23.2735191637631,"FDR":1,"overlap":1},{"geneSet":"GO:0033559","enrichmentRatio":23.2735191637631,"FDR":1,"overlap":1},{"geneSet":"GO:0048678","enrichmentRatio":22.719387755102,"FDR":1,"overlap":1},{"geneSet":"GO:0006997","enrichmentRatio":22.719387755102,"FDR":1,"overlap":1},{"geneSet":"GO:0019752","enrichmentRatio":5.43711843711844,"FDR":1,"overlap":2},{"geneSet":"GO:0010675","enrichmentRatio":19.2770562770563,"FDR":1,"overlap":1},{"geneSet":"GO:0043436","enrichmentRatio":5.23574368018812,"FDR":1,"overlap":2},{"geneSet":"GO:0050684","enrichmentRatio":18.7100840336134,"FDR":1,"overlap":1},{"geneSet":"GO:1901568","enrichmentRatio":18.5284327323162,"FDR":1,"overlap":1},{"geneSet":"GO:0043484","enrichmentRatio":18.5284327323162,"FDR":1,"overlap":1},{"geneSet":"GO:0034622","enrichmentRatio":5.18594720496894,"FDR":1,"overlap":2},{"geneSet":"GO:0006082","enrichmentRatio":5.15095430884905,"FDR":1,"overlap":2},{"geneSet":"GO:0016999","enrichmentRatio":17.1930501930502,"FDR":1,"overlap":1},{"geneSet":"GO:0055114","enrichmentRatio":4.79504666188083,"FDR":1,"overlap":2},{"geneSet":"GO:0006109","enrichmentRatio":15.9035714285714,"FDR":1,"overlap":1},{"geneSet":"GO:0006733","enrichmentRatio":15.6428571428571,"FDR":1,"overlap":1},{"geneSet":"GO:0071456","enrichmentRatio":15.0269966254218,"FDR":1,"overlap":1},{"geneSet":"GO:0006575","enrichmentRatio":14.7940199335548,"FDR":1,"overlap":1},{"geneSet":"GO:0045333","enrichmentRatio":14.5681570338059,"FDR":1,"overlap":1},{"geneSet":"GO:0043200","enrichmentRatio":14.2420042643923,"FDR":1,"overlap":1},{"geneSet":"GO:0006006","enrichmentRatio":13.9301355578728,"FDR":1,"overlap":1},{"geneSet":"GO:0036294","enrichmentRatio":13.8291925465838,"FDR":1,"overlap":1},{"geneSet":"GO:0042180","enrichmentRatio":13.6316326530612,"FDR":1,"overlap":1},{"geneSet":"GO:0071466","enrichmentRatio":13.5349544072948,"FDR":1,"overlap":1},{"geneSet":"GO:0016051","enrichmentRatio":12.9825072886297,"FDR":1,"overlap":1},{"geneSet":"GO:0071453","enrichmentRatio":12.5554511278195,"FDR":1,"overlap":1},{"geneSet":"GO:0009108","enrichmentRatio":12.4733893557423,"FDR":1,"overlap":1},{"geneSet":"GO:0019318","enrichmentRatio":12.0026954177898,"FDR":1,"overlap":1},{"geneSet":"GO:1903311","enrichmentRatio":11.1604010025063,"FDR":1,"overlap":1},{"geneSet":"GO:0005996","enrichmentRatio":10.8433441558442,"FDR":1,"overlap":1},{"geneSet":"GO:0015980","enrichmentRatio":10.205500381971,"FDR":1,"overlap":1},{"geneSet":"GO:0022618","enrichmentRatio":10.205500381971,"FDR":1,"overlap":1},{"geneSet":"GO:0045471","enrichmentRatio":10.0975056689342,"FDR":1,"overlap":1},{"geneSet":"GO:0051188","enrichmentRatio":9.83726067746686,"FDR":1,"overlap":1},{"geneSet":"GO:0000375","enrichmentRatio":9.7368804664723,"FDR":1,"overlap":1},{"geneSet":"GO:0000377","enrichmentRatio":9.7368804664723,"FDR":1,"overlap":1},{"geneSet":"GO:0000398","enrichmentRatio":9.7368804664723,"FDR":1,"overlap":1},{"geneSet":"GO:0071826","enrichmentRatio":9.63852813852814,"FDR":1,"overlap":1},{"geneSet":"GO:0044262","enrichmentRatio":9.26421636615811,"FDR":1,"overlap":1},{"geneSet":"GO:0006790","enrichmentRatio":9.00202156334232,"FDR":1,"overlap":1},{"geneSet":"GO:0001822","enrichmentRatio":8.55797565663037,"FDR":1,"overlap":1},{"geneSet":"GO:0072001","enrichmentRatio":8.15567765567766,"FDR":1,"overlap":1},{"geneSet":"GO:0062012","enrichmentRatio":8.0865617433414,"FDR":1,"overlap":1},{"geneSet":"GO:0006732","enrichmentRatio":7.3684500827358,"FDR":1,"overlap":1},{"geneSet":"GO:0001655","enrichmentRatio":7.14767255216693,"FDR":1,"overlap":1},{"geneSet":"GO:0046394","enrichmentRatio":7.04217185028993,"FDR":1,"overlap":1},{"geneSet":"GO:0008380","enrichmentRatio":7.01628151260504,"FDR":1,"overlap":1},{"geneSet":"GO:0016053","enrichmentRatio":6.9905808477237,"FDR":1,"overlap":1},{"geneSet":"GO:0065003","enrichmentRatio":2.99361344537815,"FDR":1,"overlap":2},{"geneSet":"GO:0006631","enrichmentRatio":6.69624060150376,"FDR":1,"overlap":1},{"geneSet":"GO:0009410","enrichmentRatio":6.44739382239382,"FDR":1,"overlap":1},{"geneSet":"GO:0097305","enrichmentRatio":6.38270425226947,"FDR":1,"overlap":1},{"geneSet":"GO:0006091","enrichmentRatio":6.27772556390977,"FDR":1,"overlap":1},{"geneSet":"GO:0006397","enrichmentRatio":6.07779799818016,"FDR":1,"overlap":1},{"geneSet":"GO:0007005","enrichmentRatio":6.00134770889488,"FDR":1,"overlap":1},{"geneSet":"GO:0022613","enrichmentRatio":5.92679680567879,"FDR":1,"overlap":1},{"geneSet":"GO:0001666","enrichmentRatio":5.87208791208791,"FDR":1,"overlap":1},{"geneSet":"GO:0036293","enrichmentRatio":5.64623837700761,"FDR":1,"overlap":1},{"geneSet":"GO:0043933","enrichmentRatio":2.67286914765906,"FDR":1,"overlap":2},{"geneSet":"GO:0016311","enrichmentRatio":5.51568951279934,"FDR":1,"overlap":1},{"geneSet":"GO:0034660","enrichmentRatio":5.48399014778325,"FDR":1,"overlap":1},{"geneSet":"GO:0006979","enrichmentRatio":5.30119047619048,"FDR":1,"overlap":1},{"geneSet":"GO:0007283","enrichmentRatio":5.18594720496894,"FDR":1,"overlap":1},{"geneSet":"GO:0070482","enrichmentRatio":5.13018433179723,"FDR":1,"overlap":1},{"geneSet":"GO:0048232","enrichmentRatio":5.04875283446712,"FDR":1,"overlap":1},{"geneSet":"GO:0001101","enrichmentRatio":5.04875283446712,"FDR":1,"overlap":1},{"geneSet":"GO:0010038","enrichmentRatio":5.03543158688277,"FDR":1,"overlap":1},{"geneSet":"GO:0046677","enrichmentRatio":4.81926406926407,"FDR":1,"overlap":1},{"geneSet":"GO:0009611","enrichmentRatio":4.74733475479744,"FDR":1,"overlap":1},{"geneSet":"GO:0005975","enrichmentRatio":4.72383309759547,"FDR":1,"overlap":1},{"geneSet":"GO:0043065","enrichmentRatio":4.5986230636833,"FDR":1,"overlap":1},{"geneSet":"GO:0043068","enrichmentRatio":4.55472212751449,"FDR":1,"overlap":1},{"geneSet":"GO:0032787","enrichmentRatio":4.52234258632363,"FDR":1,"overlap":1},{"geneSet":"GO:0016071","enrichmentRatio":4.32750242954325,"FDR":1,"overlap":1},{"geneSet":"GO:0051223","enrichmentRatio":4.16687461010605,"FDR":1,"overlap":1},{"geneSet":"GO:0007276","enrichmentRatio":4.13079777365492,"FDR":1,"overlap":1},{"geneSet":"GO:0010942","enrichmentRatio":4.09534028203556,"FDR":1,"overlap":1},{"geneSet":"GO:0070201","enrichmentRatio":4.0093037214886,"FDR":1,"overlap":1},{"geneSet":"GO:0090087","enrichmentRatio":3.91071428571429,"FDR":1,"overlap":1},{"geneSet":"GO:0009636","enrichmentRatio":3.426263144396,"FDR":1,"overlap":1},{"geneSet":"GO:0019953","enrichmentRatio":3.34812030075188,"FDR":1,"overlap":1},{"geneSet":"GO:0010035","enrichmentRatio":3.33059087509349,"FDR":1,"overlap":1},{"geneSet":"GO:0006518","enrichmentRatio":3.20744297719088,"FDR":1,"overlap":1},{"geneSet":"GO:0006396","enrichmentRatio":3.16488983653163,"FDR":1,"overlap":1},{"geneSet":"GO:0048609","enrichmentRatio":3.10818985574686,"FDR":1,"overlap":1},{"geneSet":"GO:0022607","enrichmentRatio":1.91129551470062,"FDR":1,"overlap":2},{"geneSet":"GO:0032504","enrichmentRatio":3.06328823664297,"FDR":1,"overlap":1},{"geneSet":"GO:0032880","enrichmentRatio":2.9047619047619,"FDR":1,"overlap":1},{"geneSet":"GO:0001934","enrichmentRatio":2.78196584756351,"FDR":1,"overlap":1},{"geneSet":"GO:0044255","enrichmentRatio":2.65797851173896,"FDR":1,"overlap":1},{"geneSet":"GO:0042327","enrichmentRatio":2.64691896175946,"FDR":1,"overlap":1},{"geneSet":"GO:0044703","enrichmentRatio":2.56164908916587,"FDR":1,"overlap":1},{"geneSet":"GO:0043603","enrichmentRatio":2.48493303571429,"FDR":1,"overlap":1},{"geneSet":"GO:0010562","enrichmentRatio":2.44357051399305,"FDR":1,"overlap":1},{"geneSet":"GO:0045937","enrichmentRatio":2.44357051399305,"FDR":1,"overlap":1},{"geneSet":"GO:0031401","enrichmentRatio":2.35317949621279,"FDR":1,"overlap":1},{"geneSet":"GO:0006629","enrichmentRatio":2.03240529438612,"FDR":1,"overlap":1},{"geneSet":"GO:0010243","enrichmentRatio":1.98175344904317,"FDR":1,"overlap":1},{"geneSet":"GO:0001932","enrichmentRatio":1.93160786581839,"FDR":1,"overlap":1},{"geneSet":"GO:0048870","enrichmentRatio":1.91417108468262,"FDR":1,"overlap":1},{"geneSet":"GO:0051674","enrichmentRatio":1.91417108468262,"FDR":1,"overlap":1},{"geneSet":"GO:0009628","enrichmentRatio":1.88207945900254,"FDR":1,"overlap":1},{"geneSet":"GO:1901698","enrichmentRatio":1.86552157519899,"FDR":1,"overlap":1},{"geneSet":"GO:0042981","enrichmentRatio":1.83856317093311,"FDR":1,"overlap":1},{"geneSet":"GO:0032270","enrichmentRatio":1.81237281237281,"FDR":1,"overlap":1},{"geneSet":"GO:0043067","enrichmentRatio":1.80893703452945,"FDR":1,"overlap":1},{"geneSet":"GO:0022414","enrichmentRatio":1.78357810413885,"FDR":1,"overlap":1},{"geneSet":"GO:0042325","enrichmentRatio":1.78191276510604,"FDR":1,"overlap":1},{"geneSet":"GO:0000003","enrichmentRatio":1.77859139928105,"FDR":1,"overlap":1},{"geneSet":"GO:0007608","enrichmentRatio":1.76379720095062,"FDR":1,"overlap":1},{"geneSet":"GO:0042493","enrichmentRatio":1.74445024810655,"FDR":1,"overlap":1},{"geneSet":"GO:0040011","enrichmentRatio":1.70547682880123,"FDR":1,"overlap":1},{"geneSet":"GO:0051247","enrichmentRatio":1.70547682880123,"FDR":1,"overlap":1},{"geneSet":"GO:0051254","enrichmentRatio":1.66820679320679,"FDR":1,"overlap":1},{"geneSet":"GO:0007606","enrichmentRatio":1.66239422598308,"FDR":1,"overlap":1},{"geneSet":"GO:0010941","enrichmentRatio":1.64519704433498,"FDR":1,"overlap":1},{"geneSet":"GO:0019220","enrichmentRatio":1.57982497634815,"FDR":1,"overlap":1},{"geneSet":"GO:0051174","enrichmentRatio":1.57851825593761,"FDR":1,"overlap":1},{"geneSet":"GO:0015031","enrichmentRatio":1.55790087463557,"FDR":1,"overlap":1},{"geneSet":"GO:0031399","enrichmentRatio":1.54403606102635,"FDR":1,"overlap":1},{"geneSet":"GO:0006928","enrichmentRatio":1.52066021627775,"FDR":1,"overlap":1},{"geneSet":"GO:0015833","enrichmentRatio":1.51462585034014,"FDR":1,"overlap":1},{"geneSet":"GO:0045935","enrichmentRatio":1.50269966254218,"FDR":1,"overlap":1},{"geneSet":"GO:0042886","enrichmentRatio":1.49212554451022,"FDR":1,"overlap":1},{"geneSet":"GO:0045184","enrichmentRatio":1.49212554451022,"FDR":1,"overlap":1},{"geneSet":"GO:0033554","enrichmentRatio":1.48400355476561,"FDR":1,"overlap":1},{"geneSet":"GO:0006915","enrichmentRatio":1.48285048285048,"FDR":1,"overlap":1},{"geneSet":"GO:0010628","enrichmentRatio":1.4702839533348,"FDR":1,"overlap":1},{"geneSet":"GO:0006468","enrichmentRatio":1.46127761977685,"FDR":1,"overlap":1},{"geneSet":"GO:0012501","enrichmentRatio":1.45017368649587,"FDR":1,"overlap":1},{"geneSet":"GO:0051049","enrichmentRatio":1.42207792207792,"FDR":1,"overlap":1},{"geneSet":"GO:0044248","enrichmentRatio":1.35253619520097,"FDR":1,"overlap":1},{"geneSet":"GO:0007600","enrichmentRatio":1.33737110821904,"FDR":1,"overlap":1},{"geneSet":"GO:0008219","enrichmentRatio":1.33177150832419,"FDR":1,"overlap":1},{"geneSet":"GO:0051704","enrichmentRatio":1.2947276603993,"FDR":1,"overlap":1},{"geneSet":"GO:0071705","enrichmentRatio":1.24408642205252,"FDR":1,"overlap":1},{"geneSet":"GO:1901700","enrichmentRatio":1.23763201778766,"FDR":1,"overlap":1},{"geneSet":"GO:0016310","enrichmentRatio":1.20102490335341,"FDR":1,"overlap":1},{"geneSet":"GO:0009056","enrichmentRatio":1.1935138032699,"FDR":1,"overlap":1},{"geneSet":"GO:0008104","enrichmentRatio":1.09302896416298,"FDR":1,"overlap":1},{"geneSet":"GO:0050877","enrichmentRatio":1.08866433053541,"FDR":1,"overlap":1},{"geneSet":"GO:0032268","enrichmentRatio":1.07942792501616,"FDR":1,"overlap":1},{"geneSet":"GO:0071702","enrichmentRatio":1.04628759398496,"FDR":1,"overlap":1},{"geneSet":"GO:0051246","enrichmentRatio":1.01566182619935,"FDR":1,"overlap":1},{"geneSet":"GO:0032879","enrichmentRatio":0.98524964967918,"FDR":1,"overlap":1},{"geneSet":"GO:0033036","enrichmentRatio":0.956605800214823,"FDR":1,"overlap":1}];
+var geneTables = {"GO:0044283":[{"userId":"Cyp4a3","geneSymbol":"Cyp4a3","geneName":"cytochrome P450, family 4, subfamily a, polypeptide 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=298423","entrezgene":"298423"},{"userId":"Coq10b","geneSymbol":"Coq10b","geneName":"coenzyme Q10B","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=301416","entrezgene":"301416"},{"userId":"Sdhaf3","geneSymbol":"Sdhaf3","geneName":"succinate dehydrogenase complex assembly factor 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=362323","entrezgene":"362323"}],"GO:0006105":[{"userId":"Sdhaf3","geneSymbol":"Sdhaf3","geneName":"succinate dehydrogenase complex assembly factor 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=362323","entrezgene":"362323"}],"GO:0043651":[{"userId":"Cyp4a3","geneSymbol":"Cyp4a3","geneName":"cytochrome P450, family 4, subfamily a, polypeptide 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=298423","entrezgene":"298423"}],"GO:0030575":[{"userId":"Celf3","geneSymbol":"Celf3","geneName":"CUGBP, Elav-like family member 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=499669","entrezgene":"499669"}],"GO:0051791":[{"userId":"Cyp4a3","geneSymbol":"Cyp4a3","geneName":"cytochrome P450, family 4, subfamily a, polypeptide 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=298423","entrezgene":"298423"}],"GO:0042178":[{"userId":"Gstm1","geneSymbol":"Gstm1","geneName":"glutathione S-transferase mu 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=24423","entrezgene":"24423"}],"GO:0006744":[{"userId":"Coq10b","geneSymbol":"Coq10b","geneName":"coenzyme Q10B","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=301416","entrezgene":"301416"}],"GO:1901663":[{"userId":"Coq10b","geneSymbol":"Coq10b","geneName":"coenzyme Q10B","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=301416","entrezgene":"301416"}],"GO:0006743":[{"userId":"Coq10b","geneSymbol":"Coq10b","geneName":"coenzyme Q10B","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=301416","entrezgene":"301416"}],"GO:0010666":[{"userId":"Fndc1","geneSymbol":"Fndc1","geneName":"fibronectin type III domain containing 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=308099","entrezgene":"308099"}]};
+var clusters = {"ap":{"clusters":[["GO:0044283"],["GO:0006105"],["GO:0043651","GO:0051791"],["GO:0030575"],["GO:0042178"],["GO:1901663","GO:0006744","GO:0006743"],["GO:0010666"]],"representatives":["GO:0044283","GO:0006105","GO:0043651","GO:0030575","GO:0042178","GO:1901663","GO:0010666"]},"wsc":{"representatives":["GO:0044283","GO:0030575","GO:0042178","GO:0010666"],"coverage":[1]}};
+
+var dag = {"geneontology_Biological_Process":[{"data":{"source":"GO:0009058","target":"GO:0044283"}},{"data":{"source":"GO:0044281","target":"GO:0044283"}},{"data":{"source":"GO:0017144","target":"GO:0006105"}},{"data":{"source":"GO:0043648","target":"GO:0006105"}},{"data":{"source":"GO:0001676","target":"GO:0043651"}},{"data":{"source":"GO:0033559","target":"GO:0043651"}},{"data":{"source":"GO:0006997","target":"GO:0030575"}},{"data":{"source":"GO:0006631","target":"GO:0051791"}},{"data":{"source":"GO:0006805","target":"GO:0042178"}},{"data":{"source":"GO:0044248","target":"GO:0042178"}},{"data":{"source":"GO:0006743","target":"GO:0006744"}},{"data":{"source":"GO:1901663","target":"GO:0006744"}},{"data":{"source":"GO:0009108","target":"GO:1901663"}},{"data":{"source":"GO:0042181","target":"GO:1901663"}},{"data":{"source":"GO:1901661","target":"GO:1901663"}},{"data":{"source":"GO:0006733","target":"GO:0006743"}},{"data":{"source":"GO:1901661","target":"GO:0006743"}},{"data":{"source":"GO:0010659","target":"GO:0010666"}},{"data":{"source":"GO:0010663","target":"GO:0010666"}},{"data":{"source":"GO:0010665","target":"GO:0010666"}},{"data":{"source":"GO:0008152","target":"GO:0009058"}},{"data":{"source":"GO:0008152","target":"GO:0044281"}},{"data":{"source":"GO:0044237","target":"GO:0017144"}},{"data":{"source":"GO:0019752","target":"GO:0043648"}},{"data":{"source":"GO:0006631","target":"GO:0001676"}},{"data":{"source":"GO:0006631","target":"GO:0033559"}},{"data":{"source":"GO:0006996","target":"GO:0006997"}},{"data":{"source":"GO:0032787","target":"GO:0006631"}},{"data":{"source":"GO:0044255","target":"GO:0006631"}},{"data":{"source":"GO:0044237","target":"GO:0006805"}},{"data":{"source":"GO:0071466","target":"GO:0006805"}},{"data":{"source":"GO:0009056","target":"GO:0044248"}},{"data":{"source":"GO:0044237","target":"GO:0044248"}},{"data":{"source":"GO:0006732","target":"GO:0009108"}},{"data":{"source":"GO:0051188","target":"GO:0009108"}},{"data":{"source":"GO:0042180","target":"GO:0042181"}},{"data":{"source":"GO:0044249","target":"GO:0042181"}},{"data":{"source":"GO:0044283","target":"GO:0042181"}},{"data":{"source":"GO:1901576","target":"GO:0042181"}},{"data":{"source":"GO:0042180","target":"GO:1901661"}},{"data":{"source":"GO:0051186","target":"GO:1901661"}},{"data":{"source":"GO:0006732","target":"GO:0006733"}},{"data":{"source":"GO:0010658","target":"GO:0010659"}},{"data":{"source":"GO:0010658","target":"GO:0010663"}},{"data":{"source":"GO:0010661","target":"GO:0010663"}},{"data":{"source":"GO:0010662","target":"GO:0010663"}},{"data":{"source":"GO:0010659","target":"GO:0010665"}},{"data":{"source":"GO:0010662","target":"GO:0010665"}},{"data":{"source":"GO:0008150","target":"GO:0008152"}},{"data":{"source":"GO:0008152","target":"GO:0044237"}},{"data":{"source":"GO:0009987","target":"GO:0044237"}},{"data":{"source":"GO:0043436","target":"GO:0019752"}},{"data":{"source":"GO:0016043","target":"GO:0006996"}},{"data":{"source":"GO:0019752","target":"GO:0032787"}},{"data":{"source":"GO:0006629","target":"GO:0044255"}},{"data":{"source":"GO:0044237","target":"GO:0044255"}},{"data":{"source":"GO:0009410","target":"GO:0071466"}},{"data":{"source":"GO:0070887","target":"GO:0071466"}},{"data":{"source":"GO:0008152","target":"GO:0009056"}},{"data":{"source":"GO:0051186","target":"GO:0006732"}},{"data":{"source":"GO:0044249","target":"GO:0051188"}},{"data":{"source":"GO:0051186","target":"GO:0051188"}},{"data":{"source":"GO:0044237","target":"GO:0042180"}},{"data":{"source":"GO:0044281","target":"GO:0042180"}},{"data":{"source":"GO:0071704","target":"GO:0042180"}},{"data":{"source":"GO:0009058","target":"GO:0044249"}},{"data":{"source":"GO:0044237","target":"GO:0044249"}},{"data":{"source":"GO:0009058","target":"GO:1901576"}},{"data":{"source":"GO:0071704","target":"GO:1901576"}},{"data":{"source":"GO:0044237","target":"GO:0051186"}},{"data":{"source":"GO:0010657","target":"GO:0010658"}},{"data":{"source":"GO:0010657","target":"GO:0010661"}},{"data":{"source":"GO:0010660","target":"GO:0010661"}},{"data":{"source":"GO:0043065","target":"GO:0010661"}},{"data":{"source":"GO:0010658","target":"GO:0010662"}},{"data":{"source":"GO:0010660","target":"GO:0010662"}},{"data":{"source":"GO:0008150","target":"GO:0009987"}},{"data":{"source":"GO:0006082","target":"GO:0043436"}},{"data":{"source":"GO:0009987","target":"GO:0016043"}},{"data":{"source":"GO:0071840","target":"GO:0016043"}},{"data":{"source":"GO:0044238","target":"GO:0006629"}},{"data":{"source":"GO:0071704","target":"GO:0006629"}},{"data":{"source":"GO:0042221","target":"GO:0009410"}},{"data":{"source":"GO:0042221","target":"GO:0070887"}},{"data":{"source":"GO:0051716","target":"GO:0070887"}},{"data":{"source":"GO:0008152","target":"GO:0071704"}},{"data":{"source":"GO:0006915","target":"GO:0010657"}},{"data":{"source":"GO:0010657","target":"GO:0010660"}},{"data":{"source":"GO:0042981","target":"GO:0010660"}},{"data":{"source":"GO:0006915","target":"GO:0043065"}},{"data":{"source":"GO:0042981","target":"GO:0043065"}},{"data":{"source":"GO:0043068","target":"GO:0043065"}},{"data":{"source":"GO:0044237","target":"GO:0006082"}},{"data":{"source":"GO:0044281","target":"GO:0006082"}},{"data":{"source":"GO:0071704","target":"GO:0006082"}},{"data":{"source":"GO:0008150","target":"GO:0071840"}},{"data":{"source":"GO:0008152","target":"GO:0044238"}},{"data":{"source":"GO:0050896","target":"GO:0042221"}},{"data":{"source":"GO:0009987","target":"GO:0051716"}},{"data":{"source":"GO:0050896","target":"GO:0051716"}},{"data":{"source":"GO:0012501","target":"GO:0006915"}},{"data":{"source":"GO:0006915","target":"GO:0042981"}},{"data":{"source":"GO:0043067","target":"GO:0042981"}},{"data":{"source":"GO:0010942","target":"GO:0043068"}},{"data":{"source":"GO:0012501","target":"GO:0043068"}},{"data":{"source":"GO:0043067","target":"GO:0043068"}},{"data":{"source":"GO:0008150","target":"GO:0050896"}},{"data":{"source":"GO:0008219","target":"GO:0012501"}},{"data":{"source":"GO:0010941","target":"GO:0043067"}},{"data":{"source":"GO:0012501","target":"GO:0043067"}},{"data":{"source":"GO:0008219","target":"GO:0010942"}},{"data":{"source":"GO:0010941","target":"GO:0010942"}},{"data":{"source":"GO:0048522","target":"GO:0010942"}},{"data":{"source":"GO:0009987","target":"GO:0008219"}},{"data":{"source":"GO:0008219","target":"GO:0010941"}},{"data":{"source":"GO:0050794","target":"GO:0010941"}},{"data":{"source":"GO:0009987","target":"GO:0048522"}},{"data":{"source":"GO:0048518","target":"GO:0048522"}},{"data":{"source":"GO:0050794","target":"GO:0048522"}},{"data":{"source":"GO:0009987","target":"GO:0050794"}},{"data":{"source":"GO:0050789","target":"GO:0050794"}},{"data":{"source":"GO:0008150","target":"GO:0048518"}},{"data":{"source":"GO:0050789","target":"GO:0048518"}},{"data":{"source":"GO:0008150","target":"GO:0050789"}},{"data":{"source":"GO:0065007","target":"GO:0050789"}},{"data":{"source":"GO:0008150","target":"GO:0065007"}},{"data":{"id":"GO:0044283","name":"small molecule biosynthetic process","color":"#FFFFFF"}},{"data":{"id":"GO:0006105","name":"succinate metabolic process","color":"#FFFFFF"}},{"data":{"id":"GO:0043651","name":"linoleic acid metabolic process","color":"#FFFFFF"}},{"data":{"id":"GO:0030575","name":"nuclear body organization","color":"#FFFFFF"}},{"data":{"id":"GO:0051791","name":"medium-chain fatty acid metabolic process","color":"#FFFFFF"}},{"data":{"id":"GO:0042178","name":"xenobiotic catabolic process","color":"#FFFFFF"}},{"data":{"id":"GO:0006744","name":"ubiquinone biosynthetic process","color":"#FFFFFF"}},{"data":{"id":"GO:1901663","name":"quinone biosynthetic process","color":"#FFFFFF"}},{"data":{"id":"GO:0006743","name":"ubiquinone metabolic process","color":"#FFFFFF"}},{"data":{"id":"GO:0010666","name":"positive regulation of cardiac muscle cell apoptotic process","color":"#FFFFFF"}},{"data":{"id":"GO:0009058","name":"biosynthetic process","color":"white"}},{"data":{"id":"GO:0044281","name":"small molecule metabolic process","color":"white"}},{"data":{"id":"GO:0017144","name":"drug metabolic process","color":"white"}},{"data":{"id":"GO:0043648","name":"dicarboxylic acid metabolic process","color":"white"}},{"data":{"id":"GO:0001676","name":"long-chain fatty acid metabolic process","color":"white"}},{"data":{"id":"GO:0033559","name":"unsaturated fatty acid metabolic process","color":"white"}},{"data":{"id":"GO:0006997","name":"nucleus organization","color":"white"}},{"data":{"id":"GO:0006631","name":"fatty acid metabolic process","color":"white"}},{"data":{"id":"GO:0006805","name":"xenobiotic metabolic process","color":"white"}},{"data":{"id":"GO:0044248","name":"cellular catabolic process","color":"white"}},{"data":{"id":"GO:0009108","name":"coenzyme biosynthetic process","color":"white"}},{"data":{"id":"GO:0042181","name":"ketone biosynthetic process","color":"white"}},{"data":{"id":"GO:1901661","name":"quinone metabolic process","color":"white"}},{"data":{"id":"GO:0006733","name":"oxidoreduction coenzyme metabolic process","color":"white"}},{"data":{"id":"GO:0010659","name":"cardiac muscle cell apoptotic process","color":"white"}},{"data":{"id":"GO:0010663","name":"positive regulation of striated muscle cell apoptotic process","color":"white"}},{"data":{"id":"GO:0010665","name":"regulation of cardiac muscle cell apoptotic process","color":"white"}},{"data":{"id":"GO:0008152","name":"metabolic process","color":"white"}},{"data":{"id":"GO:0044237","name":"cellular metabolic process","color":"white"}},{"data":{"id":"GO:0019752","name":"carboxylic acid metabolic process","color":"white"}},{"data":{"id":"GO:0006996","name":"organelle organization","color":"white"}},{"data":{"id":"GO:0032787","name":"monocarboxylic acid metabolic process","color":"white"}},{"data":{"id":"GO:0044255","name":"cellular lipid metabolic process","color":"white"}},{"data":{"id":"GO:0071466","name":"cellular response to xenobiotic stimulus","color":"white"}},{"data":{"id":"GO:0009056","name":"catabolic process","color":"white"}},{"data":{"id":"GO:0006732","name":"coenzyme metabolic process","color":"white"}},{"data":{"id":"GO:0051188","name":"cofactor biosynthetic process","color":"white"}},{"data":{"id":"GO:0042180","name":"cellular ketone metabolic process","color":"white"}},{"data":{"id":"GO:0044249","name":"cellular biosynthetic process","color":"white"}},{"data":{"id":"GO:1901576","name":"organic substance biosynthetic process","color":"white"}},{"data":{"id":"GO:0051186","name":"cofactor metabolic process","color":"white"}},{"data":{"id":"GO:0010658","name":"striated muscle cell apoptotic process","color":"white"}},{"data":{"id":"GO:0010661","name":"positive regulation of muscle cell apoptotic process","color":"white"}},{"data":{"id":"GO:0010662","name":"regulation of striated muscle cell apoptotic process","color":"white"}},{"data":{"id":"GO:0008150","name":"biological_process","color":"white"}},{"data":{"id":"GO:0009987","name":"cellular process","color":"white"}},{"data":{"id":"GO:0043436","name":"oxoacid metabolic process","color":"white"}},{"data":{"id":"GO:0016043","name":"cellular component organization","color":"white"}},{"data":{"id":"GO:0006629","name":"lipid metabolic process","color":"white"}},{"data":{"id":"GO:0009410","name":"response to xenobiotic stimulus","color":"white"}},{"data":{"id":"GO:0070887","name":"cellular response to chemical stimulus","color":"white"}},{"data":{"id":"GO:0071704","name":"organic substance metabolic process","color":"white"}},{"data":{"id":"GO:0010657","name":"muscle cell apoptotic process","color":"white"}},{"data":{"id":"GO:0010660","name":"regulation of muscle cell apoptotic process","color":"white"}},{"data":{"id":"GO:0043065","name":"positive regulation of apoptotic process","color":"white"}},{"data":{"id":"GO:0006082","name":"organic acid metabolic process","color":"white"}},{"data":{"id":"GO:0071840","name":"cellular component organization or biogenesis","color":"white"}},{"data":{"id":"GO:0044238","name":"primary metabolic process","color":"white"}},{"data":{"id":"GO:0042221","name":"response to chemical","color":"white"}},{"data":{"id":"GO:0051716","name":"cellular response to stimulus","color":"white"}},{"data":{"id":"GO:0006915","name":"apoptotic process","color":"white"}},{"data":{"id":"GO:0042981","name":"regulation of apoptotic process","color":"white"}},{"data":{"id":"GO:0043068","name":"positive regulation of programmed cell death","color":"white"}},{"data":{"id":"GO:0050896","name":"response to stimulus","color":"white"}},{"data":{"id":"GO:0012501","name":"programmed cell death","color":"white"}},{"data":{"id":"GO:0043067","name":"regulation of programmed cell death","color":"white"}},{"data":{"id":"GO:0010942","name":"positive regulation of cell death","color":"white"}},{"data":{"id":"GO:0008219","name":"cell death","color":"white"}},{"data":{"id":"GO:0010941","name":"regulation of cell death","color":"white"}},{"data":{"id":"GO:0048522","name":"positive regulation of cellular process","color":"white"}},{"data":{"id":"GO:0050794","name":"regulation of cellular process","color":"white"}},{"data":{"id":"GO:0048518","name":"positive regulation of biological process","color":"white"}},{"data":{"id":"GO:0050789","name":"regulation of biological process","color":"white"}},{"data":{"id":"GO:0065007","name":"biological regulation","color":"white"}}]};
+wgLib({
+	enrichDatabase: "geneontology_Biological_Process",
+	organism: "rnorvegicus",
+	hostName: "https://www.webgestalt.org",
+	enrichment: enrichment,
+	background: background,
+	geneTables: geneTables,
+	clusters: clusters,
+	
+	enrichMethod: "ora",
+	mappedInputSize: 7,
+	standardId: "entrezgene",
+	dag: dag,
+	volcano: {
+		labelTypes: ["geneSet", "description"],
+				dimensions: { width: 960, height: 500 },
+		autoPlaceLabels: true,
+		y: "FDR",
+
+
+		x: "enrichmentRatio",
+		xLabel: "log2 of enrichment ratio",
+		radius: "overlap",
+		color: "overlap",
+			tooltipContent: ["geneSet", "description", "enrichmentRatio", "FDR", "pValue", "overlap"]
+					
+	},
+	bar: {
+		dimensions: { width: 960, height: 300 },
+		labelWidth: 200,
+		tooltipContent: ["geneSet", "description", "enrichmentRatio", "FDR", "pValue", "overlap"],
+		
+		valueKey: "enrichmentRatio",
+		xLabel: "Enrichment ratio"
+	}
+})
+
+
+</script>
+<footer class="footer has-text-centered">
+<p>WebGestalt is currently developed and maintained by Yuxing Liao, Suhas Vasaikar, Zhiao Shi and Bing Zhang at the <a target="_new" href=http://www.zhang-lab.org> Zhang Lab</a>. Other people who have made significant contribution to the project include Jing Wang, Dexter Duncan, Stefan Kirov and Jay Snoddy.</p>
+<p><b>Funding credits:</b> NIH/NCI (U24 CA210954); Leidos (15X038); CPRIT (RR160027); NIH/NIAAA (U01 AA016662, U01 AA013512); NIH/NIDA (P01 DA015027); NIH/NIMH (P50 MH078028, P50 MH096972); NIH/NCI (U24 CA159988); NIH/NIGMS (R01 GM088822).
+</p>
+</footer></body>
+</html>
