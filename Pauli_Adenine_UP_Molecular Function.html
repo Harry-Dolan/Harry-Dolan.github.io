@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<title>WebGestalt (WEB-based GEne SeT AnaLysis Toolkit)</title>
+<link rel="icon" type="image/png" href="https://s3-us-west-2.amazonaws.com/webgestalt/favicon.png">
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-42098540-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?flags=gated&features=es2015%2Ces2016%2Cfetch"></script>
+<script src="https://www.webgestalt.org/assets/0.4/build/vendor.min.js"></script>
+	<script src="https://www.webgestalt.org/assets/0.4/build/cytoscape.min.js"></script>
+		<link rel="stylesheet" href="https://www.webgestalt.org/assets/0.4/build/vendor.css">
+	<link rel="stylesheet" href="https://www.webgestalt.org/assets/0.4/build/wg.css">
+<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+</head>
+<body>
+<header>
+	<div id="header-img"><a href="https://www.webgestalt.org"><img border="0" src="https://www.webgestalt.org/images/gsa.png"></a></div>
+	<div id="header-title">
+		<p id="header-title-text">WEB-based GEne SeT AnaLysis Toolkit</p>
+		<p id="header-subtitle-text">Translating gene lists into biological insights...</p>
+	</div>
+</header>
+<hr><main>
+<div id="app">
+<div class="loading-preinit" v-cloak><div class="loading-icon"></div></div>
+<div class="wrapper" v-cloak>
+<div class="level">
+	<div class="level-left">
+		<div class="level-item">
+			<h4 class="title is-4 has-text-primary">Summary</h4>
+		</div>
+	</div>
+	<div class="level-right">
+		<div class="level-item">
+			<a class="button is-text" href="Project_wg_result1698893133.zip" target="_blank">Result Download</a>
+		</div>
+	</div>
+</div>
+
+<section id="summary" class="summary">
+<div class="card" v-bind:class="{active: summaryShown}" >
+	<div class="card-header" v-on:click="summaryShown=!summaryShown">
+		<p class="card-header-title">Job summary</p>
+		<a href="#" class="card-header-icon">
+			<b-icon :icon="summaryShown ? 'chevron-up' : 'chevron-down'"></b-icon>
+		</a>
+	</div>
+	<div class="card-content content" v-show="summaryShown">
+		<ul id="summary-list"> 
+		<li><b>Enrichment method:</b> ORA</li>
+		<li><b>Organism: </b>rnorvegicus</li>
+		<li>
+				<b>Enrichment Categories: </b>geneontology_Molecular_Function
+				<a class="has-text-info" href="https://www.webgestalt.org/api/geneset?organism=rnorvegicus&database=geneontology_Molecular_Function&fileType=gmt">
+					<b-icon icon="download" size="is-small"></b-icon>
+				</a>
+					</li>
+		
+			<li><b>Interesting list: </b>textAreaUpload_1698893133.txt. <b>ID type: </b>genesymbol</li>
+						<li>The interesting list contains <b>7</b> user IDs in which <b>7</b> user IDs are unambiguously mapped to <b>7</b> unique entrezgene IDs and <b>0</b> user IDs can not be mapped to any entrezgene ID.</li>
+			<li>The GO Slim summary are based upon the <b>7</b> unique entrezgene IDs.</li>
+		
+
+		<li>Among <b>7</b> unique entrezgene IDs, <b>4</b> IDs are annotated to the selected functional categories and also in the reference list, which are used for the enrichment analysis.</li>
+		
+		<li><b>Reference list: </b> all mapped entrezgene IDs from the selected platform genome
+			<a class="has-text-info" href="https://www.webgestalt.org/api/reference?organism=rnorvegicus&referenceSet=genome">
+				<b-icon icon="download" size="is-small"></b-icon>
+			</a>
+		</li>
+	
+	<li>The reference list can be mapped to <b>47958</b> entrezgene IDs and <b> 12739</b> IDs are annotated to the selected functional categories that are used as the reference for the enrichment analysis.</li>
+</ul> 
+
+<p><b>Parameters for the enrichment analysis:</b></p>
+<ul><li><b>Minimum number of IDs in the category: </b>5</li>
+<li><b>Maximum number of IDs in the category: </b>2000</li>
+<li><b>FDR Method: </b>BH</li>
+
+<li><b>Significance Level:</b> Top 10</li>
+</ul>
+	
+	<p>Based on the above parameters, <b>10</b> categories are identified as enriched categories and all are shown in this report.</p>
+	
+
+	</div>
+</div>
+</section>
+<section id="go-summary" class="summary">
+<div class="card" v-bind:class="{active: goShown}" >
+	<div class="card-header" v-on:click="goShown=!goShown">
+		<p class="card-header-title">GO Slim summary for the user uploaded IDs</p>
+		<a href="#" class="card-header-icon">
+			<b-icon :icon="goShown ? 'chevron-up' : 'chevron-down'"></b-icon>
+		</a>
+	</div>
+	<div v-show="goShown">
+		<div class="card-content">
+			<p>Each Biological Process, Cellular Component and Molecular Function category is represented by a red, blue and green bar, repectively.</p>
+			<p>The height of the bar represents the number of IDs in the user list and also in the category.</p>
+		</div>
+		<div class="card-image">
+			<img src="goslim_summary_wg_result1698893133.png" width="100%" height="100%" alt="Bar charts of enriched GO Slim terms"/>
+		</div>
+	</div>
+</div>
+</section> <h4 class="title is-4 has-text-primary">Enrichment Results</h4>
+<section id="enrich-result">
+	<p class="select-redundancy">
+		<b-tooltip label="Enriched gene sets are post-processed by two methods to reduce redundancy." type="is-dark" animated multilined dashed>
+			Redundancy reduction:
+		</b-tooltip>
+		<b-radio v-model="redundancy" native-value="all">All</b-radio>
+		<b-radio v-model="redundancy" native-value="ap">
+			<b-tooltip label="R package apcluster is used to cluster gene sets." type="is-dark" animated multilined dashed>
+				Affinity propagation
+			</b-tooltip>
+		</b-radio>
+		
+		<b-radio v-model="redundancy" native-value="wsc">
+			<b-tooltip label="Find top gene sets while maximizing gene coverage." type="is-dark" animated multilined dashed>
+				Weighted set cover
+			</b-tooltip>
+		</b-radio>
+	</p>
+	<b-tabs v-model="activeTab" type="is-toggle">
+		<b-tab-item label="Table">
+			<wg-result-table
+				:data="enrichmentData"
+				:method="enrichMethod"
+			></wg-result-table>
+		</b-tab-item>
+		<b-tab-item label="Bar chart">
+		<div class="vertical-center-container">
+			<wg-bar-plot
+				:dimensions="bar.dimensions"
+				:label-width="bar.labelWidth"
+				:data="enrichmentData"
+				:value-key="bar.valueKey"
+				:x-label="bar.xLabel">
+			</wg-bar-plot>
+		</div>
+		</b-tab-item>
+		<b-tab-item label="Volcano plot">
+		<div class="vertical-center-container">
+			<wg-volcano-plot
+				:data="volcanoData"
+				:x="volcano.x"
+				:y="volcano.y"
+				:dimensions="volcano.dimensions"
+				:x-label="volcano.xLabel"
+				:label-types="volcano.labelTypes"
+				:x-transform="volcano.xTransform"
+				:radius="volcano.radius"
+				:color="volcano.color"
+				:tooltip-content="volcano.tooltipContent"
+				:show-all-labels="false"
+				:auto-place-labels="true"
+			></wg-volcano-plot>
+		</div>
+		</b-tab-item>
+		<b-tab-item label="DAG">
+			<b-field>
+				<b-select v-model="activeDagDatabase">
+					<option v-for="(value, key) in dag"
+						:value="key"
+						:key="key"
+					>{{key}}</option>
+				</b-select>
+			</b-field>
+			<div style="width: 100%; height: 600px">
+			<wg-dag
+				container-id="wg_dag"
+				:data="dagData"
+			></wg-dag>
+			</div>
+		</b-tab-item>
+	</b-tabs>
+	<wg-gene-table
+		:data="geneTables"
+		:info="enrichment"
+		:standard-id="standardId"
+		:method="enrichMethod"
+		:mapped-input-size="mappedInputSize"
+		:organism="organism"
+		:host-name="hostName"
+		:sets-with-net="false"
+	></wg-gene-table>
+</section> 
+
+</div>
+</div>
+</main>
+	<script type="text/javascript" src="https://www.webgestalt.org/assets/0.4/build/wg.min.js"></script>
+<script type="text/javascript">
+var enrichment = [{"geneSet":"GO:0005527","description":"macrolide binding","link":"http://amigo.geneontology.org/amigo/term/GO:0005527","size":5,"overlap":1,"expect":0.00156998194520763,"enrichmentRatio":636.95,"pValue":0.00156924255028001,"FDR":0.838498602699621,"overlapId":"361810"},{"geneSet":"GO:0005528","description":"FK506 binding","link":"http://amigo.geneontology.org/amigo/term/GO:0005528","size":5,"overlap":1,"expect":0.00156998194520763,"enrichmentRatio":636.95,"pValue":0.00156924255028001,"FDR":0.838498602699621,"overlapId":"361810"},{"geneSet":"GO:0003810","description":"protein-glutamine gamma-glutamyltransferase activity","link":"http://amigo.geneontology.org/amigo/term/GO:0003810","size":5,"overlap":1,"expect":0.00156998194520763,"enrichmentRatio":636.95,"pValue":0.00156924255028001,"FDR":0.838498602699621,"overlapId":"366189"},{"geneSet":"GO:0004861","description":"cyclin-dependent protein serine/threonine kinase inhibitor activity","link":"http://amigo.geneontology.org/amigo/term/GO:0004861","size":9,"overlap":1,"expect":0.00282596750137373,"enrichmentRatio":353.861111111111,"pValue":0.00282330623691185,"FDR":1,"overlapId":"114851"},{"geneSet":"GO:0016755","description":"transferase activity, transferring amino-acyl groups","link":"http://amigo.geneontology.org/amigo/term/GO:0016755","size":10,"overlap":1,"expect":0.00313996389041526,"enrichmentRatio":318.475,"pValue":0.00313663748396964,"FDR":1,"overlapId":"366189"},{"geneSet":"GO:0030291","description":"protein serine/threonine kinase inhibitor activity","link":"http://amigo.geneontology.org/amigo/term/GO:0030291","size":22,"overlap":1,"expect":0.00690792055891357,"enrichmentRatio":144.761363636364,"pValue":0.00689085572964077,"FDR":1,"overlapId":"114851"},{"geneSet":"GO:0140096","description":"catalytic activity, acting on a protein","link":"http://amigo.geneontology.org/amigo/term/GO:0140096","size":1653,"overlap":3,"expect":0.519036031085643,"enrichmentRatio":5.77994555353902,"pValue":0.00787760806130189,"FDR":1,"overlapId":"114851;361810;366189"},{"geneSet":"GO:0003755","description":"peptidyl-prolyl cis-trans isomerase activity","link":"http://amigo.geneontology.org/amigo/term/GO:0003755","size":31,"overlap":1,"expect":0.00973388806028731,"enrichmentRatio":102.733870967742,"pValue":0.00969955296407754,"FDR":1,"overlapId":"361810"},{"geneSet":"GO:0016859","description":"cis-trans isomerase activity","link":"http://amigo.geneontology.org/amigo/term/GO:0016859","size":34,"overlap":1,"expect":0.0106758772274119,"enrichmentRatio":93.6691176470588,"pValue":0.0106344601018771,"FDR":1,"overlapId":"361810"},{"geneSet":"GO:0016538","description":"cyclin-dependent protein serine/threonine kinase regulator activity","link":"http://amigo.geneontology.org/amigo/term/GO:0016538","size":36,"overlap":1,"expect":0.0113038700054949,"enrichmentRatio":88.4652777777778,"pValue":0.0112573636658244,"FDR":1,"overlapId":"114851"}];
+var background = [{"geneSet":"GO:0004860","enrichmentRatio":77.6768292682927,"FDR":1,"overlap":1},{"geneSet":"GO:0019210","enrichmentRatio":70.7722222222222,"FDR":1,"overlap":1},{"geneSet":"GO:0030295","enrichmentRatio":62.4460784313725,"FDR":1,"overlap":1},{"geneSet":"GO:0000980","enrichmentRatio":58.9768518518519,"FDR":1,"overlap":1},{"geneSet":"GO:0019209","enrichmentRatio":57.9045454545454,"FDR":1,"overlap":1},{"geneSet":"GO:0001158","enrichmentRatio":45.4964285714286,"FDR":1,"overlap":1},{"geneSet":"GO:0035326","enrichmentRatio":41.9046052631579,"FDR":1,"overlap":1},{"geneSet":"GO:0031072","enrichmentRatio":33.1744791666667,"FDR":1,"overlap":1},{"geneSet":"GO:0019887","enrichmentRatio":26.7626050420168,"FDR":1,"overlap":1},{"geneSet":"GO:0016853","enrichmentRatio":25.6834677419355,"FDR":1,"overlap":1},{"geneSet":"GO:0019207","enrichmentRatio":22.7482142857143,"FDR":1,"overlap":1},{"geneSet":"GO:0008022","enrichmentRatio":21.3741610738255,"FDR":1,"overlap":1},{"geneSet":"GO:0001227","enrichmentRatio":19.6589506172839,"FDR":1,"overlap":1},{"geneSet":"GO:0031625","enrichmentRatio":17.4030054644809,"FDR":1,"overlap":1},{"geneSet":"GO:0044389","enrichmentRatio":16.5872395833333,"FDR":1,"overlap":1},{"geneSet":"GO:0016746","enrichmentRatio":15.6884236453202,"FDR":1,"overlap":1},{"geneSet":"GO:0004857","enrichmentRatio":12.0179245283019,"FDR":1,"overlap":1},{"geneSet":"GO:0016740","enrichmentRatio":3.67329873125721,"FDR":1,"overlap":2},{"geneSet":"GO:0008047","enrichmentRatio":10.3066343042071,"FDR":1,"overlap":1},{"geneSet":"GO:0019901","enrichmentRatio":6.86368534482759,"FDR":1,"overlap":1},{"geneSet":"GO:0004672","enrichmentRatio":6.83422746781116,"FDR":1,"overlap":1},{"geneSet":"GO:0005509","enrichmentRatio":6.6906512605042,"FDR":1,"overlap":1},{"geneSet":"GO:0000977","enrichmentRatio":6.38226452905812,"FDR":1,"overlap":1},{"geneSet":"GO:0001012","enrichmentRatio":6.30643564356436,"FDR":1,"overlap":1},{"geneSet":"GO:0000981","enrichmentRatio":6.26919291338583,"FDR":1,"overlap":1},{"geneSet":"GO:0019900","enrichmentRatio":6.10105363984674,"FDR":1,"overlap":1},{"geneSet":"GO:0000976","enrichmentRatio":5.94169776119403,"FDR":1,"overlap":1},{"geneSet":"GO:0019904","enrichmentRatio":5.83287545787546,"FDR":1,"overlap":1},{"geneSet":"GO:0016773","enrichmentRatio":5.73828828828829,"FDR":1,"overlap":1},{"geneSet":"GO:1990837","enrichmentRatio":5.65674955595027,"FDR":1,"overlap":1},{"geneSet":"GO:0042803","enrichmentRatio":5.22947454844007,"FDR":1,"overlap":1},{"geneSet":"GO:0044212","enrichmentRatio":5.16166936790924,"FDR":1,"overlap":1},{"geneSet":"GO:0016301","enrichmentRatio":5.14499192245557,"FDR":1,"overlap":1},{"geneSet":"GO:0001067","enrichmentRatio":5.1366935483871,"FDR":1,"overlap":1},{"geneSet":"GO:0003690","enrichmentRatio":4.99960753532182,"FDR":1,"overlap":1},{"geneSet":"GO:0030234","enrichmentRatio":4.73921130952381,"FDR":1,"overlap":1},{"geneSet":"GO:0003700","enrichmentRatio":4.33299319727891,"FDR":1,"overlap":1},{"geneSet":"GO:0016772","enrichmentRatio":4.29790823211876,"FDR":1,"overlap":1},{"geneSet":"GO:0043565","enrichmentRatio":4.09350899742931,"FDR":1,"overlap":1},{"geneSet":"GO:0044877","enrichmentRatio":3.82782451923077,"FDR":1,"overlap":1},{"geneSet":"GO:0140110","enrichmentRatio":3.30711318795431,"FDR":1,"overlap":1},{"geneSet":"GO:0046983","enrichmentRatio":3.30368257261411,"FDR":1,"overlap":1},{"geneSet":"GO:0042802","enrichmentRatio":2.85371863799283,"FDR":1,"overlap":1},{"geneSet":"GO:0098772","enrichmentRatio":2.54169992019154,"FDR":1,"overlap":1},{"geneSet":"GO:0008144","enrichmentRatio":2.47263198757764,"FDR":1,"overlap":1},{"geneSet":"GO:0003677","enrichmentRatio":2.30111994219653,"FDR":1,"overlap":1},{"geneSet":"GO:0019899","enrichmentRatio":2.06667748215445,"FDR":1,"overlap":1}];
+var geneTables = {"GO:0005527":[{"userId":"Fkbp5","geneSymbol":"Fkbp5","geneName":"FKBP prolyl isomerase 5","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=361810","entrezgene":"361810"}],"GO:0005528":[{"userId":"Fkbp5","geneSymbol":"Fkbp5","geneName":"FKBP prolyl isomerase 5","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=361810","entrezgene":"361810"}],"GO:0003810":[{"userId":"Tgm3","geneSymbol":"Tgm3","geneName":"transglutaminase 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=366189","entrezgene":"366189"}],"GO:0004861":[{"userId":"Cdkn1a","geneSymbol":"Cdkn1a","geneName":"cyclin-dependent kinase inhibitor 1A","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=114851","entrezgene":"114851"}],"GO:0016755":[{"userId":"Tgm3","geneSymbol":"Tgm3","geneName":"transglutaminase 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=366189","entrezgene":"366189"}],"GO:0030291":[{"userId":"Cdkn1a","geneSymbol":"Cdkn1a","geneName":"cyclin-dependent kinase inhibitor 1A","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=114851","entrezgene":"114851"}],"GO:0140096":[{"userId":"Cdkn1a","geneSymbol":"Cdkn1a","geneName":"cyclin-dependent kinase inhibitor 1A","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=114851","entrezgene":"114851"},{"userId":"Fkbp5","geneSymbol":"Fkbp5","geneName":"FKBP prolyl isomerase 5","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=361810","entrezgene":"361810"},{"userId":"Tgm3","geneSymbol":"Tgm3","geneName":"transglutaminase 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=366189","entrezgene":"366189"}],"GO:0003755":[{"userId":"Fkbp5","geneSymbol":"Fkbp5","geneName":"FKBP prolyl isomerase 5","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=361810","entrezgene":"361810"}],"GO:0016859":[{"userId":"Fkbp5","geneSymbol":"Fkbp5","geneName":"FKBP prolyl isomerase 5","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=361810","entrezgene":"361810"}],"GO:0016538":[{"userId":"Cdkn1a","geneSymbol":"Cdkn1a","geneName":"cyclin-dependent kinase inhibitor 1A","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=114851","entrezgene":"114851"}]};
+var clusters = {"ap":{"clusters":[["GO:0005527","GO:0140096","GO:0003755","GO:0016859"],["GO:0005528"],["GO:0003810","GO:0016755"],["GO:0004861","GO:0030291","GO:0016538"]],"representatives":["GO:0005527","GO:0005528","GO:0003810","GO:0004861"]},"wsc":{"representatives":["GO:0140096"],"coverage":[1]}};
+
+var dag = {"geneontology_Molecular_Function":[{"data":{"source":"GO:0008144","target":"GO:0005527"}},{"data":{"source":"GO:0097159","target":"GO:0005527"}},{"data":{"source":"GO:1901363","target":"GO:0005527"}},{"data":{"source":"GO:0005527","target":"GO:0005528"}},{"data":{"source":"GO:0016755","target":"GO:0003810"}},{"data":{"source":"GO:0016538","target":"GO:0004861"}},{"data":{"source":"GO:0030291","target":"GO:0004861"}},{"data":{"source":"GO:0016746","target":"GO:0016755"}},{"data":{"source":"GO:0140096","target":"GO:0016755"}},{"data":{"source":"GO:0004860","target":"GO:0030291"}},{"data":{"source":"GO:0003824","target":"GO:0140096"}},{"data":{"source":"GO:0016859","target":"GO:0003755"}},{"data":{"source":"GO:0140096","target":"GO:0003755"}},{"data":{"source":"GO:0016853","target":"GO:0016859"}},{"data":{"source":"GO:0019887","target":"GO:0016538"}},{"data":{"source":"GO:0005488","target":"GO:0008144"}},{"data":{"source":"GO:0005488","target":"GO:0097159"}},{"data":{"source":"GO:0005488","target":"GO:1901363"}},{"data":{"source":"GO:0016740","target":"GO:0016746"}},{"data":{"source":"GO:0019210","target":"GO:0004860"}},{"data":{"source":"GO:0019887","target":"GO:0004860"}},{"data":{"source":"GO:0003674","target":"GO:0003824"}},{"data":{"source":"GO:0003824","target":"GO:0016853"}},{"data":{"source":"GO:0019207","target":"GO:0019887"}},{"data":{"source":"GO:0003674","target":"GO:0005488"}},{"data":{"source":"GO:0003824","target":"GO:0016740"}},{"data":{"source":"GO:0004857","target":"GO:0019210"}},{"data":{"source":"GO:0019207","target":"GO:0019210"}},{"data":{"source":"GO:0030234","target":"GO:0019207"}},{"data":{"source":"GO:0030234","target":"GO:0004857"}},{"data":{"source":"GO:0098772","target":"GO:0030234"}},{"data":{"source":"GO:0003674","target":"GO:0098772"}},{"data":{"id":"GO:0005527","name":"macrolide binding","color":"#5A8FBC"}},{"data":{"id":"GO:0005528","name":"FK506 binding","color":"#5A8FBC"}},{"data":{"id":"GO:0003810","name":"protein-glutamine gamma-glutamyltransferase activity","color":"#5A8FBC"}},{"data":{"id":"GO:0004861","name":"cyclin-dependent protein serine/threonine kinase inhibitor activity","color":"#FFFFFF"}},{"data":{"id":"GO:0016755","name":"transferase activity, transferring amino-acyl groups","color":"#FFFFFF"}},{"data":{"id":"GO:0030291","name":"protein serine/threonine kinase inhibitor activity","color":"#FFFFFF"}},{"data":{"id":"GO:0140096","name":"catalytic activity, acting on a protein","color":"#FFFFFF"}},{"data":{"id":"GO:0003755","name":"peptidyl-prolyl cis-trans isomerase activity","color":"#FFFFFF"}},{"data":{"id":"GO:0016859","name":"cis-trans isomerase activity","color":"#FFFFFF"}},{"data":{"id":"GO:0016538","name":"cyclin-dependent protein serine/threonine kinase regulator activity","color":"#FFFFFF"}},{"data":{"id":"GO:0008144","name":"drug binding","color":"white"}},{"data":{"id":"GO:0097159","name":"organic cyclic compound binding","color":"white"}},{"data":{"id":"GO:1901363","name":"heterocyclic compound binding","color":"white"}},{"data":{"id":"GO:0016746","name":"transferase activity, transferring acyl groups","color":"white"}},{"data":{"id":"GO:0004860","name":"protein kinase inhibitor activity","color":"white"}},{"data":{"id":"GO:0003824","name":"catalytic activity","color":"white"}},{"data":{"id":"GO:0016853","name":"isomerase activity","color":"white"}},{"data":{"id":"GO:0019887","name":"protein kinase regulator activity","color":"white"}},{"data":{"id":"GO:0005488","name":"binding","color":"white"}},{"data":{"id":"GO:0016740","name":"transferase activity","color":"white"}},{"data":{"id":"GO:0019210","name":"kinase inhibitor activity","color":"white"}},{"data":{"id":"GO:0003674","name":"molecular_function","color":"white"}},{"data":{"id":"GO:0019207","name":"kinase regulator activity","color":"white"}},{"data":{"id":"GO:0004857","name":"enzyme inhibitor activity","color":"white"}},{"data":{"id":"GO:0030234","name":"enzyme regulator activity","color":"white"}},{"data":{"id":"GO:0098772","name":"molecular function regulator","color":"white"}}]};
+wgLib({
+	enrichDatabase: "geneontology_Molecular_Function",
+	organism: "rnorvegicus",
+	hostName: "https://www.webgestalt.org",
+	enrichment: enrichment,
+	background: background,
+	geneTables: geneTables,
+	clusters: clusters,
+	
+	enrichMethod: "ora",
+	mappedInputSize: 4,
+	standardId: "entrezgene",
+	dag: dag,
+	volcano: {
+		labelTypes: ["geneSet", "description"],
+				dimensions: { width: 960, height: 500 },
+		autoPlaceLabels: true,
+		y: "FDR",
+
+
+		x: "enrichmentRatio",
+		xLabel: "log2 of enrichment ratio",
+		radius: "overlap",
+		color: "overlap",
+			tooltipContent: ["geneSet", "description", "enrichmentRatio", "FDR", "pValue", "overlap"]
+					
+	},
+	bar: {
+		dimensions: { width: 960, height: 300 },
+		labelWidth: 200,
+		tooltipContent: ["geneSet", "description", "enrichmentRatio", "FDR", "pValue", "overlap"],
+		
+		valueKey: "enrichmentRatio",
+		xLabel: "Enrichment ratio"
+	}
+})
+
+
+</script>
+<footer class="footer has-text-centered">
+<p>WebGestalt is currently developed and maintained by Yuxing Liao, Suhas Vasaikar, Zhiao Shi and Bing Zhang at the <a target="_new" href=http://www.zhang-lab.org> Zhang Lab</a>. Other people who have made significant contribution to the project include Jing Wang, Dexter Duncan, Stefan Kirov and Jay Snoddy.</p>
+<p><b>Funding credits:</b> NIH/NCI (U24 CA210954); Leidos (15X038); CPRIT (RR160027); NIH/NIAAA (U01 AA016662, U01 AA013512); NIH/NIDA (P01 DA015027); NIH/NIMH (P50 MH078028, P50 MH096972); NIH/NCI (U24 CA159988); NIH/NIGMS (R01 GM088822).
+</p>
+</footer></body>
+</html>
