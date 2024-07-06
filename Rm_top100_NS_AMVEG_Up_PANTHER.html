@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<title>WebGestalt (WEB-based GEne SeT AnaLysis Toolkit)</title>
+<link rel="icon" type="image/png" href="https://s3-us-west-2.amazonaws.com/webgestalt/favicon.png">
+
+<script src="https://polyfill.io/v3/polyfill.min.js?flags=gated&features=es2015%2Ces2016%2Cfetch"></script>
+<script src="https://2024.webgestalt.org/assets/1.0/build/vendor.min.js"></script>
+	<script>window.cytoscape = null;</script>
+	<link rel="stylesheet" href="https://2024.webgestalt.org/assets/1.0/build/vendor.css">
+	<link rel="stylesheet" href="https://2024.webgestalt.org/assets/1.0/build/wg.css">
+<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+</head>
+<body>
+	<script type="text/javascript" src="https://www.termsfeed.com/public/cookie-consent/4.1.0/cookie-consent.js" charset="UTF-8"></script>
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({"notice_banner_type":"simple","consent_type":"express","palette":"light","language":"en","page_load_consent_levels":["strictly-necessary"],"notice_banner_reject_button_hide":false,"preferences_center_close_button_hide":false,"page_refresh_confirmation_buttons":false});
+});
+</script>
+
+<!-- Google Analytics -->
+<script type="text/plain" data-cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=G-THG9Q3WPEJ"></script>
+<script type="text/plain" data-cookie-consent="tracking">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-THG9Q3WPEJ');
+</script>
+<!-- end of Google Analytics-->
+	
+	<noscript>Free cookie consent management tool by <a href="https://www.termsfeed.com/">TermsFeed</a></noscript>
+	<!-- End Cookie Consent by TermsFeed https://www.TermsFeed.com -->
+<header>
+	<div id="header-img"><a href="https://2024.webgestalt.org"><img border="0" src="https://2024.webgestalt.org/images/gsa.png"></a></div>
+	<div id="header-title">
+		<p id="header-title-text">WEB-based GEne SeT AnaLysis Toolkit</p>
+		<p id="header-subtitle-text">Translating gene lists into biological insights...</p>
+	</div>
+</header>
+<hr><main>
+<div id="app">
+<div class="loading-preinit" v-cloak><div class="loading-icon"></div></div>
+<div class="wrapper" v-cloak>
+<div class="level">
+	<div class="level-left">
+		<div class="level-item">
+			<h4 class="title is-4 has-text-primary">Summary</h4>
+		</div>
+	</div>
+	<div class="level-right">
+		<div class="level-item">
+			<a class="button is-text" href="Project_wg_result1720239897.zip" target="_blank">Result Download</a>
+		</div>
+	</div>
+</div>
+
+<section id="summary" class="summary">
+<div class="card" v-bind:class="{active: summaryShown}" >
+	<div class="card-header" v-on:click="summaryShown=!summaryShown">
+		<p class="card-header-title">Job summary</p>
+		<a href="#" class="card-header-icon">
+			<b-icon :icon="summaryShown ? 'chevron-up' : 'chevron-down'"></b-icon>
+		</a>
+	</div>
+	<div class="card-content content" v-show="summaryShown">
+		<ul id="summary-list"> 
+		<li><b>Enrichment method:</b> ORA</li>
+		<li><b>Organism: </b>hsapiens</li>
+		<li>
+				<b>Enrichment Categories: </b>pathway_Panther
+				<a class="has-text-info" href="https://2024.webgestalt.org/api/geneset?organism=hsapiens&database=pathway_Panther&fileType=gmt">
+					<b-icon icon="download" size="is-small"></b-icon>
+				</a>
+		</li>
+
+			<li><b>Interesting list: </b>textAreaUpload_1720239897.txt. <b>ID type: </b>genesymbol</li>
+			<li>The interesting list contains <b>100</b> user IDs in which <b>85</b> user IDs are unambiguously mapped to <b>85</b> unique entrezgene IDs and <b>15</b> user IDs can not be mapped to any entrezgene ID.</li>
+			<li>The GO Slim summary are based upon the <b>85</b> unique entrezgene IDs.</li>
+		<li>Among <b>85</b> unique entrezgene IDs, <b>11</b> IDs are annotated to the selected functional categories and also in the reference list, which are used for the enrichment analysis.</li>
+		<li><b>Reference list: </b> all mapped entrezgene IDs from the selected platform genome
+			<a class="has-text-info" href="https://2024.webgestalt.org/api/reference?organism=hsapiens&referenceSet=genome">
+				<b-icon icon="download" size="is-small"></b-icon>
+			</a>
+		</li>
+	<li>The reference list can be mapped to <b>193394</b> entrezgene IDs and <b> 2256</b> IDs are annotated to the selected functional categories that are used as the reference for the enrichment analysis.</li>
+</ul> 
+
+<p><b>Parameters for the enrichment analysis:</b></p>
+<ul><li><b>Minimum number of IDs in the category: </b>5</li>
+<li><b>Maximum number of IDs in the category: </b>2000</li>
+<li><b>FDR Method: </b>BH</li>
+<li><b>Significance Level:</b> Top 10</li>
+</ul>
+	<p>Based on the above parameters, <b>10</b> categories are identified as enriched categories and all are shown in this report.</p>
+
+	</div>
+</div>
+</section>
+<section id="go-summary" class="summary">
+<div class="card" v-bind:class="{active: goShown}" >
+	<div class="card-header" v-on:click="goShown=!goShown">
+		<p class="card-header-title">GO Slim summary for the user uploaded IDs</p>
+		<a href="#" class="card-header-icon">
+			<b-icon :icon="goShown ? 'chevron-up' : 'chevron-down'"></b-icon>
+		</a>
+	</div>
+	<div v-show="goShown">
+		<div class="card-content">
+			<p>Each Biological Process, Cellular Component and Molecular Function category is represented by a red, blue and green bar, repectively.</p>
+			<p>The height of the bar represents the number of IDs in the user list and also in the category.</p>
+		</div>
+		<div class="card-image">
+			<img src="goslim_summary_wg_result1720239897.png" width="100%" height="100%" alt="Bar charts of enriched GO Slim terms"/>
+		</div>
+	</div>
+</div>
+</section> <h4 class="title is-4 has-text-primary">Enrichment Results</h4>
+<section id="enrich-result">
+	<p class="select-redundancy">
+		<b-tooltip label="Enriched analyte sets are post-processed by two methods to reduce redundancy." type="is-dark" animated multilined dashed>
+			Redundancy reduction:
+		</b-tooltip>
+		<b-radio v-model="redundancy" native-value="all">None</b-radio>
+		<b-radio v-model="redundancy" native-value="wsc">
+			<b-tooltip label="Find top analyte sets while maximizing analyte coverage." type="is-dark" animated multilined dashed>
+				Weighted set cover
+			</b-tooltip>
+		</b-radio>
+	</p>
+	<b-tabs v-model="activeTab" type="is-toggle">
+		<b-tab-item label="Table">
+			<wg-result-table
+				:data="enrichmentData"
+				:method="enrichMethod"
+			></wg-result-table>
+		</b-tab-item>
+		<b-tab-item label="Bar chart">
+		<div class="vertical-center-container">
+			<wg-bar-plot
+				:dimensions="bar.dimensions"
+				:label-width="bar.labelWidth"
+				:data="enrichmentData"
+				:value-key="bar.valueKey"
+				:x-label="bar.xLabel">
+			</wg-bar-plot>
+		</div>
+		</b-tab-item>
+		<b-tab-item label="Volcano plot">
+		<div class="vertical-center-container">
+			<wg-volcano-plot
+				:data="volcanoData"
+				:x="volcano.x"
+				:y="volcano.y"
+				:dimensions="volcano.dimensions"
+				:x-label="volcano.xLabel"
+				:label-types="volcano.labelTypes"
+				:x-transform="volcano.xTransform"
+				:radius="volcano.radius"
+				:color="volcano.color"
+				:tooltip-content="volcano.tooltipContent"
+				:show-all-labels="false"
+				:auto-place-labels="true"
+			></wg-volcano-plot>
+		</div>
+		</b-tab-item>
+	</b-tabs>
+	<wg-gene-table
+		:data="geneTables"
+		:info="enrichment"
+		:standard-id="standardId"
+		:method="enrichMethod"
+		:mapped-input-size="mappedInputSize"
+		:organism="organism"
+		:host-name="hostName"
+		:sets-with-net="false"
+	></wg-gene-table>
+</section> 
+
+</div>
+</div>
+</main>
+	<script type="text/javascript" src="https://2024.webgestalt.org/assets/1.0/build/wg.min.js"></script>
+<script type="text/javascript">
+var enrichment = [{"geneSet":"P00046","description":"Oxidative stress response","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00046","size":46,"overlap":2,"expect":0.22429078014184398,"enrichmentRatio":8.9169960474308301,"pValue":0.019903136124851877,"FDR":1,"overlapId":"5606;1849"},{"geneSet":"P00015","description":"Circadian clock system","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00015","size":9,"overlap":1,"expect":0.043882978723404256,"enrichmentRatio":22.787878787878789,"pValue":0.043111780462494857,"FDR":1,"overlapId":"8864"},{"geneSet":"P02727","description":"Androgen/estrogene/progesterone biosynthesis","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P02727","size":9,"overlap":1,"expect":0.043882978723404256,"enrichmentRatio":22.787878787878789,"pValue":0.043111780462494857,"FDR":1,"overlapId":"3294"},{"geneSet":"P00032","description":"Insulin/IGF pathway-mitogen activated protein kinase kinase/MAP kinase cascade","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00032","size":29,"overlap":1,"expect":0.14140070921985815,"enrichmentRatio":7.0721003134796243,"pValue":0.13293025637305247,"FDR":1,"overlapId":"5606"},{"geneSet":"P00012","description":"Cadherin signaling pathway","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00012","size":153,"overlap":2,"expect":0.74601063829787229,"enrichmentRatio":2.6809269162210341,"pValue":0.16825169964360825,"FDR":1,"overlapId":"5099;7482"},{"geneSet":"P00005","description":"Angiogenesis","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00005","size":156,"overlap":2,"expect":0.76063829787234039,"enrichmentRatio":2.6293706293706296,"pValue":0.1735518250109124,"FDR":1,"overlapId":"2047;7482"},{"geneSet":"P00040","description":"Metabotropic glutamate receptor group II pathway","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00040","size":43,"overlap":1,"expect":0.20966312056737588,"enrichmentRatio":4.7695560253699787,"pValue":0.19116650222878556,"FDR":1,"overlapId":"627"},{"geneSet":"P00037","description":"Ionotropic glutamate receptor pathway","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00037","size":44,"overlap":1,"expect":0.21453900709219859,"enrichmentRatio":4.661157024793388,"pValue":0.19518691274594061,"FDR":1,"overlapId":"6512"},{"geneSet":"P00054","description":"Toll receptor signaling pathway","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00054","size":49,"overlap":1,"expect":0.23891843971631205,"enrichmentRatio":4.1855287569573285,"pValue":0.21501780919060334,"FDR":1,"overlapId":"5606"},{"geneSet":"P00039","description":"Metabotropic glutamate receptor group III pathway","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00039","size":65,"overlap":1,"expect":0.31693262411347517,"enrichmentRatio":3.1552447552447553,"pValue":0.27552900243203921,"FDR":1,"overlapId":"6512"}];
+var background = [{"geneSet":"P04393","enrichmentRatio":2.92987012987013,"FDR":1,"overlap":1},{"geneSet":"P00044","enrichmentRatio":2.2292490118577075,"FDR":1,"overlap":1},{"geneSet":"P00021","enrichmentRatio":1.9911738746690204,"FDR":1,"overlap":1},{"geneSet":"P00006","enrichmentRatio":1.9167374681393372,"FDR":1,"overlap":1},{"geneSet":"P00057","enrichmentRatio":1.4047322540473226,"FDR":1,"overlap":2},{"geneSet":"P00004","enrichmentRatio":1.8311688311688312,"FDR":1,"overlap":1},{"geneSet":"P00018","enrichmentRatio":1.8149637972646822,"FDR":1,"overlap":1},{"geneSet":"P00047","enrichmentRatio":1.653958944281525,"FDR":1,"overlap":1},{"geneSet":"P00029","enrichmentRatio":1.5898520084566594,"FDR":1,"overlap":1},{"geneSet":"P00034","enrichmentRatio":1.2505543237250556,"FDR":1,"overlap":1}];
+var geneTables = {"P00046":[{"userId":"DUSP7","geneSymbol":"DUSP7","geneName":"dual specificity phosphatase 7","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=1849","entrezgene":"1849"},{"userId":"MAP2K3","geneSymbol":"MAP2K3","geneName":"mitogen-activated protein kinase kinase 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=5606","entrezgene":"5606"}],"P00015":[{"userId":"PER2","geneSymbol":"PER2","geneName":"period circadian regulator 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=8864","entrezgene":"8864"}],"P02727":[{"userId":"HSD17B2","geneSymbol":"HSD17B2","geneName":"hydroxysteroid 17-beta dehydrogenase 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=3294","entrezgene":"3294"}],"P00032":[{"userId":"MAP2K3","geneSymbol":"MAP2K3","geneName":"mitogen-activated protein kinase kinase 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=5606","entrezgene":"5606"}],"P00012":[{"userId":"PCDH7","geneSymbol":"PCDH7","geneName":"protocadherin 7","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=5099","entrezgene":"5099"},{"userId":"WNT2B","geneSymbol":"WNT2B","geneName":"Wnt family member 2B","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=7482","entrezgene":"7482"}],"P00005":[{"userId":"EPHB1","geneSymbol":"EPHB1","geneName":"EPH receptor B1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=2047","entrezgene":"2047"},{"userId":"WNT2B","geneSymbol":"WNT2B","geneName":"Wnt family member 2B","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=7482","entrezgene":"7482"}],"P00040":[{"userId":"BDNF","geneSymbol":"BDNF","geneName":"brain derived neurotrophic factor","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=627","entrezgene":"627"}],"P00037":[{"userId":"SLC1A7","geneSymbol":"SLC1A7","geneName":"solute carrier family 1 member 7","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=6512","entrezgene":"6512"}],"P00054":[{"userId":"MAP2K3","geneSymbol":"MAP2K3","geneName":"mitogen-activated protein kinase kinase 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=5606","entrezgene":"5606"}],"P00039":[{"userId":"SLC1A7","geneSymbol":"SLC1A7","geneName":"solute carrier family 1 member 7","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=6512","entrezgene":"6512"}]};
+var clusters = {"wsc":{"representatives":["P00046","P00012","P00015","P02727","P00005","P00040","P00037"],"coverage":[1]}};
+
+wgLib({
+	enrichDatabase: "pathway_Panther",
+	organism: "hsapiens",
+	hostName: "https://2024.webgestalt.org",
+	enrichment: enrichment,
+	background: background,
+	geneTables: geneTables,
+	clusters: clusters,
+	enrichMethod: "ora",
+	mappedInputSize: 11,
+	standardId: "entrezgene",
+	volcano: {
+		labelTypes: ["geneSet", "description"],
+		dimensions: { width: 960, height: 500 },
+		autoPlaceLabels: true,
+		y: "FDR",
+
+		x: "enrichmentRatio",
+		xLabel: "log2 of enrichment ratio",
+		radius: "overlap",
+		color: "overlap",
+			tooltipContent: ["geneSet", "description", "enrichmentRatio", "FDR", "pValue", "overlap"]
+	},
+	bar: {
+		dimensions: { width: 960, height: 300 },
+		labelWidth: 200,
+		tooltipContent: ["geneSet", "description", "enrichmentRatio", "FDR", "pValue", "overlap"],
+		valueKey: "enrichmentRatio",
+		xLabel: "Enrichment ratio"
+	}
+})
+
+
+</script>
+<footer class="footer has-text-centered">
+<p>WebGestalt is currently developed and maintained by Yuxing Liao, Suhas Vasaikar, Zhiao Shi and Bing Zhang at the <a target="_new" href=http://www.zhang-lab.org> Zhang Lab</a>. Other people who have made significant contribution to the project include Jing Wang, Dexter Duncan, Stefan Kirov and Jay Snoddy.</p>
+<p><b>Funding credits:</b> NIH/NCI (U24 CA210954); Leidos (15X038); CPRIT (RR160027); NIH/NIAAA (U01 AA016662, U01 AA013512); NIH/NIDA (P01 DA015027); NIH/NIMH (P50 MH078028, P50 MH096972); NIH/NCI (U24 CA159988); NIH/NIGMS (R01 GM088822).
+</p>
+</footer></body>
+</html>

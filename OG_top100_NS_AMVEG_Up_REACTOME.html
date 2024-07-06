@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<title>WebGestalt (WEB-based GEne SeT AnaLysis Toolkit)</title>
+<link rel="icon" type="image/png" href="https://s3-us-west-2.amazonaws.com/webgestalt/favicon.png">
+
+<script src="https://polyfill.io/v3/polyfill.min.js?flags=gated&features=es2015%2Ces2016%2Cfetch"></script>
+<script src="https://2024.webgestalt.org/assets/1.0/build/vendor.min.js"></script>
+	<script>window.cytoscape = null;</script>
+	<link rel="stylesheet" href="https://2024.webgestalt.org/assets/1.0/build/vendor.css">
+	<link rel="stylesheet" href="https://2024.webgestalt.org/assets/1.0/build/wg.css">
+<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+</head>
+<body>
+	<script type="text/javascript" src="https://www.termsfeed.com/public/cookie-consent/4.1.0/cookie-consent.js" charset="UTF-8"></script>
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({"notice_banner_type":"simple","consent_type":"express","palette":"light","language":"en","page_load_consent_levels":["strictly-necessary"],"notice_banner_reject_button_hide":false,"preferences_center_close_button_hide":false,"page_refresh_confirmation_buttons":false});
+});
+</script>
+
+<!-- Google Analytics -->
+<script type="text/plain" data-cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=G-THG9Q3WPEJ"></script>
+<script type="text/plain" data-cookie-consent="tracking">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-THG9Q3WPEJ');
+</script>
+<!-- end of Google Analytics-->
+	
+	<noscript>Free cookie consent management tool by <a href="https://www.termsfeed.com/">TermsFeed</a></noscript>
+	<!-- End Cookie Consent by TermsFeed https://www.TermsFeed.com -->
+<header>
+	<div id="header-img"><a href="https://2024.webgestalt.org"><img border="0" src="https://2024.webgestalt.org/images/gsa.png"></a></div>
+	<div id="header-title">
+		<p id="header-title-text">WEB-based GEne SeT AnaLysis Toolkit</p>
+		<p id="header-subtitle-text">Translating gene lists into biological insights...</p>
+	</div>
+</header>
+<hr><main>
+<div id="app">
+<div class="loading-preinit" v-cloak><div class="loading-icon"></div></div>
+<div class="wrapper" v-cloak>
+<div class="level">
+	<div class="level-left">
+		<div class="level-item">
+			<h4 class="title is-4 has-text-primary">Summary</h4>
+		</div>
+	</div>
+	<div class="level-right">
+		<div class="level-item">
+			<a class="button is-text" href="Project_wg_result1720161571.zip" target="_blank">Result Download</a>
+		</div>
+	</div>
+</div>
+
+<section id="summary" class="summary">
+<div class="card" v-bind:class="{active: summaryShown}" >
+	<div class="card-header" v-on:click="summaryShown=!summaryShown">
+		<p class="card-header-title">Job summary</p>
+		<a href="#" class="card-header-icon">
+			<b-icon :icon="summaryShown ? 'chevron-up' : 'chevron-down'"></b-icon>
+		</a>
+	</div>
+	<div class="card-content content" v-show="summaryShown">
+		<ul id="summary-list"> 
+		<li><b>Enrichment method:</b> ORA</li>
+		<li><b>Organism: </b>hsapiens</li>
+		<li>
+				<b>Enrichment Categories: </b>pathway_Reactome
+				<a class="has-text-info" href="https://2024.webgestalt.org/api/geneset?organism=hsapiens&database=pathway_Reactome&fileType=gmt">
+					<b-icon icon="download" size="is-small"></b-icon>
+				</a>
+		</li>
+
+			<li><b>Interesting list: </b>textAreaUpload_1720161571.txt. <b>ID type: </b>genesymbol</li>
+			<li>The interesting list contains <b>100</b> user IDs in which <b>84</b> user IDs are unambiguously mapped to <b>84</b> unique entrezgene IDs and <b>16</b> user IDs can not be mapped to any entrezgene ID.</li>
+			<li>The GO Slim summary are based upon the <b>84</b> unique entrezgene IDs.</li>
+		<li>Among <b>84</b> unique entrezgene IDs, <b>30</b> IDs are annotated to the selected functional categories and also in the reference list, which are used for the enrichment analysis.</li>
+		<li><b>Reference list: </b> all mapped entrezgene IDs from the selected platform genome
+			<a class="has-text-info" href="https://2024.webgestalt.org/api/reference?organism=hsapiens&referenceSet=genome">
+				<b-icon icon="download" size="is-small"></b-icon>
+			</a>
+		</li>
+	<li>The reference list can be mapped to <b>193394</b> entrezgene IDs and <b> 11009</b> IDs are annotated to the selected functional categories that are used as the reference for the enrichment analysis.</li>
+</ul> 
+
+<p><b>Parameters for the enrichment analysis:</b></p>
+<ul><li><b>Minimum number of IDs in the category: </b>5</li>
+<li><b>Maximum number of IDs in the category: </b>2000</li>
+<li><b>FDR Method: </b>BH</li>
+<li><b>Significance Level:</b> Top 10</li>
+</ul>
+	<p>Based on the above parameters, <b>10</b> categories are identified as enriched categories and all are shown in this report.</p>
+
+	</div>
+</div>
+</section>
+<section id="go-summary" class="summary">
+<div class="card" v-bind:class="{active: goShown}" >
+	<div class="card-header" v-on:click="goShown=!goShown">
+		<p class="card-header-title">GO Slim summary for the user uploaded IDs</p>
+		<a href="#" class="card-header-icon">
+			<b-icon :icon="goShown ? 'chevron-up' : 'chevron-down'"></b-icon>
+		</a>
+	</div>
+	<div v-show="goShown">
+		<div class="card-content">
+			<p>Each Biological Process, Cellular Component and Molecular Function category is represented by a red, blue and green bar, repectively.</p>
+			<p>The height of the bar represents the number of IDs in the user list and also in the category.</p>
+		</div>
+		<div class="card-image">
+			<img src="goslim_summary_wg_result1720161571.png" width="100%" height="100%" alt="Bar charts of enriched GO Slim terms"/>
+		</div>
+	</div>
+</div>
+</section> <h4 class="title is-4 has-text-primary">Enrichment Results</h4>
+<section id="enrich-result">
+	<p class="select-redundancy">
+		<b-tooltip label="Enriched analyte sets are post-processed by two methods to reduce redundancy." type="is-dark" animated multilined dashed>
+			Redundancy reduction:
+		</b-tooltip>
+		<b-radio v-model="redundancy" native-value="all">None</b-radio>
+		<b-radio v-model="redundancy" native-value="wsc">
+			<b-tooltip label="Find top analyte sets while maximizing analyte coverage." type="is-dark" animated multilined dashed>
+				Weighted set cover
+			</b-tooltip>
+		</b-radio>
+	</p>
+	<b-tabs v-model="activeTab" type="is-toggle">
+		<b-tab-item label="Table">
+			<wg-result-table
+				:data="enrichmentData"
+				:method="enrichMethod"
+			></wg-result-table>
+		</b-tab-item>
+		<b-tab-item label="Bar chart">
+		<div class="vertical-center-container">
+			<wg-bar-plot
+				:dimensions="bar.dimensions"
+				:label-width="bar.labelWidth"
+				:data="enrichmentData"
+				:value-key="bar.valueKey"
+				:x-label="bar.xLabel">
+			</wg-bar-plot>
+		</div>
+		</b-tab-item>
+		<b-tab-item label="Volcano plot">
+		<div class="vertical-center-container">
+			<wg-volcano-plot
+				:data="volcanoData"
+				:x="volcano.x"
+				:y="volcano.y"
+				:dimensions="volcano.dimensions"
+				:x-label="volcano.xLabel"
+				:label-types="volcano.labelTypes"
+				:x-transform="volcano.xTransform"
+				:radius="volcano.radius"
+				:color="volcano.color"
+				:tooltip-content="volcano.tooltipContent"
+				:show-all-labels="false"
+				:auto-place-labels="true"
+			></wg-volcano-plot>
+		</div>
+		</b-tab-item>
+	</b-tabs>
+	<wg-gene-table
+		:data="geneTables"
+		:info="enrichment"
+		:standard-id="standardId"
+		:method="enrichMethod"
+		:mapped-input-size="mappedInputSize"
+		:organism="organism"
+		:host-name="hostName"
+		:sets-with-net="false"
+	></wg-gene-table>
+</section> 
+
+</div>
+</div>
+</main>
+	<script type="text/javascript" src="https://2024.webgestalt.org/assets/1.0/build/wg.min.js"></script>
+<script type="text/javascript">
+var enrichment = [{"geneSet":"R-HSA-9031525","description":"NR1H2 & NR1H3 regulate gene expression to limit cholesterol uptake","link":"http://reactome.org/PathwayBrowser/#/R-HSA-9031525","size":5,"overlap":1,"expect":0.013625215732582432,"enrichmentRatio":73.393333333333331,"pValue":0.013553608294676696,"FDR":1,"overlapId":"7376"},{"geneSet":"R-HSA-9031528","description":"NR1H2 & NR1H3 regulate gene expression linked to triglyceride lipolysis in adipose","link":"http://reactome.org/PathwayBrowser/#/R-HSA-9031528","size":5,"overlap":1,"expect":0.013625215732582432,"enrichmentRatio":73.393333333333331,"pValue":0.013553608294676696,"FDR":1,"overlapId":"7376"},{"geneSet":"R-HSA-9652817","description":"Signaling by MAPK mutants","link":"http://reactome.org/PathwayBrowser/#/R-HSA-9652817","size":7,"overlap":1,"expect":0.019075302025615404,"enrichmentRatio":52.423809523809524,"pValue":0.018925180979886002,"FDR":1,"overlapId":"1849"},{"geneSet":"R-HSA-9033500","description":"TYSND1 cleaves peroxisomal proteins","link":"http://reactome.org/PathwayBrowser/#/R-HSA-9033500","size":7,"overlap":1,"expect":0.019075302025615404,"enrichmentRatio":52.423809523809524,"pValue":0.018925180979886002,"FDR":1,"overlapId":"219743"},{"geneSet":"R-HSA-1483148","description":"Synthesis of PG","link":"http://reactome.org/PathwayBrowser/#/R-HSA-1483148","size":8,"overlap":1,"expect":0.021800345172131891,"enrichmentRatio":45.870833333333337,"pValue":0.021600353182103051,"FDR":1,"overlapId":"23646"},{"geneSet":"R-HSA-9029558","description":"NR1H2 & NR1H3 regulate gene expression linked to lipogenesis","link":"http://reactome.org/PathwayBrowser/#/R-HSA-9029558","size":9,"overlap":1,"expect":0.024525388318648377,"enrichmentRatio":40.774074074074079,"pValue":0.024268473298660571,"FDR":1,"overlapId":"7376"},{"geneSet":"R-HSA-9623433","description":"NR1H2 & NR1H3 regulate gene expression to control bile acid homeostasis","link":"http://reactome.org/PathwayBrowser/#/R-HSA-9623433","size":9,"overlap":1,"expect":0.024525388318648377,"enrichmentRatio":40.774074074074079,"pValue":0.024268473298660571,"FDR":1,"overlapId":"7376"},{"geneSet":"R-HSA-202670","description":"ERKs are inactivated","link":"http://reactome.org/PathwayBrowser/#/R-HSA-202670","size":13,"overlap":1,"expect":0.035425560904714326,"enrichmentRatio":28.228205128205126,"pValue":0.034870791264778003,"FDR":1,"overlapId":"1849"},{"geneSet":"R-HSA-5173105","description":"O-linked glycosylation","link":"http://reactome.org/PathwayBrowser/#/R-HSA-5173105","size":112,"overlap":2,"expect":0.30520483240984647,"enrichmentRatio":6.5529761904761905,"pValue":0.037080659431873129,"FDR":1,"overlapId":"51146;9509"},{"geneSet":"R-HSA-9679504","description":"Translation of Replicase and Assembly of the Replication Transcription Complex","link":"http://reactome.org/PathwayBrowser/#/R-HSA-9679504","size":14,"overlap":1,"expect":0.038150604051230809,"enrichmentRatio":26.211904761904762,"pValue":0.03750391933493203,"FDR":1,"overlapId":"29082"}];
+var background = [{"geneSet":"R-HSA-9694676","enrichmentRatio":24.464444444444442,"FDR":1,"overlap":1},{"geneSet":"R-HSA-3134975","enrichmentRatio":24.464444444444442,"FDR":1,"overlap":1},{"geneSet":"R-HSA-8866427","enrichmentRatio":22.935416666666669,"FDR":1,"overlap":1},{"geneSet":"R-HSA-70221","enrichmentRatio":22.935416666666669,"FDR":1,"overlap":1},{"geneSet":"R-HSA-3229121","enrichmentRatio":22.935416666666669,"FDR":1,"overlap":1},{"geneSet":"R-HSA-6788467","enrichmentRatio":21.586274509803921,"FDR":1,"overlap":1},{"geneSet":"R-HSA-416700","enrichmentRatio":19.314035087719297,"FDR":1,"overlap":1},{"geneSet":"R-HSA-388844","enrichmentRatio":18.348333333333333,"FDR":1,"overlap":1},{"geneSet":"R-HSA-202733","enrichmentRatio":5.3571776155717759,"FDR":1,"overlap":2},{"geneSet":"R-HSA-198753","enrichmentRatio":16.68030303030303,"FDR":1,"overlap":1},{"geneSet":"R-HSA-112409","enrichmentRatio":15.955072463768115,"FDR":1,"overlap":1},{"geneSet":"R-HSA-210500","enrichmentRatio":15.290277777777778,"FDR":1,"overlap":1},{"geneSet":"R-HSA-3371571","enrichmentRatio":15.290277777777778,"FDR":1,"overlap":1},{"geneSet":"R-HSA-6783589","enrichmentRatio":15.290277777777778,"FDR":1,"overlap":1},{"geneSet":"R-HSA-199977","enrichmentRatio":4.7658008658008661,"FDR":1,"overlap":2},{"geneSet":"R-HSA-2029485","enrichmentRatio":14.678666666666667,"FDR":1,"overlap":1},{"geneSet":"R-HSA-8982491","enrichmentRatio":13.591358024691356,"FDR":1,"overlap":1},{"geneSet":"R-HSA-5620971","enrichmentRatio":13.105952380952381,"FDR":1,"overlap":1},{"geneSet":"R-HSA-162588","enrichmentRatio":12.654022988505748,"FDR":1,"overlap":1},{"geneSet":"R-HSA-4090294","enrichmentRatio":12.232222222222221,"FDR":1,"overlap":1},{"geneSet":"R-HSA-499943","enrichmentRatio":12.232222222222221,"FDR":1,"overlap":1},{"geneSet":"R-HSA-9668328","enrichmentRatio":11.837634408602149,"FDR":1,"overlap":1},{"geneSet":"R-HSA-2022928","enrichmentRatio":11.837634408602149,"FDR":1,"overlap":1},{"geneSet":"R-HSA-5654687","enrichmentRatio":11.837634408602149,"FDR":1,"overlap":1},{"geneSet":"R-HSA-389661","enrichmentRatio":11.837634408602149,"FDR":1,"overlap":1},{"geneSet":"R-HSA-450282","enrichmentRatio":11.837634408602149,"FDR":1,"overlap":1},{"geneSet":"R-HSA-917729","enrichmentRatio":11.467708333333334,"FDR":1,"overlap":1},{"geneSet":"R-HSA-352230","enrichmentRatio":11.12020202020202,"FDR":1,"overlap":1},{"geneSet":"R-HSA-5663084","enrichmentRatio":10.793137254901961,"FDR":1,"overlap":1},{"geneSet":"R-HSA-948021","enrichmentRatio":3.9672072072072071,"FDR":1,"overlap":2},{"geneSet":"R-HSA-9615710","enrichmentRatio":10.484761904761903,"FDR":1,"overlap":1},{"geneSet":"R-HSA-597592","enrichmentRatio":1.7570223438212496,"FDR":1,"overlap":7},{"geneSet":"R-HSA-8964043","enrichmentRatio":9.9180180180180191,"FDR":1,"overlap":1},{"geneSet":"R-HSA-9029569","enrichmentRatio":9.9180180180180191,"FDR":1,"overlap":1},{"geneSet":"R-HSA-5083635","enrichmentRatio":9.9180180180180191,"FDR":1,"overlap":1},{"geneSet":"R-HSA-9772572","enrichmentRatio":9.6570175438596486,"FDR":1,"overlap":1},{"geneSet":"R-HSA-5173214","enrichmentRatio":9.6570175438596486,"FDR":1,"overlap":1},{"geneSet":"R-HSA-5362517","enrichmentRatio":8.5341085271317834,"FDR":1,"overlap":1},{"geneSet":"R-HSA-5675221","enrichmentRatio":8.5341085271317834,"FDR":1,"overlap":1},{"geneSet":"R-HSA-6811438","enrichmentRatio":8.3401515151515149,"FDR":1,"overlap":1},{"geneSet":"R-HSA-9024446","enrichmentRatio":7.8078014184397162,"FDR":1,"overlap":1},{"geneSet":"R-HSA-6811440","enrichmentRatio":7.4891156462585027,"FDR":1,"overlap":1},{"geneSet":"R-HSA-112310","enrichmentRatio":7.1954248366013074,"FDR":1,"overlap":1},{"geneSet":"R-HSA-383280","enrichmentRatio":7.0570512820512814,"FDR":1,"overlap":1},{"geneSet":"R-HSA-5654736","enrichmentRatio":7.0570512820512814,"FDR":1,"overlap":1},{"geneSet":"R-HSA-1638091","enrichmentRatio":6.4380116959064324,"FDR":1,"overlap":1},{"geneSet":"R-HSA-5668914","enrichmentRatio":2.9357333333333333,"FDR":1,"overlap":2},{"geneSet":"R-HSA-5218859","enrichmentRatio":6.1161111111111106,"FDR":1,"overlap":1},{"geneSet":"R-HSA-198725","enrichmentRatio":6.0158469945355195,"FDR":1,"overlap":1},{"geneSet":"R-HSA-9033241","enrichmentRatio":5.8248677248677252,"FDR":1,"overlap":1},{"geneSet":"R-HSA-913709","enrichmentRatio":5.7338541666666671,"FDR":1,"overlap":1},{"geneSet":"R-HSA-450294","enrichmentRatio":5.7338541666666671,"FDR":1,"overlap":1},{"geneSet":"R-HSA-1834949","enrichmentRatio":5.7338541666666671,"FDR":1,"overlap":1},{"geneSet":"R-HSA-373755","enrichmentRatio":5.6456410256410257,"FDR":1,"overlap":1},{"geneSet":"R-HSA-1650814","enrichmentRatio":5.4771144278606965,"FDR":1,"overlap":1},{"geneSet":"R-HSA-204005","enrichmentRatio":5.3965686274509803,"FDR":1,"overlap":1},{"geneSet":"R-HSA-3906995","enrichmentRatio":5.3183574879227056,"FDR":1,"overlap":1},{"geneSet":"R-HSA-448424","enrichmentRatio":5.0967592592592599,"FDR":1,"overlap":1},{"geneSet":"R-HSA-2995410","enrichmentRatio":4.8928888888888888,"FDR":1,"overlap":1},{"geneSet":"R-HSA-174824","enrichmentRatio":4.8928888888888888,"FDR":1,"overlap":1},{"geneSet":"R-HSA-9006931","enrichmentRatio":2.4628635346756154,"FDR":1,"overlap":2},{"geneSet":"R-HSA-71387","enrichmentRatio":2.4546265328874024,"FDR":1,"overlap":2},{"geneSet":"R-HSA-446203","enrichmentRatio":2.4142543859649122,"FDR":1,"overlap":2},{"geneSet":"R-HSA-6802957","enrichmentRatio":4.3686507936507937,"FDR":1,"overlap":1},{"geneSet":"R-HSA-2029480","enrichmentRatio":4.2670542635658917,"FDR":1,"overlap":1},{"geneSet":"R-HSA-6794362","enrichmentRatio":4.2670542635658917,"FDR":1,"overlap":1},{"geneSet":"R-HSA-3371556","enrichmentRatio":4.1232209737827716,"FDR":1,"overlap":1},{"geneSet":"R-HSA-190236","enrichmentRatio":4.1232209737827716,"FDR":1,"overlap":1},{"geneSet":"R-HSA-8876198","enrichmentRatio":4.0774074074074074,"FDR":1,"overlap":1},{"geneSet":"R-HSA-1474290","enrichmentRatio":4.0774074074074074,"FDR":1,"overlap":1},{"geneSet":"R-HSA-163125","enrichmentRatio":3.9887681159420287,"FDR":1,"overlap":1},{"geneSet":"R-HSA-168142","enrichmentRatio":3.7831615120274913,"FDR":1,"overlap":1},{"geneSet":"R-HSA-168176","enrichmentRatio":3.7831615120274913,"FDR":1,"overlap":1},{"geneSet":"R-HSA-975871","enrichmentRatio":3.7831615120274913,"FDR":1,"overlap":1},{"geneSet":"R-HSA-15869","enrichmentRatio":3.7067340067340071,"FDR":1,"overlap":1},{"geneSet":"R-HSA-109582","enrichmentRatio":1.7727858293075685,"FDR":1,"overlap":3},{"geneSet":"R-HSA-6807878","enrichmentRatio":3.6333333333333333,"FDR":1,"overlap":1},{"geneSet":"R-HSA-975138","enrichmentRatio":3.5627831715210356,"FDR":1,"overlap":1},{"geneSet":"R-HSA-199991","enrichmentRatio":1.736435331230284,"FDR":1,"overlap":3},{"geneSet":"R-HSA-975155","enrichmentRatio":3.5285256410256407,"FDR":1,"overlap":1},{"geneSet":"R-HSA-168164","enrichmentRatio":3.4949206349206352,"FDR":1,"overlap":1},{"geneSet":"R-HSA-168181","enrichmentRatio":3.4949206349206352,"FDR":1,"overlap":1},{"geneSet":"R-HSA-168138","enrichmentRatio":3.397839506172839,"FDR":1,"overlap":1},{"geneSet":"R-HSA-425393","enrichmentRatio":3.397839506172839,"FDR":1,"overlap":1},{"geneSet":"R-HSA-166166","enrichmentRatio":3.3360606060606059,"FDR":1,"overlap":1},{"geneSet":"R-HSA-937061","enrichmentRatio":3.3360606060606059,"FDR":1,"overlap":1},{"geneSet":"R-HSA-166058","enrichmentRatio":3.2474926253687317,"FDR":1,"overlap":1},{"geneSet":"R-HSA-168188","enrichmentRatio":3.2474926253687317,"FDR":1,"overlap":1},{"geneSet":"R-HSA-187037","enrichmentRatio":3.1910144927536233,"FDR":1,"overlap":1},{"geneSet":"R-HSA-9610379","enrichmentRatio":3.163505747126437,"FDR":1,"overlap":1},{"geneSet":"R-HSA-168179","enrichmentRatio":3.163505747126437,"FDR":1,"overlap":1},{"geneSet":"R-HSA-181438","enrichmentRatio":3.163505747126437,"FDR":1,"overlap":1},{"geneSet":"R-HSA-1989781","enrichmentRatio":3.1364672364672361,"FDR":1,"overlap":1},{"geneSet":"R-HSA-5653656","enrichmentRatio":1.6358098068350668,"FDR":1,"overlap":3},{"geneSet":"R-HSA-400206","enrichmentRatio":3.0837535014005604,"FDR":1,"overlap":1},{"geneSet":"R-HSA-9007101","enrichmentRatio":2.9594086021505372,"FDR":1,"overlap":1},{"geneSet":"R-HSA-392499","enrichmentRatio":1.2940890008396304,"FDR":1,"overlap":7},{"geneSet":"R-HSA-1630316","enrichmentRatio":2.9124338624338626,"FDR":1,"overlap":1},{"geneSet":"R-HSA-1483206","enrichmentRatio":2.8447028423772611,"FDR":1,"overlap":1},{"geneSet":"R-HSA-6809371","enrichmentRatio":2.8447028423772611,"FDR":1,"overlap":1},{"geneSet":"R-HSA-166520","enrichmentRatio":2.7385572139303482,"FDR":1,"overlap":1},{"geneSet":"R-HSA-112316","enrichmentRatio":1.7900813008130081,"FDR":1,"overlap":2},{"geneSet":"R-HSA-1632852","enrichmentRatio":2.6982843137254902,"FDR":1,"overlap":1},{"geneSet":"R-HSA-162599","enrichmentRatio":2.6982843137254902,"FDR":1,"overlap":1},{"geneSet":"R-HSA-9678108","enrichmentRatio":2.5842723004694834,"FDR":1,"overlap":1},{"geneSet":"R-HSA-3781865","enrichmentRatio":2.5483796296296299,"FDR":1,"overlap":1},{"geneSet":"R-HSA-166016","enrichmentRatio":2.513470319634703,"FDR":1,"overlap":1},{"geneSet":"R-HSA-168249","enrichmentRatio":1.3744069912609238,"FDR":1,"overlap":4},{"geneSet":"R-HSA-162587","enrichmentRatio":2.4628635346756154,"FDR":1,"overlap":1},{"geneSet":"R-HSA-9612973","enrichmentRatio":2.4302428256070643,"FDR":1,"overlap":1},{"geneSet":"R-HSA-9609646","enrichmentRatio":2.2935416666666666,"FDR":1,"overlap":1},{"geneSet":"R-HSA-9609507","enrichmentRatio":2.2376016260162603,"FDR":1,"overlap":1},{"geneSet":"R-HSA-168898","enrichmentRatio":2.1843253968253968,"FDR":1,"overlap":1},{"geneSet":"R-HSA-983231","enrichmentRatio":2.1843253968253968,"FDR":1,"overlap":1},{"geneSet":"R-HSA-449147","enrichmentRatio":1.5516560958421421,"FDR":1,"overlap":2},{"geneSet":"R-HSA-3108232","enrichmentRatio":2.00528233151184,"FDR":1,"overlap":1},{"geneSet":"R-HSA-2990846","enrichmentRatio":1.9416225749559084,"FDR":1,"overlap":1},{"geneSet":"R-HSA-9006934","enrichmentRatio":1.3953105196451203,"FDR":1,"overlap":2},{"geneSet":"R-HSA-6811442","enrichmentRatio":1.8166666666666667,"FDR":1,"overlap":1},{"geneSet":"R-HSA-72163","enrichmentRatio":1.7727858293075687,"FDR":1,"overlap":1},{"geneSet":"R-HSA-1483257","enrichmentRatio":1.7309748427672957,"FDR":1,"overlap":1},{"geneSet":"R-HSA-5357801","enrichmentRatio":1.7228482003129888,"FDR":1,"overlap":1},{"geneSet":"R-HSA-6805567","enrichmentRatio":1.7147975077881619,"FDR":1,"overlap":1},{"geneSet":"R-HSA-72172","enrichmentRatio":1.7068217054263566,"FDR":1,"overlap":1},{"geneSet":"R-HSA-162906","enrichmentRatio":1.5886002886002886,"FDR":1,"overlap":1},{"geneSet":"R-HSA-68882","enrichmentRatio":1.5615602836879432,"FDR":1,"overlap":1},{"geneSet":"R-HSA-2555396","enrichmentRatio":1.5549435028248588,"FDR":1,"overlap":1},{"geneSet":"R-HSA-8951664","enrichmentRatio":1.4917344173441733,"FDR":1,"overlap":1},{"geneSet":"R-HSA-425407","enrichmentRatio":1.4856950067476384,"FDR":1,"overlap":1},{"geneSet":"R-HSA-3247509","enrichmentRatio":1.3591358024691358,"FDR":1,"overlap":1},{"geneSet":"R-HSA-4839726","enrichmentRatio":1.3591358024691358,"FDR":1,"overlap":1},{"geneSet":"R-HSA-112315","enrichmentRatio":1.3591358024691358,"FDR":1,"overlap":1},{"geneSet":"R-HSA-5673001","enrichmentRatio":1.3105952380952379,"FDR":1,"overlap":1},{"geneSet":"R-HSA-72203","enrichmentRatio":1.2876023391812865,"FDR":1,"overlap":1},{"geneSet":"R-HSA-5684996","enrichmentRatio":1.283100233100233,"FDR":1,"overlap":1},{"geneSet":"R-HSA-9694516","enrichmentRatio":1.2273132664437012,"FDR":1,"overlap":1},{"geneSet":"R-HSA-1474244","enrichmentRatio":1.2232222222222222,"FDR":1,"overlap":1},{"geneSet":"R-HSA-5683057","enrichmentRatio":1.1291282051282052,"FDR":1,"overlap":1},{"geneSet":"R-HSA-382551","enrichmentRatio":1.0095369096744613,"FDR":1,"overlap":2},{"geneSet":"R-HSA-556833","enrichmentRatio":0.98382484361036648,"FDR":1,"overlap":2},{"geneSet":"R-HSA-1280215","enrichmentRatio":0.93257094451503597,"FDR":1,"overlap":2},{"geneSet":"R-HSA-71291","enrichmentRatio":0.97597517730496453,"FDR":1,"overlap":1},{"geneSet":"R-HSA-9679506","enrichmentRatio":0.88639291465378434,"FDR":1,"overlap":1},{"geneSet":"R-HSA-68886","enrichmentRatio":0.88213141025641018,"FDR":1,"overlap":1},{"geneSet":"R-HSA-5663202","enrichmentRatio":0.8474980754426481,"FDR":1,"overlap":1},{"geneSet":"R-HSA-1643685","enrichmentRatio":0.84070255822833151,"FDR":1,"overlap":4},{"geneSet":"R-HSA-6798695","enrichmentRatio":0.76451388888888883,"FDR":1,"overlap":1},{"geneSet":"R-HSA-422475","enrichmentRatio":0.6635925256178421,"FDR":1,"overlap":1},{"geneSet":"R-HSA-69278","enrichmentRatio":0.65529761904761896,"FDR":1,"overlap":1},{"geneSet":"R-HSA-9675108","enrichmentRatio":0.63489042675893881,"FDR":1,"overlap":1},{"geneSet":"R-HSA-1640170","enrichmentRatio":0.53106608779546549,"FDR":1,"overlap":1},{"geneSet":"R-HSA-1266738","enrichmentRatio":0.59475958941112916,"FDR":1,"overlap":2},{"geneSet":"R-HSA-212436","enrichmentRatio":0.58667732480682122,"FDR":1,"overlap":2},{"geneSet":"R-HSA-8953854","enrichmentRatio":0.50546372819100094,"FDR":1,"overlap":1},{"geneSet":"R-HSA-9824446","enrichmentRatio":0.47844415471534119,"FDR":1,"overlap":1},{"geneSet":"R-HSA-2262752","enrichmentRatio":0.45928243637880684,"FDR":1,"overlap":1},{"geneSet":"R-HSA-8953897","enrichmentRatio":0.45137351373513734,"FDR":1,"overlap":1},{"geneSet":"R-HSA-73857","enrichmentRatio":0.53376969696969689,"FDR":1,"overlap":2},{"geneSet":"R-HSA-5663205","enrichmentRatio":0.38225694444444441,"FDR":1,"overlap":1},{"geneSet":"R-HSA-74160","enrichmentRatio":0.47565348887448688,"FDR":1,"overlap":2}];
+var geneTables = {"R-HSA-9031525":[{"userId":"NR1H2","geneSymbol":"NR1H2","geneName":"nuclear receptor subfamily 1 group H member 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=7376","entrezgene":"7376"}],"R-HSA-9031528":[{"userId":"NR1H2","geneSymbol":"NR1H2","geneName":"nuclear receptor subfamily 1 group H member 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=7376","entrezgene":"7376"}],"R-HSA-9652817":[{"userId":"DUSP7","geneSymbol":"DUSP7","geneName":"dual specificity phosphatase 7","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=1849","entrezgene":"1849"}],"R-HSA-9033500":[{"userId":"TYSND1","geneSymbol":"TYSND1","geneName":"trypsin like peroxisomal matrix peptidase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=219743","entrezgene":"219743"}],"R-HSA-1483148":[{"userId":"PLD3","geneSymbol":"PLD3","geneName":"phospholipase D family member 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=23646","entrezgene":"23646"}],"R-HSA-9029558":[{"userId":"NR1H2","geneSymbol":"NR1H2","geneName":"nuclear receptor subfamily 1 group H member 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=7376","entrezgene":"7376"}],"R-HSA-9623433":[{"userId":"NR1H2","geneSymbol":"NR1H2","geneName":"nuclear receptor subfamily 1 group H member 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=7376","entrezgene":"7376"}],"R-HSA-202670":[{"userId":"DUSP7","geneSymbol":"DUSP7","geneName":"dual specificity phosphatase 7","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=1849","entrezgene":"1849"}],"R-HSA-5173105":[{"userId":"ADAMTS2","geneSymbol":"ADAMTS2","geneName":"ADAM metallopeptidase with thrombospondin type 1 motif 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=9509","entrezgene":"9509"},{"userId":"A4GNT","geneSymbol":"A4GNT","geneName":"alpha-1,4-N-acetylglucosaminyltransferase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=51146","entrezgene":"51146"}],"R-HSA-9679504":[{"userId":"CHMP4A","geneSymbol":"CHMP4A","geneName":"charged multivesicular body protein 4A","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=29082","entrezgene":"29082"}]};
+var clusters = {"wsc":{"representatives":["R-HSA-5173105","R-HSA-9031525","R-HSA-9652817","R-HSA-9033500","R-HSA-1483148","R-HSA-9679504"],"coverage":[1]}};
+
+wgLib({
+	enrichDatabase: "pathway_Reactome",
+	organism: "hsapiens",
+	hostName: "https://2024.webgestalt.org",
+	enrichment: enrichment,
+	background: background,
+	geneTables: geneTables,
+	clusters: clusters,
+	enrichMethod: "ora",
+	mappedInputSize: 30,
+	standardId: "entrezgene",
+	volcano: {
+		labelTypes: ["geneSet", "description"],
+		dimensions: { width: 960, height: 500 },
+		autoPlaceLabels: true,
+		y: "FDR",
+
+		x: "enrichmentRatio",
+		xLabel: "log2 of enrichment ratio",
+		radius: "overlap",
+		color: "overlap",
+			tooltipContent: ["geneSet", "description", "enrichmentRatio", "FDR", "pValue", "overlap"]
+	},
+	bar: {
+		dimensions: { width: 960, height: 300 },
+		labelWidth: 200,
+		tooltipContent: ["geneSet", "description", "enrichmentRatio", "FDR", "pValue", "overlap"],
+		valueKey: "enrichmentRatio",
+		xLabel: "Enrichment ratio"
+	}
+})
+
+
+</script>
+<footer class="footer has-text-centered">
+<p>WebGestalt is currently developed and maintained by Yuxing Liao, Suhas Vasaikar, Zhiao Shi and Bing Zhang at the <a target="_new" href=http://www.zhang-lab.org> Zhang Lab</a>. Other people who have made significant contribution to the project include Jing Wang, Dexter Duncan, Stefan Kirov and Jay Snoddy.</p>
+<p><b>Funding credits:</b> NIH/NCI (U24 CA210954); Leidos (15X038); CPRIT (RR160027); NIH/NIAAA (U01 AA016662, U01 AA013512); NIH/NIDA (P01 DA015027); NIH/NIMH (P50 MH078028, P50 MH096972); NIH/NCI (U24 CA159988); NIH/NIGMS (R01 GM088822).
+</p>
+</footer></body>
+</html>
