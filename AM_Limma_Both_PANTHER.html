@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<title>WebGestalt - List 1</title>
+<link rel="icon" type="image/png" href="https://s3-us-west-2.amazonaws.com/webgestalt/favicon.png">
+
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?flags=gated&features=es2015%2Ces2016%2Cfetch"></script>
+<script src="https://2024.webgestalt.org/assets/1.0/build/vendor.min.js"></script>
+	<script>window.cytoscape = null;</script>
+	<link rel="stylesheet" href="https://2024.webgestalt.org/assets/1.0/build/vendor.css">
+	<link rel="stylesheet" href="https://2024.webgestalt.org/assets/1.0/build/wg.css">
+<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+</head>
+<body>
+	<script type="text/javascript" src="https://www.termsfeed.com/public/cookie-consent/4.1.0/cookie-consent.js" charset="UTF-8"></script>
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({"notice_banner_type":"simple","consent_type":"express","palette":"light","language":"en","page_load_consent_levels":["strictly-necessary"],"notice_banner_reject_button_hide":false,"preferences_center_close_button_hide":false,"page_refresh_confirmation_buttons":false});
+});
+</script>
+
+<!-- Google Analytics -->
+<script type="text/plain" data-cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=G-THG9Q3WPEJ"></script>
+<script type="text/plain" data-cookie-consent="tracking">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-THG9Q3WPEJ');
+</script>
+<!-- end of Google Analytics-->
+	
+	<noscript>Free cookie consent management tool by <a href="https://www.termsfeed.com/">TermsFeed</a></noscript>
+	<!-- End Cookie Consent by TermsFeed https://www.TermsFeed.com -->
+<header>
+	<div id="header-img"><a href="https://2024.webgestalt.org"><img border="0" src="https://2024.webgestalt.org/images/gsa.png"></a></div>
+	<div id="header-title">
+		<p id="header-title-text">WEB-based GEne SeT AnaLysis Toolkit</p>
+		<p id="header-subtitle-text">Translating gene lists into biological insights...</p>
+	</div>
+</header>
+<hr><main>
+<div id="app">
+<div class="loading-preinit" v-cloak><div class="loading-icon"></div></div>
+<div class="wrapper" v-cloak>
+<div class="level">
+	<div class="level-left">
+		<div class="level-item">
+			<h4 class="title is-4 has-text-primary">Summary</h4>
+		</div>
+	</div>
+	<div class="level-right">
+		<div class="level-item">
+			<a class="button is-text" href="Project_wg_result1763347322.zip" target="_blank">Result Download</a>
+		</div>
+	</div>
+</div>
+
+<section id="summary" class="summary">
+<div class="card" v-bind:class="{active: summaryShown}" >
+	<div class="card-header" v-on:click="summaryShown=!summaryShown">
+		<p class="card-header-title">Job summary</p>
+		<a href="#" class="card-header-icon">
+			<b-icon :icon="summaryShown ? 'chevron-up' : 'chevron-down'"></b-icon>
+		</a>
+	</div>
+	<div class="card-content content" v-show="summaryShown">
+		<ul id="summary-list"> 
+		<li><b>Enrichment method:</b> ORA</li>
+		<li><b>Organism: </b>rnorvegicus</li>
+		<li>
+				<b>Enrichment Categories: </b>pathway_Panther
+				<a class="has-text-info" href="https://2024.webgestalt.org/api/geneset?organism=rnorvegicus&database=pathway_Panther&fileType=gmt&version=2024">
+					<b-icon icon="download" size="is-small"></b-icon>
+				</a>
+		</li>
+
+			<li><b>Interesting list: </b>. <b>ID type: </b>genesymbol</li>
+			<li>The interesting list contains <b>744</b> user IDs in which <b>691</b> user IDs are unambiguously mapped to <b>691</b> unique entrezgene IDs and <b>53</b> user IDs can not be mapped to any entrezgene ID.</li>
+			<li>The GO Slim summary are based upon the <b>691</b> unique entrezgene IDs.</li>
+		<li>Among <b>691</b> unique entrezgene IDs, <b>84</b> IDs are annotated to the selected functional categories and also in the reference list, which are used for the enrichment analysis.</li>
+		<li><b>Reference list: </b> all mapped entrezgene IDs from the selected platform genome
+			<a class="has-text-info" href="https://2024.webgestalt.org/api/reference?organism=rnorvegicus&referenceSet=genome&version=2024&standardId=entrezgene&version=2024">
+				<b-icon icon="download" size="is-small"></b-icon>
+			</a>
+		</li>
+	<li>The reference list can be mapped to <b>42838</b> entrezgene IDs and <b> 1368</b> IDs are annotated to the selected functional categories that are used as the reference for the enrichment analysis.</li>
+</ul> 
+
+<p><b>Parameters for the enrichment analysis:</b></p>
+<ul><li><b>Minimum number of IDs in the category: </b>5</li>
+<li><b>Maximum number of IDs in the category: </b>2000</li>
+<li><b>FDR Method: </b>BH</li>
+<li><b>Significance Level:</b> Top 10</li>
+</ul>
+	<p>Based on the above parameters, <b>10</b> categories are identified as enriched categories and all are shown in this report.</p>
+
+	</div>
+</div>
+</section>
+<section id="go-summary" class="summary">
+<div class="card" v-bind:class="{active: goShown}" >
+	<div class="card-header" v-on:click="goShown=!goShown">
+		<p class="card-header-title">GO Slim summary for the user uploaded IDs</p>
+		<a href="#" class="card-header-icon">
+			<b-icon :icon="goShown ? 'chevron-up' : 'chevron-down'"></b-icon>
+		</a>
+	</div>
+	<div v-show="goShown">
+		<div class="card-content">
+			<p>Each Biological Process, Cellular Component and Molecular Function category is represented by a red, blue and green bar, repectively.</p>
+			<p>The height of the bar represents the number of IDs in the user list and also in the category.</p>
+		</div>
+		<div class="card-image">
+			<img src="goslim_summary_wg_result1763347322.png" width="100%" height="100%" alt="Bar charts of enriched GO Slim terms"/>
+		</div>
+	</div>
+</div>
+</section> <h4 class="title is-4 has-text-primary">Enrichment Results</h4>
+<section id="enrich-result">
+	<p class="select-redundancy">
+		<b-tooltip label="Enriched analyte sets are post-processed by two methods to reduce redundancy." type="is-dark" animated multilined dashed>
+			Redundancy reduction:
+		</b-tooltip>
+		<b-radio v-model="redundancy" native-value="all">None</b-radio>
+		<b-radio v-model="redundancy" native-value="wsc">
+			<b-tooltip label="Find top analyte sets while maximizing analyte coverage." type="is-dark" animated multilined dashed>
+				Weighted set cover
+			</b-tooltip>
+		</b-radio>
+	</p>
+	<b-tabs v-model="activeTab" type="is-toggle">
+		<b-tab-item label="Table">
+			<wg-result-table
+				:data="enrichmentData"
+				:method="enrichMethod"
+			></wg-result-table>
+		</b-tab-item>
+		<b-tab-item label="Bar chart">
+		<div class="vertical-center-container">
+			<wg-bar-plot
+				:dimensions="bar.dimensions"
+				:label-width="bar.labelWidth"
+				:data="enrichmentData"
+				:value-key="bar.valueKey"
+				:x-label="bar.xLabel">
+			</wg-bar-plot>
+		</div>
+		</b-tab-item>
+		<b-tab-item label="Volcano plot">
+		<div class="vertical-center-container">
+			<wg-volcano-plot
+				:data="volcanoData"
+				:x="volcano.x"
+				:y="volcano.y"
+				:dimensions="volcano.dimensions"
+				:x-label="volcano.xLabel"
+				:label-types="volcano.labelTypes"
+				:x-transform="volcano.xTransform"
+				:radius="volcano.radius"
+				:color="volcano.color"
+				:tooltip-content="volcano.tooltipContent"
+				:show-all-labels="false"
+				:auto-place-labels="true"
+			></wg-volcano-plot>
+		</div>
+		</b-tab-item>
+	</b-tabs>
+	<wg-gene-table
+		:data="geneTables"
+		:info="enrichment"
+		:standard-id="standardId"
+		:method="enrichMethod"
+		:mapped-input-size="mappedInputSize"
+		:organism="organism"
+		:host-name="hostName"
+		:sets-with-net="false"
+	></wg-gene-table>
+</section> 
+
+</div>
+</div>
+</main>
+	<script type="text/javascript" src="https://2024.webgestalt.org/assets/1.0/build/wg.min.js"></script>
+<script type="text/javascript">
+var enrichment = [{"geneSet":"P00004","description":"Alzheimer disease-presenilin pathway","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00004","size":79,"overlap":14,"expect":4.8508771929824563,"enrichmentRatio":2.8860759493670884,"pValue":0.00017572471614587284,"FDR":0.017748196330733157,"overlapId":"291848;303586;316527;100360552;192183;140584;299858;54281;81687;25496;266608;161452;84426;56761"},{"geneSet":"P00015","description":"Circadian clock system","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00015","size":7,"overlap":4,"expect":0.42982456140350878,"enrichmentRatio":9.3061224489795915,"pValue":0.00040250074713521337,"FDR":0.020326287730328275,"overlapId":"287422;78962;29657;63840"},{"geneSet":"P00012","description":"Cadherin signaling pathway","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00012","size":65,"overlap":8,"expect":3.9912280701754388,"enrichmentRatio":2.0043956043956044,"pValue":0.040962517223711283,"FDR":1,"overlapId":"303586;316527;100360552;308912;140584;266608;161452;84426"},{"geneSet":"P00045","description":"Notch signaling pathway","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00045","size":24,"overlap":4,"expect":1.4736842105263157,"enrichmentRatio":2.7142857142857144,"pValue":0.054793603270984495,"FDR":1,"overlapId":"360801;25496;170905;56761"},{"geneSet":"P02771","description":"Pyrimidine Metabolism","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P02771","size":7,"overlap":2,"expect":0.42982456140350878,"enrichmentRatio":4.6530612244897958,"pValue":0.063957232076853041,"FDR":1,"overlapId":"25416;65208"},{"geneSet":"P00046","description":"Oxidative stress response","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00046","size":26,"overlap":4,"expect":1.5964912280701755,"enrichmentRatio":2.5054945054945055,"pValue":0.070270175374053404,"FDR":1,"overlapId":"311406;299618;300980;116663"},{"geneSet":"P00041","description":"Metabotropic glutamate receptor group I pathway","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00041","size":17,"overlap":3,"expect":1.0438596491228069,"enrichmentRatio":2.8739495798319332,"pValue":0.081379724243854201,"FDR":1,"overlapId":"24410;170796;81662"},{"geneSet":"P05734","description":"Synaptic vesicle trafficking","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P05734","size":20,"overlap":3,"expect":1.2280701754385965,"enrichmentRatio":2.4428571428571426,"pValue":0.11971631822800297,"FDR":1,"overlapId":"499017;25731;60566"},{"geneSet":"P00007","description":"Axon guidance mediated by semaphorins","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00007","size":13,"overlap":2,"expect":0.79824561403508776,"enrichmentRatio":2.5054945054945055,"pValue":0.18762571185646509,"FDR":1,"overlapId":"25416;65208"},{"geneSet":"P00057","description":"Wnt signaling pathway","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00057","size":150,"overlap":12,"expect":9.2105263157894743,"enrichmentRatio":1.3028571428571427,"pValue":0.2006533229089649,"FDR":1,"overlapId":"295251;499964;303586;316527;100360552;308912;140584;298894;266608;81662;161452;84426"}];
+var background = [{"geneSet":"P00002","enrichmentRatio":2.1714285714285713,"FDR":1,"overlap":2},{"geneSet":"P02728","enrichmentRatio":3.2571428571428571,"FDR":1,"overlap":1},{"geneSet":"P05918","enrichmentRatio":1.9159663865546219,"FDR":1,"overlap":2},{"geneSet":"P00009","enrichmentRatio":1.8095238095238093,"FDR":1,"overlap":2},{"geneSet":"P02775","enrichmentRatio":2.7142857142857144,"FDR":1,"overlap":1},{"geneSet":"P02740","enrichmentRatio":2.7142857142857144,"FDR":1,"overlap":1},{"geneSet":"P00037","enrichmentRatio":1.4369747899159666,"FDR":1,"overlap":3},{"geneSet":"P00050","enrichmentRatio":2.3265306122448979,"FDR":1,"overlap":1},{"geneSet":"P00052","enrichmentRatio":1.2527472527472527,"FDR":1,"overlap":5},{"geneSet":"P00042","enrichmentRatio":1.3204633204633203,"FDR":1,"overlap":3},{"geneSet":"P00019","enrichmentRatio":1.2291105121293799,"FDR":1,"overlap":4},{"geneSet":"P04375","enrichmentRatio":1.3571428571428572,"FDR":1,"overlap":1},{"geneSet":"P04372","enrichmentRatio":1.3571428571428572,"FDR":1,"overlap":1},{"geneSet":"P00029","enrichmentRatio":1.0052910052910053,"FDR":1,"overlap":5},{"geneSet":"P00030","enrichmentRatio":1.0857142857142856,"FDR":1,"overlap":1},{"geneSet":"P00048","enrichmentRatio":0.95798319327731096,"FDR":1,"overlap":2},{"geneSet":"P00017","enrichmentRatio":1.017857142857143,"FDR":1,"overlap":1},{"geneSet":"P04380","enrichmentRatio":1.017857142857143,"FDR":1,"overlap":1},{"geneSet":"P04397","enrichmentRatio":0.95798319327731096,"FDR":1,"overlap":1},{"geneSet":"P00001","enrichmentRatio":0.90476190476190466,"FDR":1,"overlap":1},{"geneSet":"P00011","enrichmentRatio":0.8571428571428571,"FDR":1,"overlap":1},{"geneSet":"P00035","enrichmentRatio":0.8571428571428571,"FDR":1,"overlap":1},{"geneSet":"P00020","enrichmentRatio":0.81428571428571428,"FDR":1,"overlap":1},{"geneSet":"P00034","enrichmentRatio":0.82251082251082253,"FDR":1,"overlap":5},{"geneSet":"P00047","enrichmentRatio":0.79442508710801396,"FDR":1,"overlap":4},{"geneSet":"P00005","enrichmentRatio":0.79056865464632453,"FDR":1,"overlap":5},{"geneSet":"P00059","enrichmentRatio":0.72380952380952379,"FDR":1,"overlap":2},{"geneSet":"P00039","enrichmentRatio":0.72380952380952379,"FDR":1,"overlap":2},{"geneSet":"P00033","enrichmentRatio":0.62637362637362637,"FDR":1,"overlap":1},{"geneSet":"P04385","enrichmentRatio":0.62637362637362637,"FDR":1,"overlap":1},{"geneSet":"P00006","enrichmentRatio":0.7080745341614908,"FDR":1,"overlap":3},{"geneSet":"P00036","enrichmentRatio":0.62637362637362637,"FDR":1,"overlap":2},{"geneSet":"P00018","enrichmentRatio":0.66023166023166013,"FDR":1,"overlap":3},{"geneSet":"P00044","enrichmentRatio":0.61455525606468997,"FDR":1,"overlap":2},{"geneSet":"P04398","enrichmentRatio":0.52534562211981572,"FDR":1,"overlap":1},{"geneSet":"P04391","enrichmentRatio":0.50892857142857151,"FDR":1,"overlap":1},{"geneSet":"P00021","enrichmentRatio":0.61071428571428565,"FDR":1,"overlap":3},{"geneSet":"P04394","enrichmentRatio":0.46530612244897962,"FDR":1,"overlap":1},{"geneSet":"P00049","enrichmentRatio":0.50892857142857151,"FDR":1,"overlap":2},{"geneSet":"P00056","enrichmentRatio":0.41758241758241754,"FDR":1,"overlap":1},{"geneSet":"P04374","enrichmentRatio":0.40714285714285714,"FDR":1,"overlap":1},{"geneSet":"P00003","enrichmentRatio":0.39721254355400698,"FDR":1,"overlap":1},{"geneSet":"P00026","enrichmentRatio":0.48373408769448373,"FDR":1,"overlap":3},{"geneSet":"P04393","enrichmentRatio":0.33236151603498543,"FDR":1,"overlap":1},{"geneSet":"P00053","enrichmentRatio":0.32571428571428568,"FDR":1,"overlap":1},{"geneSet":"P00027","enrichmentRatio":0.41229656419529837,"FDR":1,"overlap":2},{"geneSet":"P00031","enrichmentRatio":0.12723214285714288,"FDR":1,"overlap":1}];
+var geneTables = {"P00004":[{"userId":"Wnt9b","geneSymbol":"Wnt9b","geneName":"Wnt family member 9B","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=303586","entrezgene":"303586"},{"userId":"Fzd9","geneSymbol":"Fzd9","geneName":"frizzled class receptor 9","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=266608","entrezgene":"266608"},{"userId":"Wnt11","geneSymbol":"Wnt11","geneName":"Wnt family member 11","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=140584","entrezgene":"140584"},{"userId":"Wnt4","geneSymbol":"Wnt4","geneName":"Wnt family member 4","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=84426","entrezgene":"84426"},{"userId":"Mmp15","geneSymbol":"Mmp15","geneName":"matrix metallopeptidase 15","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=291848","entrezgene":"291848"},{"userId":"Notch3","geneSymbol":"Notch3","geneName":"notch receptor 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=56761","entrezgene":"56761"},{"userId":"Lef1","geneSymbol":"Lef1","geneName":"lymphoid enhancer binding factor 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=161452","entrezgene":"161452"},{"userId":"Furin","geneSymbol":"Furin","geneName":"furin (paired basic amino acid cleaving enzyme)","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=54281","entrezgene":"54281"},{"userId":"Mmp9","geneSymbol":"Mmp9","geneName":"matrix metallopeptidase 9","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=81687","entrezgene":"81687"},{"userId":"Nectin1","geneSymbol":"Nectin1","geneName":"nectin cell adhesion molecule 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=192183","entrezgene":"192183"},{"userId":"Wnt10a","geneSymbol":"Wnt10a","geneName":"Wnt family member 10A","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=316527","entrezgene":"316527"},{"userId":"Fzd7","geneSymbol":"Fzd7","geneName":"frizzled class receptor 7","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=100360552","entrezgene":"100360552"},{"userId":"Lrp1","geneSymbol":"Lrp1","geneName":"LDL receptor related protein 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=299858","entrezgene":"299858"},{"userId":"Notch1","geneSymbol":"Notch1","geneName":"notch receptor 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25496","entrezgene":"25496"}],"P00015":[{"userId":"Bmal1","geneSymbol":"Bmal1","geneName":"basic helix-loop-helix ARNT like 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=29657","entrezgene":"29657"},{"userId":"Per1","geneSymbol":"Per1","geneName":"period circadian regulator 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=287422","entrezgene":"287422"},{"userId":"Per3","geneSymbol":"Per3","geneName":"period circadian regulator 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=78962","entrezgene":"78962"},{"userId":"Per2","geneSymbol":"Per2","geneName":"period circadian regulator 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=63840","entrezgene":"63840"}],"P00012":[{"userId":"Wnt9b","geneSymbol":"Wnt9b","geneName":"Wnt family member 9B","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=303586","entrezgene":"303586"},{"userId":"Fzd9","geneSymbol":"Fzd9","geneName":"frizzled class receptor 9","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=266608","entrezgene":"266608"},{"userId":"Wnt11","geneSymbol":"Wnt11","geneName":"Wnt family member 11","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=140584","entrezgene":"140584"},{"userId":"Wnt4","geneSymbol":"Wnt4","geneName":"Wnt family member 4","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=84426","entrezgene":"84426"},{"userId":"Lef1","geneSymbol":"Lef1","geneName":"lymphoid enhancer binding factor 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=161452","entrezgene":"161452"},{"userId":"Wnt10a","geneSymbol":"Wnt10a","geneName":"Wnt family member 10A","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=316527","entrezgene":"316527"},{"userId":"Fzd7","geneSymbol":"Fzd7","geneName":"frizzled class receptor 7","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=100360552","entrezgene":"100360552"},{"userId":"Dchs1","geneSymbol":"Dchs1","geneName":"dachsous cadherin-related 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=308912","entrezgene":"308912"}],"P00045":[{"userId":"Lfng","geneSymbol":"Lfng","geneName":"LFNG O-fucosylpeptide 3-beta-N-acetylglucosaminyltransferase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=170905","entrezgene":"170905"},{"userId":"Notch3","geneSymbol":"Notch3","geneName":"notch receptor 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=56761","entrezgene":"56761"},{"userId":"Ncor2","geneSymbol":"Ncor2","geneName":"nuclear receptor co-repressor 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=360801","entrezgene":"360801"},{"userId":"Notch1","geneSymbol":"Notch1","geneName":"notch receptor 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25496","entrezgene":"25496"}],"P02771":[{"userId":"Dpysl2","geneSymbol":"Dpysl2","geneName":"dihydropyrimidinase-like 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25416","entrezgene":"25416"},{"userId":"Dpysl5","geneSymbol":"Dpysl5","geneName":"dihydropyrimidinase-like 5","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=65208","entrezgene":"65208"}],"P00046":[{"userId":"Dusp2","geneSymbol":"Dusp2","geneName":"dual specificity phosphatase 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=311406","entrezgene":"311406"},{"userId":"Mknk2","geneSymbol":"Mknk2","geneName":"MAPK interacting serine/threonine kinase 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=299618","entrezgene":"299618"},{"userId":"Dusp7","geneSymbol":"Dusp7","geneName":"dual specificity phosphatase 7","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=300980","entrezgene":"300980"},{"userId":"Dusp6","geneSymbol":"Dusp6","geneName":"dual specificity phosphatase 6","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=116663","entrezgene":"116663"}],"P00041":[{"userId":"Grin2b","geneSymbol":"Grin2b","geneName":"glutamate ionotropic receptor NMDA type subunit 2B","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=24410","entrezgene":"24410"},{"userId":"Grin3b","geneSymbol":"Grin3b","geneName":"glutamate ionotropic receptor NMDA type subunit 3B","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=170796","entrezgene":"170796"},{"userId":"Gna11","geneSymbol":"Gna11","geneName":"G protein subunit alpha 11","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=81662","entrezgene":"81662"}],"P05734":[{"userId":"Sytl3","geneSymbol":"Sytl3","geneName":"synaptotagmin-like 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=499017","entrezgene":"499017"},{"userId":"Syt8","geneSymbol":"Syt8","geneName":"synaptotagmin 8","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=60566","entrezgene":"60566"},{"userId":"Syt3","geneSymbol":"Syt3","geneName":"synaptotagmin 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25731","entrezgene":"25731"}],"P00007":[{"userId":"Dpysl2","geneSymbol":"Dpysl2","geneName":"dihydropyrimidinase-like 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25416","entrezgene":"25416"},{"userId":"Dpysl5","geneSymbol":"Dpysl5","geneName":"dihydropyrimidinase-like 5","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=65208","entrezgene":"65208"}],"P00057":[{"userId":"Wnt9b","geneSymbol":"Wnt9b","geneName":"Wnt family member 9B","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=303586","entrezgene":"303586"},{"userId":"Fzd9","geneSymbol":"Fzd9","geneName":"frizzled class receptor 9","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=266608","entrezgene":"266608"},{"userId":"Wnt11","geneSymbol":"Wnt11","geneName":"Wnt family member 11","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=140584","entrezgene":"140584"},{"userId":"Wnt4","geneSymbol":"Wnt4","geneName":"Wnt family member 4","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=84426","entrezgene":"84426"},{"userId":"Lef1","geneSymbol":"Lef1","geneName":"lymphoid enhancer binding factor 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=161452","entrezgene":"161452"},{"userId":"Wnt10a","geneSymbol":"Wnt10a","geneName":"Wnt family member 10A","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=316527","entrezgene":"316527"},{"userId":"Fzd7","geneSymbol":"Fzd7","geneName":"frizzled class receptor 7","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=100360552","entrezgene":"100360552"},{"userId":"Pygo2","geneSymbol":"Pygo2","geneName":"pygopus family PHD finger 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=295251","entrezgene":"295251"},{"userId":"Gna11","geneSymbol":"Gna11","geneName":"G protein subunit alpha 11","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=81662","entrezgene":"81662"},{"userId":"Mycn","geneSymbol":"Mycn","geneName":"MYCN proto-oncogene, bHLH transcription factor","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=298894","entrezgene":"298894"},{"userId":"En2","geneSymbol":"En2","geneName":"engrailed homeobox 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=499964","entrezgene":"499964"},{"userId":"Dchs1","geneSymbol":"Dchs1","geneName":"dachsous cadherin-related 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=308912","entrezgene":"308912"}]};
+var clusters = {"wsc":{"representatives":["P00004","P00015","P00046","P00057","P05734","P00045","P02771","P00041"],"coverage":[1]}};
+
+wgLib({
+	enrichDatabase: "pathway_Panther",
+	organism: "rnorvegicus",
+	hostName: "https://2024.webgestalt.org",
+	enrichment: enrichment,
+	background: background,
+	geneTables: geneTables,
+	clusters: clusters,
+	enrichMethod: "ora",
+	mappedInputSize: 84,
+	standardId: "entrezgene",
+	volcano: {
+		labelTypes: ["geneSet", "description"],
+		dimensions: { width: 960, height: 500 },
+		autoPlaceLabels: true,
+		y: "FDR",
+
+		x: "enrichmentRatio",
+		xLabel: "log2 of enrichment ratio",
+		radius: "overlap",
+		color: "overlap",
+			tooltipContent: ["geneSet", "description", "enrichmentRatio", "FDR", "pValue", "overlap"]
+	},
+	bar: {
+		dimensions: { width: 960, height: 300 },
+		labelWidth: 200,
+		tooltipContent: ["geneSet", "description", "enrichmentRatio", "FDR", "pValue", "overlap"],
+		valueKey: "enrichmentRatio",
+		xLabel: "Enrichment ratio"
+	}
+})
+
+
+</script>
+<footer class="footer has-text-centered">
+<p>WebGestalt is currently developed and maintained by Yuxing Liao, Suhas Vasaikar, Zhiao Shi and Bing Zhang at the <a target="_new" href=http://www.zhang-lab.org> Zhang Lab</a>. Other people who have made significant contribution to the project include Jing Wang, Dexter Duncan, Stefan Kirov and Jay Snoddy.</p>
+<p><b>Funding credits:</b> NIH/NCI (U24 CA210954); Leidos (15X038); CPRIT (RR160027); NIH/NIAAA (U01 AA016662, U01 AA013512); NIH/NIDA (P01 DA015027); NIH/NIMH (P50 MH078028, P50 MH096972); NIH/NCI (U24 CA159988); NIH/NIGMS (R01 GM088822).
+</p>
+</footer></body>
+</html>

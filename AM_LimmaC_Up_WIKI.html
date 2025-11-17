@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<title>WebGestalt (WEB-based GEne SeT AnaLysis Toolkit)</title>
+<link rel="icon" type="image/png" href="https://s3-us-west-2.amazonaws.com/webgestalt/favicon.png">
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-42098540-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?flags=gated&features=es2015%2Ces2016%2Cfetch"></script>
+<script src="https://2019.webgestalt.org/assets/0.4/build/vendor.min.js"></script>
+	
+	<script>window.cytoscape = null;</script>
+	<link rel="stylesheet" href="https://2019.webgestalt.org/assets/0.4/build/vendor.css">
+	<link rel="stylesheet" href="https://2019.webgestalt.org/assets/0.4/build/wg.css">
+<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+</head>
+<body>
+<header>
+	<div id="header-img"><a href="https://2019.webgestalt.org"><img border="0" src="https://2019.webgestalt.org/images/gsa.png"></a></div>
+	<div id="header-title">
+		<p id="header-title-text">WEB-based GEne SeT AnaLysis Toolkit</p>
+		<p id="header-subtitle-text">Translating gene lists into biological insights...</p>
+	</div>
+</header>
+<hr><main>
+<div id="app">
+<div class="loading-preinit" v-cloak><div class="loading-icon"></div></div>
+<div class="wrapper" v-cloak>
+<div class="level">
+	<div class="level-left">
+		<div class="level-item">
+			<h4 class="title is-4 has-text-primary">Summary</h4>
+		</div>
+	</div>
+	<div class="level-right">
+		<div class="level-item">
+			<a class="button is-text" href="Project_wg_result1763337982.zip" target="_blank">Result Download</a>
+		</div>
+	</div>
+</div>
+
+<section id="summary" class="summary">
+<div class="card" v-bind:class="{active: summaryShown}" >
+	<div class="card-header" v-on:click="summaryShown=!summaryShown">
+		<p class="card-header-title">Job summary</p>
+		<a href="#" class="card-header-icon">
+			<b-icon :icon="summaryShown ? 'chevron-up' : 'chevron-down'"></b-icon>
+		</a>
+	</div>
+	<div class="card-content content" v-show="summaryShown">
+		<ul id="summary-list"> 
+		<li><b>Enrichment method:</b> ORA</li>
+		<li><b>Organism: </b>rnorvegicus</li>
+		<li>
+				<b>Enrichment Categories: </b>pathway_Wikipathway
+				<a class="has-text-info" href="https://2019.webgestalt.org/api/geneset?organism=rnorvegicus&database=pathway_Wikipathway&fileType=gmt">
+					<b-icon icon="download" size="is-small"></b-icon>
+				</a>
+					</li>
+		
+			<li><b>Interesting list: </b>textAreaUpload_1763337982.txt. <b>ID type: </b>genesymbol</li>
+						<li>The interesting list contains <b>809</b> user IDs in which <b>789</b> user IDs are unambiguously mapped to <b>789</b> unique entrezgene IDs and <b>20</b> user IDs can not be mapped to any entrezgene ID.</li>
+			<li>The GO Slim summary are based upon the <b>789</b> unique entrezgene IDs.</li>
+		
+
+		<li>Among <b>789</b> unique entrezgene IDs, <b>209</b> IDs are annotated to the selected functional categories and also in the reference list, which are used for the enrichment analysis.</li>
+		
+		<li><b>Reference list: </b> all mapped entrezgene IDs from the selected platform genome
+			<a class="has-text-info" href="https://2019.webgestalt.org/api/reference?organism=rnorvegicus&referenceSet=genome">
+				<b-icon icon="download" size="is-small"></b-icon>
+			</a>
+		</li>
+	
+	<li>The reference list can be mapped to <b>47958</b> entrezgene IDs and <b> 3278</b> IDs are annotated to the selected functional categories that are used as the reference for the enrichment analysis.</li>
+</ul> 
+
+<p><b>Parameters for the enrichment analysis:</b></p>
+<ul><li><b>Minimum number of IDs in the category: </b>5</li>
+<li><b>Maximum number of IDs in the category: </b>2000</li>
+<li><b>FDR Method: </b>BH</li>
+
+<li><b>Significance Level:</b> Top 10</li>
+</ul>
+	
+	<p>Based on the above parameters, <b>10</b> categories are identified as enriched categories and all are shown in this report.</p>
+	
+
+	</div>
+</div>
+</section>
+<section id="go-summary" class="summary">
+<div class="card" v-bind:class="{active: goShown}" >
+	<div class="card-header" v-on:click="goShown=!goShown">
+		<p class="card-header-title">GO Slim summary for the user uploaded IDs</p>
+		<a href="#" class="card-header-icon">
+			<b-icon :icon="goShown ? 'chevron-up' : 'chevron-down'"></b-icon>
+		</a>
+	</div>
+	<div v-show="goShown">
+		<div class="card-content">
+			<p>Each Biological Process, Cellular Component and Molecular Function category is represented by a red, blue and green bar, repectively.</p>
+			<p>The height of the bar represents the number of IDs in the user list and also in the category.</p>
+		</div>
+		<div class="card-image">
+			<img src="goslim_summary_wg_result1763337982.png" width="100%" height="100%" alt="Bar charts of enriched GO Slim terms"/>
+		</div>
+	</div>
+</div>
+</section> <h4 class="title is-4 has-text-primary">Enrichment Results</h4>
+<section id="enrich-result">
+	<p class="select-redundancy">
+		<b-tooltip label="Enriched gene sets are post-processed by two methods to reduce redundancy." type="is-dark" animated multilined dashed>
+			Redundancy reduction:
+		</b-tooltip>
+		<b-radio v-model="redundancy" native-value="all">All</b-radio>
+		<b-radio v-model="redundancy" native-value="ap">
+			<b-tooltip label="R package apcluster is used to cluster gene sets." type="is-dark" animated multilined dashed>
+				Affinity propagation
+			</b-tooltip>
+		</b-radio>
+		
+		<b-radio v-model="redundancy" native-value="wsc">
+			<b-tooltip label="Find top gene sets while maximizing gene coverage." type="is-dark" animated multilined dashed>
+				Weighted set cover
+			</b-tooltip>
+		</b-radio>
+	</p>
+	<b-tabs v-model="activeTab" type="is-toggle">
+		<b-tab-item label="Table">
+			<wg-result-table
+				:data="enrichmentData"
+				:method="enrichMethod"
+			></wg-result-table>
+		</b-tab-item>
+		<b-tab-item label="Bar chart">
+		<div class="vertical-center-container">
+			<wg-bar-plot
+				:dimensions="bar.dimensions"
+				:label-width="bar.labelWidth"
+				:data="enrichmentData"
+				:value-key="bar.valueKey"
+				:x-label="bar.xLabel">
+			</wg-bar-plot>
+		</div>
+		</b-tab-item>
+		<b-tab-item label="Volcano plot">
+		<div class="vertical-center-container">
+			<wg-volcano-plot
+				:data="volcanoData"
+				:x="volcano.x"
+				:y="volcano.y"
+				:dimensions="volcano.dimensions"
+				:x-label="volcano.xLabel"
+				:label-types="volcano.labelTypes"
+				:x-transform="volcano.xTransform"
+				:radius="volcano.radius"
+				:color="volcano.color"
+				:tooltip-content="volcano.tooltipContent"
+				:show-all-labels="false"
+				:auto-place-labels="true"
+			></wg-volcano-plot>
+		</div>
+		</b-tab-item>
+	</b-tabs>
+	<wg-gene-table
+		:data="geneTables"
+		:info="enrichment"
+		:standard-id="standardId"
+		:method="enrichMethod"
+		:mapped-input-size="mappedInputSize"
+		:organism="organism"
+		:host-name="hostName"
+		:sets-with-net="false"
+	></wg-gene-table>
+</section> 
+
+</div>
+</div>
+</main>
+	<script type="text/javascript" src="https://2019.webgestalt.org/assets/0.4/build/wg.min.js"></script>
+<script type="text/javascript">
+var enrichment = [{"geneSet":"WP302","description":"Proteasome Degradation","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP302&label[]=Psmc5&label[]=Psmc1&label[]=Rpn2&label[]=Psmc3&label[]=Psmd4&label[]=Psme1&label[]=Psmb1&label[]=Psmd1&label[]=Psmd13&label[]=Psmd2&label[]=Psmb7&label[]=Psmc4&label[]=Psmd7&label[]=Psmc2&label[]=Psmd12&colors=steelblue","size":48,"overlap":15,"expect":3.06040268456376,"enrichmentRatio":4.90131578947368,"pValue":1.1880518102636e-07,"FDR":1.77019719729277e-05,"overlapId":"287772;81827;83806;117263;25581;83499;365388;117262;85492;287984;64701;94198;29677;29630;307821"},{"geneSet":"WP457","description":"TNF-alpha NF-kB Signaling Pathway","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP457&label[]=Fancd2&label[]=Rpl4&label[]=Rpl6&label[]=Psmc1&label[]=Capn3&label[]=Psmc3&label[]=Ripk3&label[]=Faf1&label[]=Smarce1&label[]=Psmd1&label[]=Psmd13&label[]=Cops3&label[]=Rnf25&label[]=Hdac1&label[]=Commd1&label[]=Ywhaq&label[]=G3bp2&label[]=Ppp2ca&label[]=Psmd7&label[]=Ptk2&label[]=Psmc2&label[]=Kpna2&label[]=Psmd12&label[]=Ywhae&label[]=Ywhab&colors=steelblue","size":174,"overlap":25,"expect":11.0939597315436,"enrichmentRatio":2.25347852389595,"pValue":7.4127395985446e-05,"FDR":0.00552249100091573,"overlapId":"56011;297893;25581;365388;303518;29155;246240;29677;85245;83806;140657;117042;287367;25577;25614;305240;307821;287772;289831;117263;29753;312641;24672;64302;301515"},{"geneSet":"WP2376","description":"Nuclear factor, erythroid-derived 2, like 2 signaling pathway","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP2376&label[]=Akr1b10&label[]=Gstk1&label[]=G6pd&label[]=Gstm5&label[]=Psmc5&label[]=Psmc1&label[]=Ephx1&label[]=Prkcq&label[]=Psmc3&label[]=Mgst1&label[]=Fmo1&label[]=Gclc&label[]=Gpx2&label[]=Nqo1&label[]=Gsta2&label[]=Gsta4&label[]=Vcp&label[]=Akr7a3&label[]=Psmc4&label[]=Pik3c3&label[]=Akr1a1&label[]=Psmc2&colors=steelblue","size":162,"overlap":22,"expect":10.3288590604027,"enrichmentRatio":2.12995451591943,"pValue":0.000468502193109455,"FDR":0.0171475431660972,"overlapId":"24377;25581;297029;296972;24422;29677;116643;78959;300850;25283;85420;64352;117263;117262;25315;26760;65052;81827;29326;24314;25256;171341"},{"geneSet":"WP133","description":"Fatty Acid Omega Oxidation","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP133&label[]=Cyp2e1&label[]=Adh6&label[]=Aldh1a1&label[]=Cyp1a1&label[]=Adh5&colors=steelblue","size":12,"overlap":5,"expect":0.76510067114094,"enrichmentRatio":6.53508771929825,"pValue":0.000549953359858191,"FDR":0.0171475431660972,"overlapId":"25086;24296;24188;310903;100145871"},{"geneSet":"WP270","description":"Tryptophan metabolism","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP270&label[]=Inmt&label[]=Cyp2e1&label[]=Aldh1a1&label[]=Aadat&label[]=Cyp1a1&label[]=Kynu&label[]=Haao&label[]=Rnf25&label[]=Acat1&label[]=Afmid&colors=steelblue","size":47,"overlap":10,"expect":2.99664429530201,"enrichmentRatio":3.33706606942889,"pValue":0.000575420911614,"FDR":0.0171475431660972,"overlapId":"368066;25086;24296;688283;301515;25014;29416;116682;24188;56823"},{"geneSet":"WP1307","description":"Fatty Acid Beta Oxidation","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP1307&label[]=Slc25a20&label[]=Acss2&label[]=Hadhb&label[]=Hadha&label[]=Tpi1&label[]=Acadvl&label[]=Acat1&label[]=Decr1&colors=steelblue","size":34,"overlap":8,"expect":2.16778523489933,"enrichmentRatio":3.69040247678019,"pValue":0.00102302034201074,"FDR":0.0254050051599333,"overlapId":"25363;117543;311569;171155;24849;25014;117035;170670"},{"geneSet":"WP1297","description":"Retinol metabolism","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP1297&label[]=Crabp1&label[]=Bco1&label[]=Cyp2e1&label[]=Adh6&label[]=Retsat&label[]=Aldh1a1&label[]=Rbp4&label[]=Adh5&colors=steelblue","size":40,"overlap":8,"expect":2.5503355704698,"enrichmentRatio":3.13684210526316,"pValue":0.00311044750641587,"FDR":0.0616396009509654,"overlapId":"114106;25703;25061;25086;246298;100145871;24188;310903"},{"geneSet":"WP372","description":"Beta Oxidation Meta Pathway","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP372&label[]=Slc25a20&label[]=Acss2&label[]=Hadhb&label[]=Hadha&label[]=Tpi1&label[]=Acadvl&label[]=Acat1&colors=steelblue","size":32,"overlap":7,"expect":2.04026845637584,"enrichmentRatio":3.43092105263158,"pValue":0.00330950877589076,"FDR":0.0616396009509654,"overlapId":"25363;311569;171155;24849;25014;117035;170670"},{"geneSet":"WP506","description":"Fatty Acid Beta Oxidation","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP506&label[]=Slc25a20&label[]=Acss2&label[]=Hadhb&label[]=Hadha&label[]=Acadvl&label[]=Acat1&label[]=Decr1&colors=steelblue","size":33,"overlap":7,"expect":2.10402684563758,"enrichmentRatio":3.32695374800638,"pValue":0.00397791175097018,"FDR":0.065856538988284,"overlapId":"25363;117543;311569;171155;25014;117035;170670"},{"geneSet":"WP418","description":"Beta Oxidation of Unsaturated Fatty Acids","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP418&label[]=Hadhb&label[]=Hadha&label[]=Decr1&colors=steelblue","size":6,"overlap":3,"expect":0.38255033557047,"enrichmentRatio":7.84210526315789,"pValue":0.00442606273892676,"FDR":0.0659483348100088,"overlapId":"117543;171155;170670"}];
+var background = [{"geneSet":"WP1286","enrichmentRatio":1.91821279818251,"FDR":0.0859581085553754,"overlap":17},{"geneSet":"WP419","enrichmentRatio":3.92105263157895,"FDR":0.184651948117347,"overlap":4},{"geneSet":"WP86","enrichmentRatio":5.2280701754386,"FDR":0.184651948117347,"overlap":3},{"geneSet":"WP3894","enrichmentRatio":3.69040247678019,"FDR":0.205606969954787,"overlap":4},{"geneSet":"WP1292","enrichmentRatio":3.01619433198381,"FDR":0.205606969954787,"overlap":5},{"geneSet":"WP149","enrichmentRatio":2.43976608187134,"FDR":0.205606969954787,"overlap":7},{"geneSet":"WP469","enrichmentRatio":3.30193905817174,"FDR":0.241488014307274,"overlap":4},{"geneSet":"WP255","enrichmentRatio":3.30193905817174,"FDR":0.241488014307274,"overlap":4},{"geneSet":"WP2541","enrichmentRatio":6.27368421052631,"FDR":0.265161646112815,"overlap":2},{"geneSet":"WP349","enrichmentRatio":6.27368421052631,"FDR":0.265161646112815,"overlap":2},{"geneSet":"WP1280","enrichmentRatio":3.61943319838057,"FDR":0.322309976333155,"overlap":3},{"geneSet":"WP1300","enrichmentRatio":5.2280701754386,"FDR":0.346595804969746,"overlap":2},{"geneSet":"WP3916","enrichmentRatio":1.99617224880383,"FDR":0.374912528893198,"overlap":7},{"geneSet":"WP1277","enrichmentRatio":4.4812030075188,"FDR":0.42646199943734,"overlap":2},{"geneSet":"WP316","enrichmentRatio":2.17836257309942,"FDR":0.449958776530014,"overlap":5},{"geneSet":"WP547","enrichmentRatio":1.86083853702052,"FDR":0.451163276291987,"overlap":7},{"geneSet":"WP2562","enrichmentRatio":1.82982456140351,"FDR":0.45128856830935,"overlap":7},{"geneSet":"WP1295","enrichmentRatio":3.92105263157895,"FDR":0.45128856830935,"overlap":2},{"geneSet":"WP1282","enrichmentRatio":3.92105263157895,"FDR":0.45128856830935,"overlap":2},{"geneSet":"WP491","enrichmentRatio":1.96052631578947,"FDR":0.520669887915618,"overlap":5},{"geneSet":"WP1486","enrichmentRatio":3.48538011695906,"FDR":0.520669887915618,"overlap":2},{"geneSet":"WP504","enrichmentRatio":2.47645429362881,"FDR":0.542850183807942,"overlap":3},{"geneSet":"WP173","enrichmentRatio":1.84520123839009,"FDR":0.758259092341042,"overlap":4},{"geneSet":"WP2132","enrichmentRatio":2.41295546558704,"FDR":0.873006087625786,"overlap":2},{"geneSet":"WP1311","enrichmentRatio":1.88210526315789,"FDR":0.898173912804189,"overlap":3},{"geneSet":"WP347","enrichmentRatio":1.80971659919028,"FDR":0.932616105882872,"overlap":3},{"geneSet":"WP485","enrichmentRatio":1.44777327935223,"FDR":0.932616105882872,"overlap":6},{"geneSet":"WP461","enrichmentRatio":2.09122807017544,"FDR":0.970176785444677,"overlap":2},{"geneSet":"WP160","enrichmentRatio":1.62250453720508,"FDR":1,"overlap":3},{"geneSet":"WP529","enrichmentRatio":1.26033834586466,"FDR":1,"overlap":9},{"geneSet":"WP1488","enrichmentRatio":1.84520123839009,"FDR":1,"overlap":2},{"geneSet":"WP139","enrichmentRatio":1.51782682512733,"FDR":1,"overlap":3},{"geneSet":"WP145","enrichmentRatio":1.74269005847953,"FDR":1,"overlap":2},{"geneSet":"WP1302","enrichmentRatio":1.74269005847953,"FDR":1,"overlap":2},{"geneSet":"WP293","enrichmentRatio":1.74269005847953,"FDR":1,"overlap":2},{"geneSet":"WP282","enrichmentRatio":2.6140350877193,"FDR":1,"overlap":1},{"geneSet":"WP153","enrichmentRatio":1.65096952908587,"FDR":1,"overlap":2},{"geneSet":"WP1293","enrichmentRatio":1.38390092879257,"FDR":1,"overlap":3},{"geneSet":"WP30","enrichmentRatio":1.16179337231969,"FDR":1,"overlap":8},{"geneSet":"WP557","enrichmentRatio":1.96052631578947,"FDR":1,"overlap":1},{"geneSet":"WP632","enrichmentRatio":1.36384439359268,"FDR":1,"overlap":2},{"geneSet":"WP1310","enrichmentRatio":1.36384439359268,"FDR":1,"overlap":2},{"geneSet":"WP89","enrichmentRatio":1.2382271468144,"FDR":1,"overlap":3},{"geneSet":"WP484","enrichmentRatio":1.2382271468144,"FDR":1,"overlap":3},{"geneSet":"WP1279","enrichmentRatio":1.13653699466056,"FDR":1,"overlap":5},{"geneSet":"WP326","enrichmentRatio":1.06937799043062,"FDR":1,"overlap":9},{"geneSet":"WP8","enrichmentRatio":1.25473684210526,"FDR":1,"overlap":2},{"geneSet":"WP2148","enrichmentRatio":1.56842105263158,"FDR":1,"overlap":1},{"geneSet":"WP4268","enrichmentRatio":1.56842105263158,"FDR":1,"overlap":1},{"geneSet":"WP1296","enrichmentRatio":1.30701754385965,"FDR":1,"overlap":1},{"geneSet":"WP263","enrichmentRatio":1.08166969147005,"FDR":1,"overlap":2},{"geneSet":"WP66","enrichmentRatio":1.20647773279352,"FDR":1,"overlap":1},{"geneSet":"WP303","enrichmentRatio":0.980263157894737,"FDR":1,"overlap":2},{"geneSet":"WP81","enrichmentRatio":0.980263157894737,"FDR":1,"overlap":1},{"geneSet":"WP319","enrichmentRatio":0.904858299595142,"FDR":1,"overlap":6},{"geneSet":"WP94","enrichmentRatio":0.896240601503759,"FDR":1,"overlap":2},{"geneSet":"WP146","enrichmentRatio":0.922600619195046,"FDR":1,"overlap":1},{"geneSet":"WP217","enrichmentRatio":0.847795163584637,"FDR":1,"overlap":2},{"geneSet":"WP3882","enrichmentRatio":0.825484764542936,"FDR":1,"overlap":1},{"geneSet":"WP376","enrichmentRatio":0.811252268602541,"FDR":1,"overlap":3},{"geneSet":"WP487","enrichmentRatio":0.784210526315789,"FDR":1,"overlap":1},{"geneSet":"WP124","enrichmentRatio":0.746867167919799,"FDR":1,"overlap":1},{"geneSet":"WP655","enrichmentRatio":0.667413213885778,"FDR":1,"overlap":2},{"geneSet":"WP271","enrichmentRatio":0.603238866396761,"FDR":1,"overlap":1},{"geneSet":"WP1309","enrichmentRatio":0.697076023391813,"FDR":1,"overlap":4},{"geneSet":"WP505","enrichmentRatio":0.627368421052632,"FDR":1,"overlap":2},{"geneSet":"WP656","enrichmentRatio":0.56015037593985,"FDR":1,"overlap":1},{"geneSet":"WP278","enrichmentRatio":0.56015037593985,"FDR":1,"overlap":1},{"geneSet":"WP59","enrichmentRatio":0.674589700056593,"FDR":1,"overlap":4},{"geneSet":"WP40","enrichmentRatio":0.52280701754386,"FDR":1,"overlap":1},{"geneSet":"WP520","enrichmentRatio":0.505942275042445,"FDR":1,"overlap":1},{"geneSet":"WP135","enrichmentRatio":0.653508771929825,"FDR":1,"overlap":4},{"geneSet":"WP140","enrichmentRatio":0.697076023391813,"FDR":1,"overlap":6},{"geneSet":"WP2433","enrichmentRatio":0.633705475810739,"FDR":1,"overlap":4},{"geneSet":"WP4229","enrichmentRatio":0.461300309597523,"FDR":1,"overlap":1},{"geneSet":"WP1283","enrichmentRatio":0.52280701754386,"FDR":1,"overlap":2},{"geneSet":"WP429","enrichmentRatio":0.566899175649968,"FDR":1,"overlap":3},{"geneSet":"WP355","enrichmentRatio":0.423897581792319,"FDR":1,"overlap":1},{"geneSet":"WP517","enrichmentRatio":0.412742382271468,"FDR":1,"overlap":1},{"geneSet":"WP1288","enrichmentRatio":0.534688995215311,"FDR":1,"overlap":3},{"geneSet":"WP74","enrichmentRatio":0.500559910414334,"FDR":1,"overlap":3},{"geneSet":"WP199","enrichmentRatio":0.418245614035088,"FDR":1,"overlap":2},{"geneSet":"WP569","enrichmentRatio":0.412742382271468,"FDR":1,"overlap":2},{"geneSet":"WP1299","enrichmentRatio":0.320085929108485,"FDR":1,"overlap":1},{"geneSet":"WP397","enrichmentRatio":0.320085929108485,"FDR":1,"overlap":1},{"geneSet":"WP5","enrichmentRatio":0.543961058716155,"FDR":1,"overlap":6},{"geneSet":"WP439","enrichmentRatio":0.515927977839335,"FDR":1,"overlap":5},{"geneSet":"WP564","enrichmentRatio":0.280075187969925,"FDR":1,"overlap":1},{"geneSet":"WP73","enrichmentRatio":0.369040247678019,"FDR":1,"overlap":2},{"geneSet":"WP351","enrichmentRatio":0.435672514619883,"FDR":1,"overlap":4},{"geneSet":"WP348","enrichmentRatio":0.234092694422624,"FDR":1,"overlap":1},{"geneSet":"WP147","enrichmentRatio":0.230650154798762,"FDR":1,"overlap":1},{"geneSet":"WP155","enrichmentRatio":0.370493162038956,"FDR":1,"overlap":3},{"geneSet":"WP375","enrichmentRatio":0.307533539731682,"FDR":1,"overlap":2},{"geneSet":"WP1290","enrichmentRatio":0.209122807017544,"FDR":1,"overlap":1},{"geneSet":"WP188","enrichmentRatio":0.412742382271468,"FDR":1,"overlap":5},{"geneSet":"WP358","enrichmentRatio":0.134053081421502,"FDR":1,"overlap":2},{"geneSet":"WP473","enrichmentRatio":0.0687903970452447,"FDR":1,"overlap":1}];
+var geneTables = {"WP302":[{"userId":"Psmc5","geneSymbol":"Psmc5","geneName":"proteasome 26S subunit, ATPase 5","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=81827","entrezgene":"81827"},{"userId":"Psmc1","geneSymbol":"Psmc1","geneName":"proteasome 26S subunit, ATPase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=117263","entrezgene":"117263"},{"userId":"Rpn2","geneSymbol":"Rpn2","geneName":"ribophorin II","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=64701","entrezgene":"64701"},{"userId":"Psmc3","geneSymbol":"Psmc3","geneName":"proteasome 26S subunit, ATPase 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=29677","entrezgene":"29677"},{"userId":"Psmd4","geneSymbol":"Psmd4","geneName":"proteasome 26S subunit, non-ATPase 4","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=83499","entrezgene":"83499"},{"userId":"Psme1","geneSymbol":"Psme1","geneName":"proteasome activator subunit 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=29630","entrezgene":"29630"},{"userId":"Psmb1","geneSymbol":"Psmb1","geneName":"proteasome subunit beta 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=94198","entrezgene":"94198"},{"userId":"Psmd1","geneSymbol":"Psmd1","geneName":"proteasome 26S subunit, non-ATPase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=83806","entrezgene":"83806"},{"userId":"Psmd13","geneSymbol":"Psmd13","geneName":"proteasome 26S subunit, non-ATPase 13","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=365388","entrezgene":"365388"},{"userId":"Psmd2","geneSymbol":"Psmd2","geneName":"proteasome 26S subunit, non-ATPase 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=287984","entrezgene":"287984"},{"userId":"Psmb7","geneSymbol":"Psmb7","geneName":"proteasome subunit beta 7","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=85492","entrezgene":"85492"},{"userId":"Psmc4","geneSymbol":"Psmc4","geneName":"proteasome 26S subunit, ATPase 4","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=117262","entrezgene":"117262"},{"userId":"Psmd7","geneSymbol":"Psmd7","geneName":"proteasome 26S subunit, non-ATPase 7","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=307821","entrezgene":"307821"},{"userId":"Psmc2","geneSymbol":"Psmc2","geneName":"proteasome 26S subunit, ATPase 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25581","entrezgene":"25581"},{"userId":"Psmd12","geneSymbol":"Psmd12","geneName":"proteasome 26S subunit, non-ATPase 12","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=287772","entrezgene":"287772"}],"WP457":[{"userId":"Fancd2","geneSymbol":"Fancd2","geneName":"FA complementation group D2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=312641","entrezgene":"312641"},{"userId":"Rpl4","geneSymbol":"Rpl4","geneName":"ribosomal protein L4","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=64302","entrezgene":"64302"},{"userId":"Rpl6","geneSymbol":"Rpl6","geneName":"ribosomal protein L6","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=117042","entrezgene":"117042"},{"userId":"Psmc1","geneSymbol":"Psmc1","geneName":"proteasome 26S subunit, ATPase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=117263","entrezgene":"117263"},{"userId":"Capn3","geneSymbol":"Capn3","geneName":"calpain 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=29155","entrezgene":"29155"},{"userId":"Psmc3","geneSymbol":"Psmc3","geneName":"proteasome 26S subunit, ATPase 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=29677","entrezgene":"29677"},{"userId":"Ripk3","geneSymbol":"Ripk3","geneName":"receptor-interacting serine-threonine kinase 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=246240","entrezgene":"246240"},{"userId":"Faf1","geneSymbol":"Faf1","geneName":"Fas associated factor 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=140657","entrezgene":"140657"},{"userId":"Smarce1","geneSymbol":"Smarce1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=303518","entrezgene":"303518"},{"userId":"Psmd1","geneSymbol":"Psmd1","geneName":"proteasome 26S subunit, non-ATPase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=83806","entrezgene":"83806"},{"userId":"Psmd13","geneSymbol":"Psmd13","geneName":"proteasome 26S subunit, non-ATPase 13","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=365388","entrezgene":"365388"},{"userId":"Cops3","geneSymbol":"Cops3","geneName":"COP9 signalosome subunit 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=287367","entrezgene":"287367"},{"userId":"Rnf25","geneSymbol":"Rnf25","geneName":"ring finger protein 25","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=301515","entrezgene":"301515"},{"userId":"Hdac1","geneSymbol":"Hdac1","geneName":"histone deacetylase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=297893","entrezgene":"297893"},{"userId":"Commd1","geneSymbol":"Commd1","geneName":"copper metabolism domain containing 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=289831","entrezgene":"289831"},{"userId":"Ywhaq","geneSymbol":"Ywhaq","geneName":"tyrosine 3-monooxygenase/tryptophan 5-monooxygenase activation protein, theta","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25577","entrezgene":"25577"},{"userId":"G3bp2","geneSymbol":"G3bp2","geneName":"G3BP stress granule assembly factor 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=305240","entrezgene":"305240"},{"userId":"Ppp2ca","geneSymbol":"Ppp2ca","geneName":"protein phosphatase 2 catalytic subunit alpha","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=24672","entrezgene":"24672"},{"userId":"Psmd7","geneSymbol":"Psmd7","geneName":"proteasome 26S subunit, non-ATPase 7","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=307821","entrezgene":"307821"},{"userId":"Ptk2","geneSymbol":"Ptk2","geneName":"protein tyrosine kinase 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25614","entrezgene":"25614"},{"userId":"Psmc2","geneSymbol":"Psmc2","geneName":"proteasome 26S subunit, ATPase 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25581","entrezgene":"25581"},{"userId":"Kpna2","geneSymbol":"Kpna2","geneName":"karyopherin subunit alpha 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=85245","entrezgene":"85245"},{"userId":"Psmd12","geneSymbol":"Psmd12","geneName":"proteasome 26S subunit, non-ATPase 12","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=287772","entrezgene":"287772"},{"userId":"Ywhae","geneSymbol":"Ywhae","geneName":"tyrosine 3-monooxygenase/tryptophan 5-monooxygenase activation protein, epsilon","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=29753","entrezgene":"29753"},{"userId":"Ywhab","geneSymbol":"Ywhab","geneName":"tyrosine 3-monooxygenase/tryptophan 5-monooxygenase activation protein, beta","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=56011","entrezgene":"56011"}],"WP2376":[{"userId":"Akr1b10","geneSymbol":"Akr1b10","geneName":"aldo-keto reductase family 1 member B10","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=296972","entrezgene":"296972"},{"userId":"Gstk1","geneSymbol":"Gstk1","geneName":"glutathione S-transferase kappa 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=297029","entrezgene":"297029"},{"userId":"G6pd","geneSymbol":"G6pd","geneName":"glucose-6-phosphate dehydrogenase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=24377","entrezgene":"24377"},{"userId":"Gstm5","geneSymbol":"Gstm5","geneName":"glutathione S-transferase, mu 5","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=64352","entrezgene":"64352"},{"userId":"Psmc5","geneSymbol":"Psmc5","geneName":"proteasome 26S subunit, ATPase 5","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=81827","entrezgene":"81827"},{"userId":"Psmc1","geneSymbol":"Psmc1","geneName":"proteasome 26S subunit, ATPase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=117263","entrezgene":"117263"},{"userId":"Ephx1","geneSymbol":"Ephx1","geneName":"epoxide hydrolase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25315","entrezgene":"25315"},{"userId":"Prkcq","geneSymbol":"Prkcq","geneName":"protein kinase C, theta","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=85420","entrezgene":"85420"},{"userId":"Psmc3","geneSymbol":"Psmc3","geneName":"proteasome 26S subunit, ATPase 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=29677","entrezgene":"29677"},{"userId":"Mgst1","geneSymbol":"Mgst1","geneName":"microsomal glutathione S-transferase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=171341","entrezgene":"171341"},{"userId":"Fmo1","geneSymbol":"Fmo1","geneName":"flavin containing monooxygenase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25256","entrezgene":"25256"},{"userId":"Gclc","geneSymbol":"Gclc","geneName":"glutamate-cysteine ligase, catalytic subunit","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25283","entrezgene":"25283"},{"userId":"Gpx2","geneSymbol":"Gpx2","geneName":"glutathione peroxidase 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=29326","entrezgene":"29326"},{"userId":"Nqo1","geneSymbol":"Nqo1","geneName":"NAD(P)H quinone dehydrogenase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=24314","entrezgene":"24314"},{"userId":"Gsta2","geneSymbol":"Gsta2","geneName":"glutathione S-transferase alpha 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=24422","entrezgene":"24422"},{"userId":"Gsta4","geneSymbol":"Gsta4","geneName":"glutathione S-transferase alpha 4","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=300850","entrezgene":"300850"},{"userId":"Vcp","geneSymbol":"Vcp","geneName":"valosin-containing protein","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=116643","entrezgene":"116643"},{"userId":"Akr7a3","geneSymbol":"Akr7a3","geneName":"aldo-keto reductase family 7 member A3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=26760","entrezgene":"26760"},{"userId":"Psmc4","geneSymbol":"Psmc4","geneName":"proteasome 26S subunit, ATPase 4","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=117262","entrezgene":"117262"},{"userId":"Pik3c3","geneSymbol":"Pik3c3","geneName":"phosphatidylinositol 3-kinase, catalytic subunit type 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=65052","entrezgene":"65052"},{"userId":"Akr1a1","geneSymbol":"Akr1a1","geneName":"aldo-keto reductase family 1 member A1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=78959","entrezgene":"78959"},{"userId":"Psmc2","geneSymbol":"Psmc2","geneName":"proteasome 26S subunit, ATPase 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25581","entrezgene":"25581"}],"WP133":[{"userId":"Cyp2e1","geneSymbol":"Cyp2e1","geneName":"cytochrome P450, family 2, subfamily e, polypeptide 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25086","entrezgene":"25086"},{"userId":"Adh6","geneSymbol":"Adh6","geneName":"alcohol dehydrogenase 6 (class V)","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=310903","entrezgene":"310903"},{"userId":"Aldh1a1","geneSymbol":"Aldh1a1","geneName":"aldehyde dehydrogenase 1 family, member A1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=24188","entrezgene":"24188"},{"userId":"Cyp1a1","geneSymbol":"Cyp1a1","geneName":"cytochrome P450, family 1, subfamily a, polypeptide 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=24296","entrezgene":"24296"},{"userId":"Adh5","geneSymbol":"Adh5","geneName":"alcohol dehydrogenase 5 (class III), chi polypeptide","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=100145871","entrezgene":"100145871"}],"WP270":[{"userId":"Inmt","geneSymbol":"Inmt","geneName":"indolethylamine N-methyltransferase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=368066","entrezgene":"368066"},{"userId":"Cyp2e1","geneSymbol":"Cyp2e1","geneName":"cytochrome P450, family 2, subfamily e, polypeptide 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25086","entrezgene":"25086"},{"userId":"Aldh1a1","geneSymbol":"Aldh1a1","geneName":"aldehyde dehydrogenase 1 family, member A1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=24188","entrezgene":"24188"},{"userId":"Aadat","geneSymbol":"Aadat","geneName":"aminoadipate aminotransferase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=29416","entrezgene":"29416"},{"userId":"Cyp1a1","geneSymbol":"Cyp1a1","geneName":"cytochrome P450, family 1, subfamily a, polypeptide 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=24296","entrezgene":"24296"},{"userId":"Kynu","geneSymbol":"Kynu","geneName":"kynureninase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=116682","entrezgene":"116682"},{"userId":"Haao","geneSymbol":"Haao","geneName":"3-hydroxyanthranilate 3,4-dioxygenase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=56823","entrezgene":"56823"},{"userId":"Rnf25","geneSymbol":"Rnf25","geneName":"ring finger protein 25","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=301515","entrezgene":"301515"},{"userId":"Acat1","geneSymbol":"Acat1","geneName":"acetyl-CoA acetyltransferase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25014","entrezgene":"25014"},{"userId":"Afmid","geneSymbol":"Afmid","geneName":"arylformamidase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=688283","entrezgene":"688283"}],"WP1307":[{"userId":"Slc25a20","geneSymbol":"Slc25a20","geneName":"solute carrier family 25 member 20","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=117035","entrezgene":"117035"},{"userId":"Acss2","geneSymbol":"Acss2","geneName":"acyl-CoA synthetase short-chain family member 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=311569","entrezgene":"311569"},{"userId":"Hadhb","geneSymbol":"Hadhb","geneName":"hydroxyacyl-CoA dehydrogenase trifunctional multienzyme complex subunit beta","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=171155","entrezgene":"171155"},{"userId":"Hadha","geneSymbol":"Hadha","geneName":"hydroxyacyl-CoA dehydrogenase trifunctional multienzyme complex subunit alpha","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=170670","entrezgene":"170670"},{"userId":"Tpi1","geneSymbol":"Tpi1","geneName":"triosephosphate isomerase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=24849","entrezgene":"24849"},{"userId":"Acadvl","geneSymbol":"Acadvl","geneName":"acyl-CoA dehydrogenase, very long chain","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25363","entrezgene":"25363"},{"userId":"Acat1","geneSymbol":"Acat1","geneName":"acetyl-CoA acetyltransferase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25014","entrezgene":"25014"},{"userId":"Decr1","geneSymbol":"Decr1","geneName":"2,4-dienoyl-CoA reductase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=117543","entrezgene":"117543"}],"WP1297":[{"userId":"Crabp1","geneSymbol":"Crabp1","geneName":"cellular retinoic acid binding protein 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25061","entrezgene":"25061"},{"userId":"Bco1","geneSymbol":"Bco1","geneName":"beta-carotene oxygenase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=114106","entrezgene":"114106"},{"userId":"Cyp2e1","geneSymbol":"Cyp2e1","geneName":"cytochrome P450, family 2, subfamily e, polypeptide 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25086","entrezgene":"25086"},{"userId":"Adh6","geneSymbol":"Adh6","geneName":"alcohol dehydrogenase 6 (class V)","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=310903","entrezgene":"310903"},{"userId":"Retsat","geneSymbol":"Retsat","geneName":"retinol saturase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=246298","entrezgene":"246298"},{"userId":"Aldh1a1","geneSymbol":"Aldh1a1","geneName":"aldehyde dehydrogenase 1 family, member A1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=24188","entrezgene":"24188"},{"userId":"Rbp4","geneSymbol":"Rbp4","geneName":"retinol binding protein 4","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25703","entrezgene":"25703"},{"userId":"Adh5","geneSymbol":"Adh5","geneName":"alcohol dehydrogenase 5 (class III), chi polypeptide","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=100145871","entrezgene":"100145871"}],"WP372":[{"userId":"Slc25a20","geneSymbol":"Slc25a20","geneName":"solute carrier family 25 member 20","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=117035","entrezgene":"117035"},{"userId":"Acss2","geneSymbol":"Acss2","geneName":"acyl-CoA synthetase short-chain family member 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=311569","entrezgene":"311569"},{"userId":"Hadhb","geneSymbol":"Hadhb","geneName":"hydroxyacyl-CoA dehydrogenase trifunctional multienzyme complex subunit beta","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=171155","entrezgene":"171155"},{"userId":"Hadha","geneSymbol":"Hadha","geneName":"hydroxyacyl-CoA dehydrogenase trifunctional multienzyme complex subunit alpha","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=170670","entrezgene":"170670"},{"userId":"Tpi1","geneSymbol":"Tpi1","geneName":"triosephosphate isomerase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=24849","entrezgene":"24849"},{"userId":"Acadvl","geneSymbol":"Acadvl","geneName":"acyl-CoA dehydrogenase, very long chain","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25363","entrezgene":"25363"},{"userId":"Acat1","geneSymbol":"Acat1","geneName":"acetyl-CoA acetyltransferase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25014","entrezgene":"25014"}],"WP506":[{"userId":"Slc25a20","geneSymbol":"Slc25a20","geneName":"solute carrier family 25 member 20","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=117035","entrezgene":"117035"},{"userId":"Acss2","geneSymbol":"Acss2","geneName":"acyl-CoA synthetase short-chain family member 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=311569","entrezgene":"311569"},{"userId":"Hadhb","geneSymbol":"Hadhb","geneName":"hydroxyacyl-CoA dehydrogenase trifunctional multienzyme complex subunit beta","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=171155","entrezgene":"171155"},{"userId":"Hadha","geneSymbol":"Hadha","geneName":"hydroxyacyl-CoA dehydrogenase trifunctional multienzyme complex subunit alpha","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=170670","entrezgene":"170670"},{"userId":"Acadvl","geneSymbol":"Acadvl","geneName":"acyl-CoA dehydrogenase, very long chain","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25363","entrezgene":"25363"},{"userId":"Acat1","geneSymbol":"Acat1","geneName":"acetyl-CoA acetyltransferase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25014","entrezgene":"25014"},{"userId":"Decr1","geneSymbol":"Decr1","geneName":"2,4-dienoyl-CoA reductase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=117543","entrezgene":"117543"}],"WP418":[{"userId":"Hadhb","geneSymbol":"Hadhb","geneName":"hydroxyacyl-CoA dehydrogenase trifunctional multienzyme complex subunit beta","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=171155","entrezgene":"171155"},{"userId":"Hadha","geneSymbol":"Hadha","geneName":"hydroxyacyl-CoA dehydrogenase trifunctional multienzyme complex subunit alpha","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=170670","entrezgene":"170670"},{"userId":"Decr1","geneSymbol":"Decr1","geneName":"2,4-dienoyl-CoA reductase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=117543","entrezgene":"117543"}]};
+var clusters = {"ap":{"clusters":[["WP302","WP457","WP2376"],["WP133","WP270","WP1297"],["WP1307","WP372","WP506","WP418"]],"representatives":["WP302","WP133","WP1307"]},"wsc":{"representatives":["WP302","WP457","WP2376","WP270","WP1307","WP1297"],"coverage":[1]}};
+
+wgLib({
+	enrichDatabase: "pathway_Wikipathway",
+	organism: "rnorvegicus",
+	hostName: "https://2019.webgestalt.org",
+	enrichment: enrichment,
+	background: background,
+	geneTables: geneTables,
+	clusters: clusters,
+	
+	enrichMethod: "ora",
+	mappedInputSize: 209,
+	standardId: "entrezgene",
+	volcano: {
+		labelTypes: ["geneSet", "description"],
+				dimensions: { width: 960, height: 500 },
+		autoPlaceLabels: true,
+		y: "FDR",
+
+
+		x: "enrichmentRatio",
+		xLabel: "log2 of enrichment ratio",
+		radius: "overlap",
+		color: "overlap",
+			tooltipContent: ["geneSet", "description", "enrichmentRatio", "FDR", "pValue", "overlap"]
+					
+	},
+	bar: {
+		dimensions: { width: 960, height: 300 },
+		labelWidth: 200,
+		tooltipContent: ["geneSet", "description", "enrichmentRatio", "FDR", "pValue", "overlap"],
+		
+		valueKey: "enrichmentRatio",
+		xLabel: "Enrichment ratio"
+	}
+})
+
+
+</script>
+<footer class="footer has-text-centered">
+<p>WebGestalt is currently developed and maintained by Yuxing Liao, Suhas Vasaikar, Zhiao Shi and Bing Zhang at the <a target="_new" href=http://www.zhang-lab.org> Zhang Lab</a>. Other people who have made significant contribution to the project include Jing Wang, Dexter Duncan, Stefan Kirov and Jay Snoddy.</p>
+<p><b>Funding credits:</b> NIH/NCI (U24 CA210954); Leidos (15X038); CPRIT (RR160027); NIH/NIAAA (U01 AA016662, U01 AA013512); NIH/NIDA (P01 DA015027); NIH/NIMH (P50 MH078028, P50 MH096972); NIH/NCI (U24 CA159988); NIH/NIGMS (R01 GM088822).
+</p>
+</footer></body>
+</html>

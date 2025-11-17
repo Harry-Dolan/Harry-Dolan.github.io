@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<title>WebGestalt - List 1</title>
+<link rel="icon" type="image/png" href="https://s3-us-west-2.amazonaws.com/webgestalt/favicon.png">
+
+<script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?flags=gated&features=es2015%2Ces2016%2Cfetch"></script>
+<script src="https://2024.webgestalt.org/assets/1.0/build/vendor.min.js"></script>
+	<script>window.cytoscape = null;</script>
+	<link rel="stylesheet" href="https://2024.webgestalt.org/assets/1.0/build/vendor.css">
+	<link rel="stylesheet" href="https://2024.webgestalt.org/assets/1.0/build/wg.css">
+<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+</head>
+<body>
+	<script type="text/javascript" src="https://www.termsfeed.com/public/cookie-consent/4.1.0/cookie-consent.js" charset="UTF-8"></script>
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({"notice_banner_type":"simple","consent_type":"express","palette":"light","language":"en","page_load_consent_levels":["strictly-necessary"],"notice_banner_reject_button_hide":false,"preferences_center_close_button_hide":false,"page_refresh_confirmation_buttons":false});
+});
+</script>
+
+<!-- Google Analytics -->
+<script type="text/plain" data-cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=G-THG9Q3WPEJ"></script>
+<script type="text/plain" data-cookie-consent="tracking">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-THG9Q3WPEJ');
+</script>
+<!-- end of Google Analytics-->
+	
+	<noscript>Free cookie consent management tool by <a href="https://www.termsfeed.com/">TermsFeed</a></noscript>
+	<!-- End Cookie Consent by TermsFeed https://www.TermsFeed.com -->
+<header>
+	<div id="header-img"><a href="https://2024.webgestalt.org"><img border="0" src="https://2024.webgestalt.org/images/gsa.png"></a></div>
+	<div id="header-title">
+		<p id="header-title-text">WEB-based GEne SeT AnaLysis Toolkit</p>
+		<p id="header-subtitle-text">Translating gene lists into biological insights...</p>
+	</div>
+</header>
+<hr><main>
+<div id="app">
+<div class="loading-preinit" v-cloak><div class="loading-icon"></div></div>
+<div class="wrapper" v-cloak>
+<div class="level">
+	<div class="level-left">
+		<div class="level-item">
+			<h4 class="title is-4 has-text-primary">Summary</h4>
+		</div>
+	</div>
+	<div class="level-right">
+		<div class="level-item">
+			<a class="button is-text" href="Project_wg_result1763345210.zip" target="_blank">Result Download</a>
+		</div>
+	</div>
+</div>
+
+<section id="summary" class="summary">
+<div class="card" v-bind:class="{active: summaryShown}" >
+	<div class="card-header" v-on:click="summaryShown=!summaryShown">
+		<p class="card-header-title">Job summary</p>
+		<a href="#" class="card-header-icon">
+			<b-icon :icon="summaryShown ? 'chevron-up' : 'chevron-down'"></b-icon>
+		</a>
+	</div>
+	<div class="card-content content" v-show="summaryShown">
+		<ul id="summary-list"> 
+		<li><b>Enrichment method:</b> ORA</li>
+		<li><b>Organism: </b>rnorvegicus</li>
+		<li>
+				<b>Enrichment Categories: </b>pathway_WikiPathways
+				<a class="has-text-info" href="https://2024.webgestalt.org/api/geneset?organism=rnorvegicus&database=pathway_WikiPathways&fileType=gmt&version=2024">
+					<b-icon icon="download" size="is-small"></b-icon>
+				</a>
+		</li>
+
+			<li><b>Interesting list: </b>. <b>ID type: </b>genesymbol</li>
+			<li>The interesting list contains <b>219</b> user IDs in which <b>195</b> user IDs are unambiguously mapped to <b>195</b> unique entrezgene IDs and <b>24</b> user IDs can not be mapped to any entrezgene ID.</li>
+			<li>The GO Slim summary are based upon the <b>195</b> unique entrezgene IDs.</li>
+		<li>Among <b>195</b> unique entrezgene IDs, <b>43</b> IDs are annotated to the selected functional categories and also in the reference list, which are used for the enrichment analysis.</li>
+		<li><b>Reference list: </b> all mapped entrezgene IDs from the selected platform genome
+			<a class="has-text-info" href="https://2024.webgestalt.org/api/reference?organism=rnorvegicus&referenceSet=genome&version=2024&standardId=entrezgene&version=2024">
+				<b-icon icon="download" size="is-small"></b-icon>
+			</a>
+		</li>
+	<li>The reference list can be mapped to <b>42838</b> entrezgene IDs and <b> 2543</b> IDs are annotated to the selected functional categories that are used as the reference for the enrichment analysis.</li>
+</ul> 
+
+<p><b>Parameters for the enrichment analysis:</b></p>
+<ul><li><b>Minimum number of IDs in the category: </b>5</li>
+<li><b>Maximum number of IDs in the category: </b>2000</li>
+<li><b>FDR Method: </b>BH</li>
+<li><b>Significance Level:</b> Top 10</li>
+</ul>
+	<p>Based on the above parameters, <b>10</b> categories are identified as enriched categories and all are shown in this report.</p>
+
+	</div>
+</div>
+</section>
+<section id="go-summary" class="summary">
+<div class="card" v-bind:class="{active: goShown}" >
+	<div class="card-header" v-on:click="goShown=!goShown">
+		<p class="card-header-title">GO Slim summary for the user uploaded IDs</p>
+		<a href="#" class="card-header-icon">
+			<b-icon :icon="goShown ? 'chevron-up' : 'chevron-down'"></b-icon>
+		</a>
+	</div>
+	<div v-show="goShown">
+		<div class="card-content">
+			<p>Each Biological Process, Cellular Component and Molecular Function category is represented by a red, blue and green bar, repectively.</p>
+			<p>The height of the bar represents the number of IDs in the user list and also in the category.</p>
+		</div>
+		<div class="card-image">
+			<img src="goslim_summary_wg_result1763345210.png" width="100%" height="100%" alt="Bar charts of enriched GO Slim terms"/>
+		</div>
+	</div>
+</div>
+</section> <h4 class="title is-4 has-text-primary">Enrichment Results</h4>
+<section id="enrich-result">
+	<p class="select-redundancy">
+		<b-tooltip label="Enriched analyte sets are post-processed by two methods to reduce redundancy." type="is-dark" animated multilined dashed>
+			Redundancy reduction:
+		</b-tooltip>
+		<b-radio v-model="redundancy" native-value="all">None</b-radio>
+		<b-radio v-model="redundancy" native-value="wsc">
+			<b-tooltip label="Find top analyte sets while maximizing analyte coverage." type="is-dark" animated multilined dashed>
+				Weighted set cover
+			</b-tooltip>
+		</b-radio>
+	</p>
+	<b-tabs v-model="activeTab" type="is-toggle">
+		<b-tab-item label="Table">
+			<wg-result-table
+				:data="enrichmentData"
+				:method="enrichMethod"
+			></wg-result-table>
+		</b-tab-item>
+		<b-tab-item label="Bar chart">
+		<div class="vertical-center-container">
+			<wg-bar-plot
+				:dimensions="bar.dimensions"
+				:label-width="bar.labelWidth"
+				:data="enrichmentData"
+				:value-key="bar.valueKey"
+				:x-label="bar.xLabel">
+			</wg-bar-plot>
+		</div>
+		</b-tab-item>
+		<b-tab-item label="Volcano plot">
+		<div class="vertical-center-container">
+			<wg-volcano-plot
+				:data="volcanoData"
+				:x="volcano.x"
+				:y="volcano.y"
+				:dimensions="volcano.dimensions"
+				:x-label="volcano.xLabel"
+				:label-types="volcano.labelTypes"
+				:x-transform="volcano.xTransform"
+				:radius="volcano.radius"
+				:color="volcano.color"
+				:tooltip-content="volcano.tooltipContent"
+				:show-all-labels="false"
+				:auto-place-labels="true"
+			></wg-volcano-plot>
+		</div>
+		</b-tab-item>
+	</b-tabs>
+	<wg-gene-table
+		:data="geneTables"
+		:info="enrichment"
+		:standard-id="standardId"
+		:method="enrichMethod"
+		:mapped-input-size="mappedInputSize"
+		:organism="organism"
+		:host-name="hostName"
+		:sets-with-net="false"
+	></wg-gene-table>
+</section> 
+
+</div>
+</div>
+</main>
+	<script type="text/javascript" src="https://2024.webgestalt.org/assets/1.0/build/wg.min.js"></script>
+<script type="text/javascript">
+var enrichment = [{"geneSet":"WP1286","description":"Metapathway biotransformation","link":"http://pathway-viewer.toolforge.org/embed/WP1286?steelblue=Tpmt,Ephx1,Fmo3,Mgst1,Gstk1,Fmo4,Gstz1,Cyp2e1,Gstm5,Inmt,Akr1b10","size":106,"overlap":11,"expect":1.7923712151002753,"enrichmentRatio":6.1371215445370773,"pValue":7.3867638920482445e-07,"FDR":8.8641166704578941e-05,"overlapId":"690050;84493;368066;681913;297029;64352;25315;246247;25086;171341;296972"},{"geneSet":"WP270","description":"Tryptophan metabolism","link":"http://pathway-viewer.toolforge.org/embed/WP270?steelblue=Aadat,Kynu,Aldh1a1,Cyp2e1,Inmt","size":41,"overlap":5,"expect":0.69327565867086116,"enrichmentRatio":7.2121384004537719,"pValue":0.00052017799241452711,"FDR":0.031210679544871625,"overlapId":"116682;29416;368066;25086;24188"},{"geneSet":"WP2376","description":"Nuclear factor erythroid derived 2 like 2 signaling pathway","link":"http://pathway-viewer.toolforge.org/embed/WP2376?steelblue=Prkcq,Ephx1,Mgst1,Gstk1,G6pd,Gstm5,Gstm3,Akr1b10","size":126,"overlap":8,"expect":2.1305544632324027,"enrichmentRatio":3.7548911037283128,"pValue":0.00097330641903790925,"FDR":0.038932256761516369,"overlapId":"57298;171341;85420;64352;296972;24377;297029;25315"},{"geneSet":"WP1297","description":"Retinol metabolism","link":"http://pathway-viewer.toolforge.org/embed/WP1297?steelblue=Retsat,Aldh1a1,Cyp2e1,Bco1","size":33,"overlap":4,"expect":0.55800235941801024,"enrichmentRatio":7.1684284707540522,"pValue":0.0020317624342933464,"FDR":0.06095287302880039,"overlapId":"114106;24188;25086;246298"},{"geneSet":"WP1282","description":"Methylation","link":"http://pathway-viewer.toolforge.org/embed/WP1282?steelblue=Tpmt,Inmt","size":7,"overlap":2,"expect":0.1183641368462446,"enrichmentRatio":16.897009966777407,"pValue":0.0055587965565253921,"FDR":0.1334111173566094,"overlapId":"690050;368066"},{"geneSet":"WP557","description":"ACE inhibitor pathway","link":"http://pathway-viewer.toolforge.org/embed/WP557?steelblue=Ren,Kng2","size":9,"overlap":2,"expect":0.15218246165945734,"enrichmentRatio":13.142118863049095,"pValue":0.0093266553706536481,"FDR":0.18653310741307297,"overlapId":"24903;24715"},{"geneSet":"WP547","description":"Complement and coagulation cascades","link":"http://pathway-viewer.toolforge.org/embed/WP547?steelblue=Klkb1,Fgb,Kng2,Mbl1","size":57,"overlap":4,"expect":0.96382225717656311,"enrichmentRatio":4.1501427988576092,"pValue":0.014618466701225828,"FDR":0.2483649574764146,"overlapId":"24903;25048;24366;24548"},{"geneSet":"WP133","description":"Fatty acid omega oxidation","link":"http://pathway-viewer.toolforge.org/embed/WP133?steelblue=Aldh1a1,Cyp2e1","size":12,"overlap":2,"expect":0.20290994887927644,"enrichmentRatio":9.8565891472868223,"pValue":0.016557663831760973,"FDR":0.2483649574764146,"overlapId":"25086;24188"},{"geneSet":"WP469","description":"Glutathione metabolism","link":"http://pathway-viewer.toolforge.org/embed/WP469?steelblue=G6pd,Gstm3","size":16,"overlap":2,"expect":0.27054659850570195,"enrichmentRatio":7.3924418604651159,"pValue":0.02884597836626503,"FDR":0.38461304488353376,"overlapId":"24377;57298"},{"geneSet":"WP139","description":"Nuclear receptors in lipid metabolism and toxicity","link":"http://pathway-viewer.toolforge.org/embed/WP139?steelblue=Nr1i2,Cyp2e1","size":28,"overlap":2,"expect":0.47345654738497839,"enrichmentRatio":4.2242524916943518,"pValue":0.080031016551240744,"FDR":0.81796733861734927,"overlapId":"84385;25086"}];
+var background = [{"geneSet":"WP1300","enrichmentRatio":11.827906976744186,"FDR":0.81796733861734927,"overlap":1},{"geneSet":"WP305","enrichmentRatio":11.827906976744186,"FDR":0.81796733861734927,"overlap":1},{"geneSet":"WP124","enrichmentRatio":7.3924418604651159,"FDR":1,"overlap":1},{"geneSet":"WP282","enrichmentRatio":7.3924418604651159,"FDR":1,"overlap":1},{"geneSet":"WP4268","enrichmentRatio":7.3924418604651159,"FDR":1,"overlap":1},{"geneSet":"WP1276","enrichmentRatio":4.9282945736434112,"FDR":1,"overlap":1},{"geneSet":"WP376","enrichmentRatio":2.3191974464204286,"FDR":1,"overlap":2},{"geneSet":"WP3894","enrichmentRatio":3.2855297157622738,"FDR":1,"overlap":1},{"geneSet":"WP173","enrichmentRatio":2.8161683277962344,"FDR":1,"overlap":1},{"geneSet":"WP1281","enrichmentRatio":2.3655813953488374,"FDR":1,"overlap":1},{"geneSet":"WP40","enrichmentRatio":2.3655813953488374,"FDR":1,"overlap":1},{"geneSet":"WP1288","enrichmentRatio":1.5770542635658913,"FDR":1,"overlap":2},{"geneSet":"WP1309","enrichmentRatio":1.4972034147777451,"FDR":1,"overlap":2},{"geneSet":"WP217","enrichmentRatio":1.848110465116279,"FDR":1,"overlap":1},{"geneSet":"WP2433","enrichmentRatio":1.3595295375568031,"FDR":1,"overlap":2},{"geneSet":"WP375","enrichmentRatio":1.2856420626895855,"FDR":1,"overlap":2},{"geneSet":"WP302","enrichmentRatio":1.5163983303518187,"FDR":1,"overlap":1},{"geneSet":"WP2562","enrichmentRatio":1.2069292833412435,"FDR":1,"overlap":1},{"geneSet":"WP3916","enrichmentRatio":1.1595987232102143,"FDR":1,"overlap":1},{"geneSet":"WP140","enrichmentRatio":0.9387227759320782,"FDR":1,"overlap":2},{"geneSet":"WP409","enrichmentRatio":0.96950057186427752,"FDR":1,"overlap":1},{"geneSet":"WP457","enrichmentRatio":0.82138242894056845,"FDR":1,"overlap":2},{"geneSet":"WP73","enrichmentRatio":0.73011771461383856,"FDR":1,"overlap":1},{"geneSet":"WP135","enrichmentRatio":0.63590897724431106,"FDR":1,"overlap":1},{"geneSet":"WP529","enrichmentRatio":0.55270593349271901,"FDR":1,"overlap":1},{"geneSet":"WP155","enrichmentRatio":0.52335871578514104,"FDR":1,"overlap":1},{"geneSet":"WP439","enrichmentRatio":0.41069121447028423,"FDR":1,"overlap":1},{"geneSet":"WP473","enrichmentRatio":0.3080184108527132,"FDR":1,"overlap":1},{"geneSet":"WP358","enrichmentRatio":0.28569823615324119,"FDR":1,"overlap":1}];
+var geneTables = {"WP1286":[{"userId":"Tpmt","geneSymbol":"Tpmt","geneName":"thiopurine S-methyltransferase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=690050","entrezgene":"690050"},{"userId":"Ephx1","geneSymbol":"Ephx1","geneName":"epoxide hydrolase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25315","entrezgene":"25315"},{"userId":"Fmo3","geneSymbol":"Fmo3","geneName":"flavin containing dimethylaniline monoxygenase 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=84493","entrezgene":"84493"},{"userId":"Mgst1","geneSymbol":"Mgst1","geneName":"microsomal glutathione S-transferase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=171341","entrezgene":"171341"},{"userId":"Gstk1","geneSymbol":"Gstk1","geneName":"glutathione S-transferase kappa 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=297029","entrezgene":"297029"},{"userId":"Fmo4","geneSymbol":"Fmo4","geneName":"flavin containing dimethylaniline monoxygenase 4","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=246247","entrezgene":"246247"},{"userId":"Gstz1","geneSymbol":"Gstz1","geneName":"glutathione S-transferase zeta 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=681913","entrezgene":"681913"},{"userId":"Cyp2e1","geneSymbol":"Cyp2e1","geneName":"cytochrome P450, family 2, subfamily e, polypeptide 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25086","entrezgene":"25086"},{"userId":"Gstm5","geneSymbol":"Gstm5","geneName":"glutathione S-transferase, mu 5","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=64352","entrezgene":"64352"},{"userId":"Inmt","geneSymbol":"Inmt","geneName":"indolethylamine N-methyltransferase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=368066","entrezgene":"368066"},{"userId":"Akr1b10","geneSymbol":"Akr1b10","geneName":"aldo-keto reductase family 1 member B10","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=296972","entrezgene":"296972"}],"WP270":[{"userId":"Aadat","geneSymbol":"Aadat","geneName":"aminoadipate aminotransferase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=29416","entrezgene":"29416"},{"userId":"Kynu","geneSymbol":"Kynu","geneName":"kynureninase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=116682","entrezgene":"116682"},{"userId":"Aldh1a1","geneSymbol":"Aldh1a1","geneName":"aldehyde dehydrogenase 1 family, member A1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=24188","entrezgene":"24188"},{"userId":"Cyp2e1","geneSymbol":"Cyp2e1","geneName":"cytochrome P450, family 2, subfamily e, polypeptide 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25086","entrezgene":"25086"},{"userId":"Inmt","geneSymbol":"Inmt","geneName":"indolethylamine N-methyltransferase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=368066","entrezgene":"368066"}],"WP2376":[{"userId":"Prkcq","geneSymbol":"Prkcq","geneName":"protein kinase C, theta","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=85420","entrezgene":"85420"},{"userId":"Ephx1","geneSymbol":"Ephx1","geneName":"epoxide hydrolase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25315","entrezgene":"25315"},{"userId":"Mgst1","geneSymbol":"Mgst1","geneName":"microsomal glutathione S-transferase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=171341","entrezgene":"171341"},{"userId":"Gstk1","geneSymbol":"Gstk1","geneName":"glutathione S-transferase kappa 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=297029","entrezgene":"297029"},{"userId":"G6pd","geneSymbol":"G6pd","geneName":"glucose-6-phosphate dehydrogenase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=24377","entrezgene":"24377"},{"userId":"Gstm5","geneSymbol":"Gstm5","geneName":"glutathione S-transferase, mu 5","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=64352","entrezgene":"64352"},{"userId":"Gstm3","geneSymbol":"Gstm3","geneName":"glutathione S-transferase mu 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=57298","entrezgene":"57298"},{"userId":"Akr1b10","geneSymbol":"Akr1b10","geneName":"aldo-keto reductase family 1 member B10","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=296972","entrezgene":"296972"}],"WP1297":[{"userId":"Retsat","geneSymbol":"Retsat","geneName":"retinol saturase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=246298","entrezgene":"246298"},{"userId":"Aldh1a1","geneSymbol":"Aldh1a1","geneName":"aldehyde dehydrogenase 1 family, member A1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=24188","entrezgene":"24188"},{"userId":"Cyp2e1","geneSymbol":"Cyp2e1","geneName":"cytochrome P450, family 2, subfamily e, polypeptide 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25086","entrezgene":"25086"},{"userId":"Bco1","geneSymbol":"Bco1","geneName":"beta-carotene oxygenase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=114106","entrezgene":"114106"}],"WP1282":[{"userId":"Tpmt","geneSymbol":"Tpmt","geneName":"thiopurine S-methyltransferase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=690050","entrezgene":"690050"},{"userId":"Inmt","geneSymbol":"Inmt","geneName":"indolethylamine N-methyltransferase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=368066","entrezgene":"368066"}],"WP557":[{"userId":"Ren","geneSymbol":"Ren","geneName":"renin","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=24715","entrezgene":"24715"},{"userId":"Kng2","geneSymbol":"Kng2","geneName":"kininogen 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=24903","entrezgene":"24903"}],"WP547":[{"userId":"Klkb1","geneSymbol":"Klkb1","geneName":"kallikrein B1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25048","entrezgene":"25048"},{"userId":"Fgb","geneSymbol":"Fgb","geneName":"fibrinogen beta chain","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=24366","entrezgene":"24366"},{"userId":"Kng2","geneSymbol":"Kng2","geneName":"kininogen 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=24903","entrezgene":"24903"},{"userId":"Mbl1","geneSymbol":"Mbl1","geneName":"mannose binding lectin 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=24548","entrezgene":"24548"}],"WP133":[{"userId":"Aldh1a1","geneSymbol":"Aldh1a1","geneName":"aldehyde dehydrogenase 1 family, member A1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=24188","entrezgene":"24188"},{"userId":"Cyp2e1","geneSymbol":"Cyp2e1","geneName":"cytochrome P450, family 2, subfamily e, polypeptide 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25086","entrezgene":"25086"}],"WP469":[{"userId":"G6pd","geneSymbol":"G6pd","geneName":"glucose-6-phosphate dehydrogenase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=24377","entrezgene":"24377"},{"userId":"Gstm3","geneSymbol":"Gstm3","geneName":"glutathione S-transferase mu 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=57298","entrezgene":"57298"}],"WP139":[{"userId":"Nr1i2","geneSymbol":"Nr1i2","geneName":"nuclear receptor subfamily 1, group I, member 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=84385","entrezgene":"84385"},{"userId":"Cyp2e1","geneSymbol":"Cyp2e1","geneName":"cytochrome P450, family 2, subfamily e, polypeptide 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=25086","entrezgene":"25086"}]};
+var clusters = {"wsc":{"representatives":["WP1286","WP270","WP2376","WP547","WP1297","WP557","WP139"],"coverage":[1]}};
+
+wgLib({
+	enrichDatabase: "pathway_WikiPathways",
+	organism: "rnorvegicus",
+	hostName: "https://2024.webgestalt.org",
+	enrichment: enrichment,
+	background: background,
+	geneTables: geneTables,
+	clusters: clusters,
+	enrichMethod: "ora",
+	mappedInputSize: 43,
+	standardId: "entrezgene",
+	volcano: {
+		labelTypes: ["geneSet", "description"],
+		dimensions: { width: 960, height: 500 },
+		autoPlaceLabels: true,
+		y: "FDR",
+
+		x: "enrichmentRatio",
+		xLabel: "log2 of enrichment ratio",
+		radius: "overlap",
+		color: "overlap",
+			tooltipContent: ["geneSet", "description", "enrichmentRatio", "FDR", "pValue", "overlap"]
+	},
+	bar: {
+		dimensions: { width: 960, height: 300 },
+		labelWidth: 200,
+		tooltipContent: ["geneSet", "description", "enrichmentRatio", "FDR", "pValue", "overlap"],
+		valueKey: "enrichmentRatio",
+		xLabel: "Enrichment ratio"
+	}
+})
+
+
+</script>
+<footer class="footer has-text-centered">
+<p>WebGestalt is currently developed and maintained by Yuxing Liao, Suhas Vasaikar, Zhiao Shi and Bing Zhang at the <a target="_new" href=http://www.zhang-lab.org> Zhang Lab</a>. Other people who have made significant contribution to the project include Jing Wang, Dexter Duncan, Stefan Kirov and Jay Snoddy.</p>
+<p><b>Funding credits:</b> NIH/NCI (U24 CA210954); Leidos (15X038); CPRIT (RR160027); NIH/NIAAA (U01 AA016662, U01 AA013512); NIH/NIDA (P01 DA015027); NIH/NIMH (P50 MH078028, P50 MH096972); NIH/NCI (U24 CA159988); NIH/NIGMS (R01 GM088822).
+</p>
+</footer></body>
+</html>
