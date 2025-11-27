@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<title>WebGestalt (WEB-based GEne SeT AnaLysis Toolkit)</title>
+<link rel="icon" type="image/png" href="https://s3-us-west-2.amazonaws.com/webgestalt/favicon.png">
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-42098540-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?flags=gated&features=es2015%2Ces2016%2Cfetch"></script>
+<script src="https://2019.webgestalt.org/assets/0.4/build/vendor.min.js"></script>
+	
+	<script>window.cytoscape = null;</script>
+	<link rel="stylesheet" href="https://2019.webgestalt.org/assets/0.4/build/vendor.css">
+	<link rel="stylesheet" href="https://2019.webgestalt.org/assets/0.4/build/wg.css">
+<link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
+</head>
+<body>
+<header>
+	<div id="header-img"><a href="https://2019.webgestalt.org"><img border="0" src="https://2019.webgestalt.org/images/gsa.png"></a></div>
+	<div id="header-title">
+		<p id="header-title-text">WEB-based GEne SeT AnaLysis Toolkit</p>
+		<p id="header-subtitle-text">Translating gene lists into biological insights...</p>
+	</div>
+</header>
+<hr><main>
+<div id="app">
+<div class="loading-preinit" v-cloak><div class="loading-icon"></div></div>
+<div class="wrapper" v-cloak>
+<div class="level">
+	<div class="level-left">
+		<div class="level-item">
+			<h4 class="title is-4 has-text-primary">Summary</h4>
+		</div>
+	</div>
+	<div class="level-right">
+		<div class="level-item">
+			<a class="button is-text" href="Project_wg_result1764258438.zip" target="_blank">Result Download</a>
+		</div>
+	</div>
+</div>
+
+<section id="summary" class="summary">
+<div class="card" v-bind:class="{active: summaryShown}" >
+	<div class="card-header" v-on:click="summaryShown=!summaryShown">
+		<p class="card-header-title">Job summary</p>
+		<a href="#" class="card-header-icon">
+			<b-icon :icon="summaryShown ? 'chevron-up' : 'chevron-down'"></b-icon>
+		</a>
+	</div>
+	<div class="card-content content" v-show="summaryShown">
+		<ul id="summary-list"> 
+		<li><b>Enrichment method:</b> ORA</li>
+		<li><b>Organism: </b>hsapiens</li>
+		<li>
+				<b>Enrichment Categories: </b>pathway_Panther
+				<a class="has-text-info" href="https://2019.webgestalt.org/api/geneset?organism=hsapiens&database=pathway_Panther&fileType=gmt">
+					<b-icon icon="download" size="is-small"></b-icon>
+				</a>
+					</li>
+		
+			<li><b>Interesting list: </b>textAreaUpload_1764258438.txt. <b>ID type: </b>genesymbol</li>
+						<li>The interesting list contains <b>2141</b> user IDs in which <b>1851</b> user IDs are unambiguously mapped to <b>1851</b> unique entrezgene IDs and <b>290</b> user IDs can not be mapped to any entrezgene ID.</li>
+			<li>The GO Slim summary are based upon the <b>1851</b> unique entrezgene IDs.</li>
+		
+
+		<li>Among <b>1851</b> unique entrezgene IDs, <b>242</b> IDs are annotated to the selected functional categories and also in the reference list, which are used for the enrichment analysis.</li>
+		
+		<li><b>Reference list: </b> all mapped entrezgene IDs from the selected platform genome
+			<a class="has-text-info" href="https://2019.webgestalt.org/api/reference?organism=hsapiens&referenceSet=genome">
+				<b-icon icon="download" size="is-small"></b-icon>
+			</a>
+		</li>
+	
+	<li>The reference list can be mapped to <b>61506</b> entrezgene IDs and <b> 2266</b> IDs are annotated to the selected functional categories that are used as the reference for the enrichment analysis.</li>
+</ul> 
+
+<p><b>Parameters for the enrichment analysis:</b></p>
+<ul><li><b>Minimum number of IDs in the category: </b>5</li>
+<li><b>Maximum number of IDs in the category: </b>2000</li>
+<li><b>FDR Method: </b>BH</li>
+
+<li><b>Significance Level:</b> Top 10</li>
+</ul>
+	
+	<p>Based on the above parameters, <b>10</b> categories are identified as enriched categories and all are shown in this report.</p>
+	
+
+	</div>
+</div>
+</section>
+<section id="go-summary" class="summary">
+<div class="card" v-bind:class="{active: goShown}" >
+	<div class="card-header" v-on:click="goShown=!goShown">
+		<p class="card-header-title">GO Slim summary for the user uploaded IDs</p>
+		<a href="#" class="card-header-icon">
+			<b-icon :icon="goShown ? 'chevron-up' : 'chevron-down'"></b-icon>
+		</a>
+	</div>
+	<div v-show="goShown">
+		<div class="card-content">
+			<p>Each Biological Process, Cellular Component and Molecular Function category is represented by a red, blue and green bar, repectively.</p>
+			<p>The height of the bar represents the number of IDs in the user list and also in the category.</p>
+		</div>
+		<div class="card-image">
+			<img src="goslim_summary_wg_result1764258438.png" width="100%" height="100%" alt="Bar charts of enriched GO Slim terms"/>
+		</div>
+	</div>
+</div>
+</section> <h4 class="title is-4 has-text-primary">Enrichment Results</h4>
+<section id="enrich-result">
+	<p class="select-redundancy">
+		<b-tooltip label="Enriched gene sets are post-processed by two methods to reduce redundancy." type="is-dark" animated multilined dashed>
+			Redundancy reduction:
+		</b-tooltip>
+		<b-radio v-model="redundancy" native-value="all">All</b-radio>
+		<b-radio v-model="redundancy" native-value="ap">
+			<b-tooltip label="R package apcluster is used to cluster gene sets." type="is-dark" animated multilined dashed>
+				Affinity propagation
+			</b-tooltip>
+		</b-radio>
+		
+		<b-radio v-model="redundancy" native-value="wsc">
+			<b-tooltip label="Find top gene sets while maximizing gene coverage." type="is-dark" animated multilined dashed>
+				Weighted set cover
+			</b-tooltip>
+		</b-radio>
+	</p>
+	<b-tabs v-model="activeTab" type="is-toggle">
+		<b-tab-item label="Table">
+			<wg-result-table
+				:data="enrichmentData"
+				:method="enrichMethod"
+			></wg-result-table>
+		</b-tab-item>
+		<b-tab-item label="Bar chart">
+		<div class="vertical-center-container">
+			<wg-bar-plot
+				:dimensions="bar.dimensions"
+				:label-width="bar.labelWidth"
+				:data="enrichmentData"
+				:value-key="bar.valueKey"
+				:x-label="bar.xLabel">
+			</wg-bar-plot>
+		</div>
+		</b-tab-item>
+		<b-tab-item label="Volcano plot">
+		<div class="vertical-center-container">
+			<wg-volcano-plot
+				:data="volcanoData"
+				:x="volcano.x"
+				:y="volcano.y"
+				:dimensions="volcano.dimensions"
+				:x-label="volcano.xLabel"
+				:label-types="volcano.labelTypes"
+				:x-transform="volcano.xTransform"
+				:radius="volcano.radius"
+				:color="volcano.color"
+				:tooltip-content="volcano.tooltipContent"
+				:show-all-labels="false"
+				:auto-place-labels="true"
+			></wg-volcano-plot>
+		</div>
+		</b-tab-item>
+	</b-tabs>
+	<wg-gene-table
+		:data="geneTables"
+		:info="enrichment"
+		:standard-id="standardId"
+		:method="enrichMethod"
+		:mapped-input-size="mappedInputSize"
+		:organism="organism"
+		:host-name="hostName"
+		:sets-with-net="false"
+	></wg-gene-table>
+</section> 
+
+</div>
+</div>
+</main>
+	<script type="text/javascript" src="https://2019.webgestalt.org/assets/0.4/build/wg.min.js"></script>
+<script type="text/javascript">
+var enrichment = [{"geneSet":"P00024","description":"Glycolysis","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00024","size":17,"overlap":8,"expect":1.81553398058252,"enrichmentRatio":4.40641711229947,"pValue":0.000155800120972494,"FDR":0.0176054136698918,"overlapId":"5230;2597;2023;2821;2026;3099;7167;80201"},{"geneSet":"P02739","description":"De novo pyrimidine deoxyribonucleotide biosynthesis","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P02739","size":13,"overlap":6,"expect":1.38834951456311,"enrichmentRatio":4.32167832167832,"pValue":0.00125341301557957,"FDR":0.0708178353802459,"overlapId":"7298;654364;6240;6241;1854;50484"},{"geneSet":"P00017","description":"DNA replication","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00017","size":19,"overlap":7,"expect":2.02912621359223,"enrichmentRatio":3.44976076555024,"pValue":0.00236911814615315,"FDR":0.0876473513337125,"overlapId":"5422;7153;5984;5982;5983;5557;1763"},{"geneSet":"P00059","description":"p53 pathway","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00059","size":79,"overlap":17,"expect":8.43689320388349,"enrichmentRatio":2.01495972382048,"pValue":0.00310256110915796,"FDR":0.0876473513337125,"overlapId":"5287;8795;11200;983;7057;3146;891;995;6241;1026;1029;1032;4193;5366;1643;64393;51512"},{"geneSet":"P02738","description":"De novo purine biosynthesis","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P02738","size":28,"overlap":8,"expect":2.99029126213592,"enrichmentRatio":2.67532467532468,"pValue":0.006993451978071,"FDR":0.158052014704405,"overlapId":"203;654364;6240;205;6241;50484;158067;26289"},{"geneSet":"P02742","description":"Tetrahydrofolate biosynthesis","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P02742","size":5,"overlap":3,"expect":0.533980582524272,"enrichmentRatio":5.61818181818182,"pValue":0.0102179224601942,"FDR":0.19243753966699,"overlapId":"1719;7298;2643"},{"geneSet":"P02743","description":"Formyltetrahydroformate biosynthesis","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P02743","size":6,"overlap":3,"expect":0.640776699029126,"enrichmentRatio":4.68181818181818,"pValue":0.0188347805604642,"FDR":0.266041275416556,"overlapId":"1719;7298;10797"},{"geneSet":"P02723","description":"Adenine and hypoxanthine salvage pathway","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P02723","size":6,"overlap":3,"expect":0.640776699029126,"enrichmentRatio":4.68181818181818,"pValue":0.0188347805604642,"FDR":0.266041275416556,"overlapId":"100;7498;56952"},{"geneSet":"P02762","description":"Pentose phosphate pathway","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P02762","size":8,"overlap":3,"expect":0.854368932038835,"enrichmentRatio":3.51136363636364,"pValue":0.0448629473659338,"FDR":0.563279228038946,"overlapId":"2821;3099;80201"},{"geneSet":"P02771","description":"Pyrimidine Metabolism","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P02771","size":10,"overlap":3,"expect":1.06796116504854,"enrichmentRatio":2.80909090909091,"pValue":0.0819449548715168,"FDR":0.904936029718119,"overlapId":"18;1809;51733"}];
+var background = [{"geneSet":"P02776","enrichmentRatio":3.74545454545455,"FDR":0.904936029718119,"overlap":2},{"geneSet":"P00011","enrichmentRatio":1.72488038277512,"FDR":0.904936029718119,"overlap":7},{"geneSet":"P02744","enrichmentRatio":2.55371900826446,"FDR":0.904936029718119,"overlap":3},{"geneSet":"P00012","enrichmentRatio":1.22400475341652,"FDR":1,"overlap":20},{"geneSet":"P00050","enrichmentRatio":1.87272727272727,"FDR":1,"overlap":3},{"geneSet":"P00056","enrichmentRatio":1.35923753665689,"FDR":1,"overlap":9},{"geneSet":"P00020","enrichmentRatio":1.51026392961877,"FDR":1,"overlap":5},{"geneSet":"P00041","enrichmentRatio":1.56060606060606,"FDR":1,"overlap":4},{"geneSet":"P04372","enrichmentRatio":1.6524064171123,"FDR":1,"overlap":3},{"geneSet":"P05918","enrichmentRatio":1.37700534759358,"FDR":1,"overlap":5},{"geneSet":"P00008","enrichmentRatio":1.56060606060606,"FDR":1,"overlap":3},{"geneSet":"P00005","enrichmentRatio":1.12600690448792,"FDR":1,"overlap":19},{"geneSet":"P04395","enrichmentRatio":1.70247933884298,"FDR":1,"overlap":2},{"geneSet":"P00037","enrichmentRatio":1.24848484848485,"FDR":1,"overlap":6},{"geneSet":"P04398","enrichmentRatio":1.22134387351779,"FDR":1,"overlap":6},{"geneSet":"P00046","enrichmentRatio":1.22134387351779,"FDR":1,"overlap":6},{"geneSet":"P02775","enrichmentRatio":1.56060606060606,"FDR":1,"overlap":2},{"geneSet":"P00044","enrichmentRatio":1.10752688172043,"FDR":1,"overlap":11},{"geneSet":"P00058","enrichmentRatio":1.87272727272727,"FDR":1,"overlap":1},{"geneSet":"P04384","enrichmentRatio":1.87272727272727,"FDR":1,"overlap":1},{"geneSet":"P00054","enrichmentRatio":1.12363636363636,"FDR":1,"overlap":6},{"geneSet":"P00002","enrichmentRatio":1.22134387351779,"FDR":1,"overlap":3},{"geneSet":"P02728","enrichmentRatio":1.56060606060606,"FDR":1,"overlap":1},{"geneSet":"P00033","enrichmentRatio":1.07012987012987,"FDR":1,"overlap":4},{"geneSet":"P05911","enrichmentRatio":1.07012987012987,"FDR":1,"overlap":4},{"geneSet":"P04392","enrichmentRatio":1.33766233766234,"FDR":1,"overlap":1},{"geneSet":"P05726","enrichmentRatio":1.33766233766234,"FDR":1,"overlap":1},{"geneSet":"P00018","enrichmentRatio":0.977075098814229,"FDR":1,"overlap":12},{"geneSet":"P00034","enrichmentRatio":0.958926615553122,"FDR":1,"overlap":17},{"geneSet":"P00007","enrichmentRatio":0.985645933014354,"FDR":1,"overlap":2},{"geneSet":"P00045","enrichmentRatio":0.936363636363636,"FDR":1,"overlap":4},{"geneSet":"P00009","enrichmentRatio":0.936363636363636,"FDR":1,"overlap":3},{"geneSet":"P00016","enrichmentRatio":0.923175416133163,"FDR":1,"overlap":7},{"geneSet":"P00052","enrichmentRatio":0.926073926073926,"FDR":1,"overlap":9},{"geneSet":"P04397","enrichmentRatio":0.891774891774892,"FDR":1,"overlap":2},{"geneSet":"P00015","enrichmentRatio":0.936363636363636,"FDR":1,"overlap":1},{"geneSet":"P04396","enrichmentRatio":0.936363636363636,"FDR":1,"overlap":1},{"geneSet":"P02772","enrichmentRatio":0.936363636363636,"FDR":1,"overlap":1},{"geneSet":"P00040","enrichmentRatio":0.871035940803383,"FDR":1,"overlap":4},{"geneSet":"P02740","enrichmentRatio":0.851239669421488,"FDR":1,"overlap":1},{"geneSet":"P00042","enrichmentRatio":0.851239669421488,"FDR":1,"overlap":5},{"geneSet":"P05730","enrichmentRatio":0.814229249011858,"FDR":1,"overlap":2},{"geneSet":"P00014","enrichmentRatio":0.78030303030303,"FDR":1,"overlap":1},{"geneSet":"P02746","enrichmentRatio":0.78030303030303,"FDR":1,"overlap":1},{"geneSet":"P06959","enrichmentRatio":0.871035940803383,"FDR":1,"overlap":16},{"geneSet":"P00004","enrichmentRatio":0.836038961038961,"FDR":1,"overlap":10},{"geneSet":"P00030","enrichmentRatio":0.72027972027972,"FDR":1,"overlap":2},{"geneSet":"P00022","enrichmentRatio":0.668831168831169,"FDR":1,"overlap":1},{"geneSet":"P00021","enrichmentRatio":0.810314685314685,"FDR":1,"overlap":9},{"geneSet":"P00001","enrichmentRatio":0.693602693602694,"FDR":1,"overlap":2},{"geneSet":"P00035","enrichmentRatio":0.693602693602694,"FDR":1,"overlap":2},{"geneSet":"P00038","enrichmentRatio":0.624242424242424,"FDR":1,"overlap":1},{"geneSet":"P00003","enrichmentRatio":0.743145743145743,"FDR":1,"overlap":5},{"geneSet":"P04385","enrichmentRatio":0.685144124168515,"FDR":1,"overlap":3},{"geneSet":"P00029","enrichmentRatio":0.798449612403101,"FDR":1,"overlap":11},{"geneSet":"P00032","enrichmentRatio":0.64576802507837,"FDR":1,"overlap":2},{"geneSet":"P00006","enrichmentRatio":0.78030303030303,"FDR":1,"overlap":9},{"geneSet":"P04375","enrichmentRatio":0.585227272727273,"FDR":1,"overlap":1},{"geneSet":"P00057","enrichmentRatio":0.859925788497217,"FDR":1,"overlap":27},{"geneSet":"P00039","enrichmentRatio":0.72027972027972,"FDR":1,"overlap":5},{"geneSet":"P00043","enrichmentRatio":0.693602693602694,"FDR":1,"overlap":4},{"geneSet":"P00036","enrichmentRatio":0.72027972027972,"FDR":1,"overlap":6},{"geneSet":"P00060","enrichmentRatio":0.638429752066116,"FDR":1,"overlap":3},{"geneSet":"P04373","enrichmentRatio":0.638429752066116,"FDR":1,"overlap":3},{"geneSet":"P05917","enrichmentRatio":0.585227272727273,"FDR":1,"overlap":2},{"geneSet":"P05916","enrichmentRatio":0.585227272727273,"FDR":1,"overlap":2},{"geneSet":"P00047","enrichmentRatio":0.749090909090909,"FDR":1,"overlap":10},{"geneSet":"P00010","enrichmentRatio":0.64576802507837,"FDR":1,"overlap":4},{"geneSet":"P04393","enrichmentRatio":0.668831168831169,"FDR":1,"overlap":5},{"geneSet":"P05731","enrichmentRatio":0.535064935064935,"FDR":1,"overlap":2},{"geneSet":"P04374","enrichmentRatio":0.604105571847507,"FDR":1,"overlap":4},{"geneSet":"P05734","enrichmentRatio":0.390151515151515,"FDR":1,"overlap":1},{"geneSet":"P04391","enrichmentRatio":0.52020202020202,"FDR":1,"overlap":3},{"geneSet":"P04379","enrichmentRatio":0.36013986013986,"FDR":1,"overlap":1},{"geneSet":"P00027","enrichmentRatio":0.63482280431433,"FDR":1,"overlap":8},{"geneSet":"P04377","enrichmentRatio":0.435517970401691,"FDR":1,"overlap":2},{"geneSet":"P04378","enrichmentRatio":0.435517970401691,"FDR":1,"overlap":2},{"geneSet":"P06587","enrichmentRatio":0.334415584415584,"FDR":1,"overlap":1},{"geneSet":"P00055","enrichmentRatio":0.398452611218569,"FDR":1,"overlap":2},{"geneSet":"P00048","enrichmentRatio":0.398452611218569,"FDR":1,"overlap":2},{"geneSet":"P04376","enrichmentRatio":0.302052785923754,"FDR":1,"overlap":1},{"geneSet":"P04380","enrichmentRatio":0.302052785923754,"FDR":1,"overlap":1},{"geneSet":"P00019","enrichmentRatio":0.48642266824085,"FDR":1,"overlap":4},{"geneSet":"P05915","enrichmentRatio":0.292613636363636,"FDR":1,"overlap":1},{"geneSet":"P00028","enrichmentRatio":0.283746556473829,"FDR":1,"overlap":1},{"geneSet":"P05913","enrichmentRatio":0.283746556473829,"FDR":1,"overlap":1},{"geneSet":"P05912","enrichmentRatio":0.367201426024955,"FDR":1,"overlap":2},{"geneSet":"P04394","enrichmentRatio":0.334415584415584,"FDR":1,"overlap":2},{"geneSet":"P00031","enrichmentRatio":0.608636363636364,"FDR":1,"overlap":13},{"geneSet":"P00053","enrichmentRatio":0.374545454545455,"FDR":1,"overlap":3},{"geneSet":"P00026","enrichmentRatio":0.496086694762192,"FDR":1,"overlap":8},{"geneSet":"P00049","enrichmentRatio":0.315628192032686,"FDR":1,"overlap":3}];
+var geneTables = {"P00024":[{"userId":"ENO1","geneSymbol":"ENO1","geneName":"enolase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=2023","entrezgene":"2023"},{"userId":"TPI1","geneSymbol":"TPI1","geneName":"triosephosphate isomerase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=7167","entrezgene":"7167"},{"userId":"ENO2","geneSymbol":"ENO2","geneName":"enolase 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=2026","entrezgene":"2026"},{"userId":"HK2","geneSymbol":"HK2","geneName":"hexokinase 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=3099","entrezgene":"3099"},{"userId":"PGK1","geneSymbol":"PGK1","geneName":"phosphoglycerate kinase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=5230","entrezgene":"5230"},{"userId":"GPI","geneSymbol":"GPI","geneName":"glucose-6-phosphate isomerase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=2821","entrezgene":"2821"},{"userId":"GAPDH","geneSymbol":"GAPDH","geneName":"glyceraldehyde-3-phosphate dehydrogenase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=2597","entrezgene":"2597"},{"userId":"HKDC1","geneSymbol":"HKDC1","geneName":"hexokinase domain containing 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=80201","entrezgene":"80201"}],"P02739":[{"userId":"TYMS","geneSymbol":"TYMS","geneName":"thymidylate synthetase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=7298","entrezgene":"7298"},{"userId":"DUT","geneSymbol":"DUT","geneName":"deoxyuridine triphosphatase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=1854","entrezgene":"1854"},{"userId":"RRM1","geneSymbol":"RRM1","geneName":"ribonucleotide reductase catalytic subunit M1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=6240","entrezgene":"6240"},{"userId":"RRM2","geneSymbol":"RRM2","geneName":"ribonucleotide reductase regulatory subunit M2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=6241","entrezgene":"6241"},{"userId":"RRM2B","geneSymbol":"RRM2B","geneName":"ribonucleotide reductase regulatory TP53 inducible subunit M2B","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=50484","entrezgene":"50484"},{"userId":"NME1-NME2","geneSymbol":"NME1-NME2","geneName":"NME1-NME2 readthrough","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=654364","entrezgene":"654364"}],"P00017":[{"userId":"RFC2","geneSymbol":"RFC2","geneName":"replication factor C subunit 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=5982","entrezgene":"5982"},{"userId":"RFC4","geneSymbol":"RFC4","geneName":"replication factor C subunit 4","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=5984","entrezgene":"5984"},{"userId":"POLA1","geneSymbol":"POLA1","geneName":"DNA polymerase alpha 1, catalytic subunit","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=5422","entrezgene":"5422"},{"userId":"RFC3","geneSymbol":"RFC3","geneName":"replication factor C subunit 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=5983","entrezgene":"5983"},{"userId":"DNA2","geneSymbol":"DNA2","geneName":"DNA replication helicase/nuclease 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=1763","entrezgene":"1763"},{"userId":"PRIM1","geneSymbol":"PRIM1","geneName":"DNA primase subunit 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=5557","entrezgene":"5557"},{"userId":"TOP2A","geneSymbol":"TOP2A","geneName":"DNA topoisomerase II alpha","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=7153","entrezgene":"7153"}],"P00059":[{"userId":"PMAIP1","geneSymbol":"PMAIP1","geneName":"phorbol-12-myristate-13-acetate-induced protein 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=5366","entrezgene":"5366"},{"userId":"CDKN2D","geneSymbol":"CDKN2D","geneName":"cyclin dependent kinase inhibitor 2D","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=1032","entrezgene":"1032"},{"userId":"HMGB1","geneSymbol":"HMGB1","geneName":"high mobility group box 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=3146","entrezgene":"3146"},{"userId":"CHEK2","geneSymbol":"CHEK2","geneName":"checkpoint kinase 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=11200","entrezgene":"11200"},{"userId":"PIK3C2B","geneSymbol":"PIK3C2B","geneName":"phosphatidylinositol-4-phosphate 3-kinase catalytic subunit type 2 beta","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=5287","entrezgene":"5287"},{"userId":"THBS1","geneSymbol":"THBS1","geneName":"thrombospondin 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=7057","entrezgene":"7057"},{"userId":"CDKN2A","geneSymbol":"CDKN2A","geneName":"cyclin dependent kinase inhibitor 2A","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=1029","entrezgene":"1029"},{"userId":"CCNB1","geneSymbol":"CCNB1","geneName":"cyclin B1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=891","entrezgene":"891"},{"userId":"CDK1","geneSymbol":"CDK1","geneName":"cyclin dependent kinase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=983","entrezgene":"983"},{"userId":"GTSE1","geneSymbol":"GTSE1","geneName":"G2 and S-phase expressed 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=51512","entrezgene":"51512"},{"userId":"CDC25C","geneSymbol":"CDC25C","geneName":"cell division cycle 25C","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=995","entrezgene":"995"},{"userId":"RRM2","geneSymbol":"RRM2","geneName":"ribonucleotide reductase regulatory subunit M2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=6241","entrezgene":"6241"},{"userId":"CDKN1A","geneSymbol":"CDKN1A","geneName":"cyclin dependent kinase inhibitor 1A","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=1026","entrezgene":"1026"},{"userId":"DDB2","geneSymbol":"DDB2","geneName":"damage specific DNA binding protein 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=1643","entrezgene":"1643"},{"userId":"MDM2","geneSymbol":"MDM2","geneName":"MDM2 proto-oncogene","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=4193","entrezgene":"4193"},{"userId":"ZMAT3","geneSymbol":"ZMAT3","geneName":"zinc finger matrin-type 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=64393","entrezgene":"64393"},{"userId":"TNFRSF10B","geneSymbol":"TNFRSF10B","geneName":"TNF receptor superfamily member 10b","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=8795","entrezgene":"8795"}],"P02738":[{"userId":"AK5","geneSymbol":"AK5","geneName":"adenylate kinase 5","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=26289","entrezgene":"26289"},{"userId":"RRM1","geneSymbol":"RRM1","geneName":"ribonucleotide reductase catalytic subunit M1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=6240","entrezgene":"6240"},{"userId":"AK4","geneSymbol":"AK4","geneName":"adenylate kinase 4","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=205","entrezgene":"205"},{"userId":"RRM2","geneSymbol":"RRM2","geneName":"ribonucleotide reductase regulatory subunit M2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=6241","entrezgene":"6241"},{"userId":"AK8","geneSymbol":"AK8","geneName":"adenylate kinase 8","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=158067","entrezgene":"158067"},{"userId":"AK1","geneSymbol":"AK1","geneName":"adenylate kinase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=203","entrezgene":"203"},{"userId":"RRM2B","geneSymbol":"RRM2B","geneName":"ribonucleotide reductase regulatory TP53 inducible subunit M2B","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=50484","entrezgene":"50484"},{"userId":"NME1-NME2","geneSymbol":"NME1-NME2","geneName":"NME1-NME2 readthrough","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=654364","entrezgene":"654364"}],"P02742":[{"userId":"TYMS","geneSymbol":"TYMS","geneName":"thymidylate synthetase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=7298","entrezgene":"7298"},{"userId":"DHFR","geneSymbol":"DHFR","geneName":"dihydrofolate reductase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=1719","entrezgene":"1719"},{"userId":"GCH1","geneSymbol":"GCH1","geneName":"GTP cyclohydrolase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=2643","entrezgene":"2643"}],"P02743":[{"userId":"TYMS","geneSymbol":"TYMS","geneName":"thymidylate synthetase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=7298","entrezgene":"7298"},{"userId":"MTHFD2","geneSymbol":"MTHFD2","geneName":"methylenetetrahydrofolate dehydrogenase (NADP+ dependent) 2, methenyltetrahydrofolate cyclohydrolase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=10797","entrezgene":"10797"},{"userId":"DHFR","geneSymbol":"DHFR","geneName":"dihydrofolate reductase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=1719","entrezgene":"1719"}],"P02723":[{"userId":"ADA","geneSymbol":"ADA","geneName":"adenosine deaminase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=100","entrezgene":"100"},{"userId":"XDH","geneSymbol":"XDH","geneName":"xanthine dehydrogenase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=7498","entrezgene":"7498"},{"userId":"PRTFDC1","geneSymbol":"PRTFDC1","geneName":"phosphoribosyl transferase domain containing 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=56952","entrezgene":"56952"}],"P02762":[{"userId":"HK2","geneSymbol":"HK2","geneName":"hexokinase 2","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=3099","entrezgene":"3099"},{"userId":"GPI","geneSymbol":"GPI","geneName":"glucose-6-phosphate isomerase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=2821","entrezgene":"2821"},{"userId":"HKDC1","geneSymbol":"HKDC1","geneName":"hexokinase domain containing 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=80201","entrezgene":"80201"}],"P02771":[{"userId":"DPYSL3","geneSymbol":"DPYSL3","geneName":"dihydropyrimidinase like 3","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=1809","entrezgene":"1809"},{"userId":"UPB1","geneSymbol":"UPB1","geneName":"beta-ureidopropionase 1","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=51733","entrezgene":"51733"},{"userId":"ABAT","geneSymbol":"ABAT","geneName":"4-aminobutyrate aminotransferase","gLink":"https://www.ncbi.nlm.nih.gov/gene/?term=18","entrezgene":"18"}]};
+var clusters = {"ap":{"clusters":[["P00024","P02762"],["P02739","P02738"],["P00017"],["P00059"],["P02742","P02743"],["P02723"],["P02771"]],"representatives":["P00024","P02739","P00017","P00059","P02742","P02723","P02771"]},"wsc":{"representatives":["P00059","P00024","P00017","P02738","P02742","P02723","P02771","P02739","P02743"],"coverage":[1]}};
+
+wgLib({
+	enrichDatabase: "pathway_Panther",
+	organism: "hsapiens",
+	hostName: "https://2019.webgestalt.org",
+	enrichment: enrichment,
+	background: background,
+	geneTables: geneTables,
+	clusters: clusters,
+	
+	enrichMethod: "ora",
+	mappedInputSize: 242,
+	standardId: "entrezgene",
+	volcano: {
+		labelTypes: ["geneSet", "description"],
+				dimensions: { width: 960, height: 500 },
+		autoPlaceLabels: true,
+		y: "FDR",
+
+
+		x: "enrichmentRatio",
+		xLabel: "log2 of enrichment ratio",
+		radius: "overlap",
+		color: "overlap",
+			tooltipContent: ["geneSet", "description", "enrichmentRatio", "FDR", "pValue", "overlap"]
+					
+	},
+	bar: {
+		dimensions: { width: 960, height: 300 },
+		labelWidth: 200,
+		tooltipContent: ["geneSet", "description", "enrichmentRatio", "FDR", "pValue", "overlap"],
+		
+		valueKey: "enrichmentRatio",
+		xLabel: "Enrichment ratio"
+	}
+})
+
+
+</script>
+<footer class="footer has-text-centered">
+<p>WebGestalt is currently developed and maintained by Yuxing Liao, Suhas Vasaikar, Zhiao Shi and Bing Zhang at the <a target="_new" href=http://www.zhang-lab.org> Zhang Lab</a>. Other people who have made significant contribution to the project include Jing Wang, Dexter Duncan, Stefan Kirov and Jay Snoddy.</p>
+<p><b>Funding credits:</b> NIH/NCI (U24 CA210954); Leidos (15X038); CPRIT (RR160027); NIH/NIAAA (U01 AA016662, U01 AA013512); NIH/NIDA (P01 DA015027); NIH/NIMH (P50 MH078028, P50 MH096972); NIH/NCI (U24 CA159988); NIH/NIGMS (R01 GM088822).
+</p>
+</footer></body>
+</html>
