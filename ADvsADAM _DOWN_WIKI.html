@@ -13,11 +13,11 @@ ga('create', 'UA-42098540-1', 'auto');
 ga('send', 'pageview');
 </script>
 <script src="https://polyfill.io/v3/polyfill.min.js?flags=gated&features=es2015%2Ces2016%2Cfetch"></script>
-<script src="https://www.webgestalt.org/assets/0.4/build/vendor.min.js"></script>
+<script src="https://www.webgestalt.org/assets/1.0/build/vendor.min.js"></script>
 	
-	<script>window.cytoscape = null;</script>
-	<link rel="stylesheet" href="https://www.webgestalt.org/assets/0.4/build/vendor.css">
-	<link rel="stylesheet" href="https://www.webgestalt.org/assets/0.4/build/wg.css">
+	<script src="https://www.webgestalt.org/assets/1.0/build/cytoscape.min.js"></script>
+	<link rel="stylesheet" href="https://www.webgestalt.org/assets/1.0/build/vendor.css">
+	<link rel="stylesheet" href="https://www.webgestalt.org/assets/1.0/build/wg.css">
 <link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
 </head>
 <body>
@@ -115,22 +115,16 @@ ga('send', 'pageview');
 </section> <h4 class="title is-4 has-text-primary">Enrichment Results</h4>
 <section id="enrich-result">
 	<p class="select-redundancy">
-		<b-tooltip label="Enriched gene sets are post-processed by two methods to reduce redundancy." type="is-dark" animated multilined dashed>
-			Redundancy reduction:
+	<b-tooltip label="Enriched analyte sets are post-processed by two methods to reduce redundancy." type="is-dark" animated multilined dashed>
+		Redundancy reduction:
+	</b-tooltip>
+	<b-radio v-model="redundancy" native-value="all">None</b-radio>
+	<b-radio v-model="redundancy" native-value="wsc">
+		<b-tooltip label="Find top analyte sets while maximizing analyte coverage." type="is-dark" animated multilined dashed>
+			Weighted set cover
 		</b-tooltip>
-		<b-radio v-model="redundancy" native-value="all">All</b-radio>
-		<b-radio v-model="redundancy" native-value="ap">
-			<b-tooltip label="R package apcluster is used to cluster gene sets." type="is-dark" animated multilined dashed>
-				Affinity propagation
-			</b-tooltip>
-		</b-radio>
-		
-		<b-radio v-model="redundancy" native-value="wsc">
-			<b-tooltip label="Find top gene sets while maximizing gene coverage." type="is-dark" animated multilined dashed>
-				Weighted set cover
-			</b-tooltip>
-		</b-radio>
-	</p>
+	</b-radio>
+</p>
 	<b-tabs v-model="activeTab" type="is-toggle">
 		<b-tab-item label="Table">
 			<wg-result-table
@@ -183,7 +177,7 @@ ga('send', 'pageview');
 </div>
 </div>
 </main>
-	<script type="text/javascript" src="https://www.webgestalt.org/assets/0.4/build/wg.min.js"></script>
+	<script type="text/javascript" src="https://www.webgestalt.org/assets/1.0/build/wg.min.js"></script>
 <script type="text/javascript">
 var enrichment = [{"geneSet":"WP153","description":"Urea cycle and metabolism of amino groups","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP153&label[]=Oat&label[]=Gatm&colors=steelblue","size":19,"overlap":2,"expect":0.0927394752898109,"enrichmentRatio":21.5657894736842,"pValue":0.00363981930850155,"FDR":0.54233307696673,"overlapId":"64313;81660"},{"geneSet":"WP74","description":"Integrin-mediated cell adhesion","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP74&label[]=Itga11&label[]=Itgad&colors=steelblue","size":94,"overlap":2,"expect":0.458816351433801,"enrichmentRatio":4.35904255319149,"pValue":0.0752412984413483,"FDR":1,"overlapId":"64350;315744"},{"geneSet":"WP473","description":"GPCRs, Class A Rhodopsin-like","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP473&label[]=Aplnr&label[]=Xcr1&label[]=Gpr34&colors=steelblue","size":228,"overlap":3,"expect":1.11287370347773,"enrichmentRatio":2.69572368421053,"pValue":0.0949922035412392,"FDR":1,"overlapId":"554353;301086;83518"},{"geneSet":"WP1310","description":"Selenium Micronutrient Network","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP1310&label[]=Mthfr&colors=steelblue","size":23,"overlap":1,"expect":0.112263575350824,"enrichmentRatio":8.90760869565217,"pValue":0.106776784192305,"FDR":1,"overlapId":"362657"},{"geneSet":"WP1311","description":"Folic Acid Network","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP1311&label[]=Mthfr&colors=steelblue","size":25,"overlap":1,"expect":0.12202562538133,"enrichmentRatio":8.195,"pValue":0.115537848060179,"FDR":1,"overlapId":"362657"},{"geneSet":"WP1292","description":"One Carbon Metabolism","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP1292&label[]=Mthfr&colors=steelblue","size":26,"overlap":1,"expect":0.126906650396583,"enrichmentRatio":7.87980769230769,"pValue":0.119888107645496,"FDR":1,"overlapId":"362657"},{"geneSet":"WP326","description":"Calcium Regulation in the Cardiac Cell","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP326&label[]=Adcy7&label[]=Gjb2&colors=steelblue","size":132,"overlap":2,"expect":0.644295302013423,"enrichmentRatio":3.10416666666667,"pValue":0.133788650870219,"FDR":1,"overlapId":"394266;84420"},{"geneSet":"WP40","description":"Inflammatory Response Pathway","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP40&label[]=Cd28&colors=steelblue","size":30,"overlap":1,"expect":0.146430750457596,"enrichmentRatio":6.82916666666667,"pValue":0.137089350635761,"FDR":1,"overlapId":"25660"},{"geneSet":"WP140","description":"Myometrial Relaxation and Contraction Pathways","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP140&label[]=Adcy7&label[]=Igfbp5&colors=steelblue","size":135,"overlap":2,"expect":0.658938377059182,"enrichmentRatio":3.03518518518519,"pValue":0.138795042405358,"FDR":1,"overlapId":"25285;84420"},{"geneSet":"WP505","description":"TGF Beta Signaling Pathway","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP505&label[]=Runx2&colors=steelblue","size":50,"overlap":1,"expect":0.24405125076266,"enrichmentRatio":4.0975,"pValue":0.21846904483849,"FDR":1,"overlapId":"367218"}];
 var background = [{"geneSet":"WP188","enrichmentRatio":2.15657894736842,"FDR":1,"overlap":2},{"geneSet":"WP564","enrichmentRatio":3.65848214285714,"FDR":1,"overlap":1},{"geneSet":"WP1308","enrichmentRatio":3.41458333333333,"FDR":1,"overlap":1},{"geneSet":"WP44","enrichmentRatio":2.92678571428571,"FDR":1,"overlap":1},{"geneSet":"WP73","enrichmentRatio":2.41029411764706,"FDR":1,"overlap":1},{"geneSet":"WP1309","enrichmentRatio":2.27638888888889,"FDR":1,"overlap":1},{"geneSet":"WP375","enrichmentRatio":2.00857843137255,"FDR":1,"overlap":1},{"geneSet":"WP155","enrichmentRatio":1.61318897637795,"FDR":1,"overlap":1},{"geneSet":"WP5","enrichmentRatio":1.18424855491329,"FDR":1,"overlap":1},{"geneSet":"WP457","enrichmentRatio":1.17744252873563,"FDR":1,"overlap":1}];

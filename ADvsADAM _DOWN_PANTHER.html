@@ -13,11 +13,11 @@ ga('create', 'UA-42098540-1', 'auto');
 ga('send', 'pageview');
 </script>
 <script src="https://polyfill.io/v3/polyfill.min.js?flags=gated&features=es2015%2Ces2016%2Cfetch"></script>
-<script src="https://www.webgestalt.org/assets/0.4/build/vendor.min.js"></script>
+<script src="https://www.webgestalt.org/assets/1.0/build/vendor.min.js"></script>
 	
-	<script>window.cytoscape = null;</script>
-	<link rel="stylesheet" href="https://www.webgestalt.org/assets/0.4/build/vendor.css">
-	<link rel="stylesheet" href="https://www.webgestalt.org/assets/0.4/build/wg.css">
+	<script src="https://www.webgestalt.org/assets/1.0/build/cytoscape.min.js"></script>
+	<link rel="stylesheet" href="https://www.webgestalt.org/assets/1.0/build/vendor.css">
+	<link rel="stylesheet" href="https://www.webgestalt.org/assets/1.0/build/wg.css">
 <link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
 </head>
 <body>
@@ -115,22 +115,16 @@ ga('send', 'pageview');
 </section> <h4 class="title is-4 has-text-primary">Enrichment Results</h4>
 <section id="enrich-result">
 	<p class="select-redundancy">
-		<b-tooltip label="Enriched gene sets are post-processed by two methods to reduce redundancy." type="is-dark" animated multilined dashed>
-			Redundancy reduction:
+	<b-tooltip label="Enriched analyte sets are post-processed by two methods to reduce redundancy." type="is-dark" animated multilined dashed>
+		Redundancy reduction:
+	</b-tooltip>
+	<b-radio v-model="redundancy" native-value="all">None</b-radio>
+	<b-radio v-model="redundancy" native-value="wsc">
+		<b-tooltip label="Find top analyte sets while maximizing analyte coverage." type="is-dark" animated multilined dashed>
+			Weighted set cover
 		</b-tooltip>
-		<b-radio v-model="redundancy" native-value="all">All</b-radio>
-		<b-radio v-model="redundancy" native-value="ap">
-			<b-tooltip label="R package apcluster is used to cluster gene sets." type="is-dark" animated multilined dashed>
-				Affinity propagation
-			</b-tooltip>
-		</b-radio>
-		
-		<b-radio v-model="redundancy" native-value="wsc">
-			<b-tooltip label="Find top gene sets while maximizing gene coverage." type="is-dark" animated multilined dashed>
-				Weighted set cover
-			</b-tooltip>
-		</b-radio>
-	</p>
+	</b-radio>
+</p>
 	<b-tabs v-model="activeTab" type="is-toggle">
 		<b-tab-item label="Table">
 			<wg-result-table
@@ -183,7 +177,7 @@ ga('send', 'pageview');
 </div>
 </div>
 </main>
-	<script type="text/javascript" src="https://www.webgestalt.org/assets/0.4/build/wg.min.js"></script>
+	<script type="text/javascript" src="https://www.webgestalt.org/assets/1.0/build/wg.min.js"></script>
 <script type="text/javascript">
 var enrichment = [{"geneSet":"P02728","description":"Arginine biosynthesis","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P02728","size":5,"overlap":1,"expect":0.0259403372243839,"enrichmentRatio":38.55,"pValue":0.0257055857052965,"FDR":1,"overlapId":"497840"},{"geneSet":"P02740","description":"De novo pyrimidine ribonucleotides biosythesis","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P02740","size":7,"overlap":1,"expect":0.0363164721141375,"enrichmentRatio":27.5357142857143,"pValue":0.0358247720931912,"FDR":1,"overlapId":"497840"},{"geneSet":"P04386","description":"Histamine H2 receptor mediated signaling pathway","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P04386","size":18,"overlap":1,"expect":0.0933852140077821,"enrichmentRatio":10.7083333333333,"pValue":0.0898535082300655,"FDR":1,"overlapId":"84420"},{"geneSet":"P04379","description":"Beta3 adrenergic receptor signaling pathway","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P04379","size":19,"overlap":1,"expect":0.0985732814526589,"enrichmentRatio":10.1447368421053,"pValue":0.0946311801028741,"FDR":1,"overlapId":"84420"},{"geneSet":"P05916","description":"Opioid prodynorphin pathway","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P05916","size":24,"overlap":1,"expect":0.124513618677043,"enrichmentRatio":8.03125,"pValue":0.118191880098562,"FDR":1,"overlapId":"84420"},{"geneSet":"P04376","description":"5HT4 type receptor mediated signaling pathway","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P04376","size":24,"overlap":1,"expect":0.124513618677043,"enrichmentRatio":8.03125,"pValue":0.118191880098562,"FDR":1,"overlapId":"84420"},{"geneSet":"P05913","description":"Enkephalin release","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P05913","size":25,"overlap":1,"expect":0.12970168612192,"enrichmentRatio":7.71,"pValue":0.12283909021662,"FDR":1,"overlapId":"84420"},{"geneSet":"P05915","description":"Opioid proenkephalin pathway","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P05915","size":25,"overlap":1,"expect":0.12970168612192,"enrichmentRatio":7.71,"pValue":0.12283909021662,"FDR":1,"overlapId":"84420"},{"geneSet":"P05917","description":"Opioid proopiomelanocortin pathway","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P05917","size":25,"overlap":1,"expect":0.12970168612192,"enrichmentRatio":7.71,"pValue":0.12283909021662,"FDR":1,"overlapId":"84420"},{"geneSet":"P05731","description":"GABA-B receptor II signaling","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P05731","size":26,"overlap":1,"expect":0.134889753566796,"enrichmentRatio":7.41346153846154,"pValue":0.12746485638555,"FDR":1,"overlapId":"84420"}];
 var background = [{"geneSet":"P04378","enrichmentRatio":6.88392857142857,"FDR":1,"overlap":1},{"geneSet":"P04377","enrichmentRatio":6.64655172413793,"FDR":1,"overlap":1},{"geneSet":"P04373","enrichmentRatio":5.66911764705882,"FDR":1,"overlap":1},{"geneSet":"P00031","enrichmentRatio":2.53618421052632,"FDR":1,"overlap":2},{"geneSet":"P05912","enrichmentRatio":4.94230769230769,"FDR":1,"overlap":1},{"geneSet":"P00016","enrichmentRatio":4.10106382978723,"FDR":1,"overlap":1},{"geneSet":"P00057","enrichmentRatio":2.11813186813187,"FDR":1,"overlap":2},{"geneSet":"P00019","enrichmentRatio":3.38157894736842,"FDR":1,"overlap":1},{"geneSet":"P00044","enrichmentRatio":3.2125,"FDR":1,"overlap":1},{"geneSet":"P00053","enrichmentRatio":3.15983606557377,"FDR":1,"overlap":1},{"geneSet":"P00026","enrichmentRatio":1.73648648648649,"FDR":1,"overlap":1},{"geneSet":"P00005","enrichmentRatio":1.69078947368421,"FDR":1,"overlap":1},{"geneSet":"P00034","enrichmentRatio":1.6474358974359,"FDR":1,"overlap":1}];

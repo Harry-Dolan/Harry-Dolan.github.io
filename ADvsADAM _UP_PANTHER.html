@@ -13,11 +13,11 @@ ga('create', 'UA-42098540-1', 'auto');
 ga('send', 'pageview');
 </script>
 <script src="https://polyfill.io/v3/polyfill.min.js?flags=gated&features=es2015%2Ces2016%2Cfetch"></script>
-<script src="https://www.webgestalt.org/assets/0.4/build/vendor.min.js"></script>
+<script src="https://www.webgestalt.org/assets/1.0/build/vendor.min.js"></script>
 	
-	<script>window.cytoscape = null;</script>
-	<link rel="stylesheet" href="https://www.webgestalt.org/assets/0.4/build/vendor.css">
-	<link rel="stylesheet" href="https://www.webgestalt.org/assets/0.4/build/wg.css">
+	<script src="https://www.webgestalt.org/assets/1.0/build/cytoscape.min.js"></script>
+	<link rel="stylesheet" href="https://www.webgestalt.org/assets/1.0/build/vendor.css">
+	<link rel="stylesheet" href="https://www.webgestalt.org/assets/1.0/build/wg.css">
 <link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
 </head>
 <body>
@@ -115,22 +115,16 @@ ga('send', 'pageview');
 </section> <h4 class="title is-4 has-text-primary">Enrichment Results</h4>
 <section id="enrich-result">
 	<p class="select-redundancy">
-		<b-tooltip label="Enriched gene sets are post-processed by two methods to reduce redundancy." type="is-dark" animated multilined dashed>
-			Redundancy reduction:
+	<b-tooltip label="Enriched analyte sets are post-processed by two methods to reduce redundancy." type="is-dark" animated multilined dashed>
+		Redundancy reduction:
+	</b-tooltip>
+	<b-radio v-model="redundancy" native-value="all">None</b-radio>
+	<b-radio v-model="redundancy" native-value="wsc">
+		<b-tooltip label="Find top analyte sets while maximizing analyte coverage." type="is-dark" animated multilined dashed>
+			Weighted set cover
 		</b-tooltip>
-		<b-radio v-model="redundancy" native-value="all">All</b-radio>
-		<b-radio v-model="redundancy" native-value="ap">
-			<b-tooltip label="R package apcluster is used to cluster gene sets." type="is-dark" animated multilined dashed>
-				Affinity propagation
-			</b-tooltip>
-		</b-radio>
-		
-		<b-radio v-model="redundancy" native-value="wsc">
-			<b-tooltip label="Find top gene sets while maximizing gene coverage." type="is-dark" animated multilined dashed>
-				Weighted set cover
-			</b-tooltip>
-		</b-radio>
-	</p>
+	</b-radio>
+</p>
 	<b-tabs v-model="activeTab" type="is-toggle">
 		<b-tab-item label="Table">
 			<wg-result-table
@@ -183,7 +177,7 @@ ga('send', 'pageview');
 </div>
 </div>
 </main>
-	<script type="text/javascript" src="https://www.webgestalt.org/assets/0.4/build/wg.min.js"></script>
+	<script type="text/javascript" src="https://www.webgestalt.org/assets/1.0/build/wg.min.js"></script>
 <script type="text/javascript">
 var enrichment = [{"geneSet":"P02775","description":"Salvage pyrimidine ribonucleotides","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P02775","size":7,"overlap":1,"expect":0.049935149156939,"enrichmentRatio":20.025974025974,"pValue":0.0489724374910741,"FDR":1,"overlapId":"289801"},{"geneSet":"P00050","description":"Plasminogen activating cascade","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00050","size":7,"overlap":1,"expect":0.049935149156939,"enrichmentRatio":20.025974025974,"pValue":0.0489724374910741,"FDR":1,"overlapId":"24366"},{"geneSet":"P00015","description":"Circadian clock system","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00015","size":7,"overlap":1,"expect":0.049935149156939,"enrichmentRatio":20.025974025974,"pValue":0.0489724374910741,"FDR":1,"overlapId":"299691"},{"geneSet":"P04375","description":"5HT3 type receptor mediated signaling pathway","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P04375","size":12,"overlap":1,"expect":0.0856031128404669,"enrichmentRatio":11.6818181818182,"pValue":0.0826066699269266,"FDR":1,"overlapId":"79246"},{"geneSet":"P00011","description":"Blood coagulation","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00011","size":20,"overlap":1,"expect":0.142671854734112,"enrichmentRatio":7.00909090909091,"pValue":0.134178077715123,"FDR":1,"overlapId":"24366"},{"geneSet":"P00034","description":"Integrin signalling pathway","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00034","size":117,"overlap":2,"expect":0.834630350194553,"enrichmentRatio":2.3962703962704,"pValue":0.200743060516667,"FDR":1,"overlapId":"192362;362993"},{"geneSet":"P00055","description":"Transcription regulation by bZIP transcription factor","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00055","size":32,"overlap":1,"expect":0.228274967574578,"enrichmentRatio":4.38068181818182,"pValue":0.206606711815121,"FDR":1,"overlapId":"314638"},{"geneSet":"P04398","description":"p53 pathway feedback loops 2","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P04398","size":35,"overlap":1,"expect":0.249675745784695,"enrichmentRatio":4.00519480519481,"pValue":0.223831094722219,"FDR":1,"overlapId":"114851"},{"geneSet":"P00048","description":"PI3 kinase pathway","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00048","size":38,"overlap":1,"expect":0.271076523994812,"enrichmentRatio":3.688995215311,"pValue":0.240714861176125,"FDR":1,"overlapId":"25685"},{"geneSet":"P00036","description":"Interleukin signaling pathway","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00036","size":51,"overlap":1,"expect":0.363813229571984,"enrichmentRatio":2.74866310160428,"pValue":0.310088069419912,"FDR":1,"overlapId":"114851"}];
 var background = [{"geneSet":"P00059","enrichmentRatio":2.5959595959596,"FDR":1,"overlap":1},{"geneSet":"P00021","enrichmentRatio":1.66883116883117,"FDR":1,"overlap":1},{"geneSet":"P00018","enrichmentRatio":1.63002114164905,"FDR":1,"overlap":1},{"geneSet":"P00026","enrichmentRatio":1.26289926289926,"FDR":1,"overlap":1}];

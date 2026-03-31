@@ -5,24 +5,17 @@
 <meta charset="UTF-8">
 <title>WebGestalt (WEB-based GEne SeT AnaLysis Toolkit)</title>
 <link rel="icon" type="image/png" href="https://s3-us-west-2.amazonaws.com/webgestalt/favicon.png">
-<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-42098540-1', 'auto');
-ga('send', 'pageview');
-</script>
 <script src="https://polyfill.io/v3/polyfill.min.js?flags=gated&features=es2015%2Ces2016%2Cfetch"></script>
-<script src="https://www.webgestalt.org/assets/0.4/build/vendor.min.js"></script>
+<script src="https://2024.webgestalt.org/assets/1.0/build/vendor.min.js"></script>
 	
-	<script>window.cytoscape = null;</script>
-	<link rel="stylesheet" href="https://www.webgestalt.org/assets/0.4/build/vendor.css">
-	<link rel="stylesheet" href="https://www.webgestalt.org/assets/0.4/build/wg.css">
+	<script src="https://2024.webgestalt.org/assets/1.0/build/cytoscape.min.js"></script>
+	<link rel="stylesheet" href="https://2024.webgestalt.org/assets/1.0/build/vendor.css">
+	<link rel="stylesheet" href="https://2024.webgestalt.org/assets/1.0/build/wg.css">
 <link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
 </head>
 <body>
 <header>
-	<div id="header-img"><a href="https://www.webgestalt.org"><img border="0" src="https://www.webgestalt.org/images/gsa.png"></a></div>
+	<div id="header-img"><a href="https://2024.webgestalt.org"><img border="0" src="https://2024.webgestalt.org/images/gsa.png"></a></div>
 	<div id="header-title">
 		<p id="header-title-text">WEB-based GEne SeT AnaLysis Toolkit</p>
 		<p id="header-subtitle-text">Translating gene lists into biological insights...</p>
@@ -59,7 +52,7 @@ ga('send', 'pageview');
 		<li><b>Organism: </b>rnorvegicus</li>
 		<li>
 				<b>Enrichment Categories: </b>pathway_Wikipathway
-				<a class="has-text-info" href="https://www.webgestalt.org/api/geneset?organism=rnorvegicus&database=pathway_Wikipathway&fileType=gmt">
+				<a class="has-text-info" href="https://2024.webgestalt.org/api/geneset?organism=rnorvegicus&database=pathway_Wikipathway&fileType=gmt">
 					<b-icon icon="download" size="is-small"></b-icon>
 				</a>
 					</li>
@@ -72,7 +65,7 @@ ga('send', 'pageview');
 		<li>Among <b>138</b> unique entrezgene IDs, <b>37</b> IDs are annotated to the selected functional categories and also in the reference list, which are used for the enrichment analysis.</li>
 		
 		<li><b>Reference list: </b> all mapped entrezgene IDs from the selected platform genome
-			<a class="has-text-info" href="https://www.webgestalt.org/api/reference?organism=rnorvegicus&referenceSet=genome">
+			<a class="has-text-info" href="https://2024.webgestalt.org/api/reference?organism=rnorvegicus&referenceSet=genome">
 				<b-icon icon="download" size="is-small"></b-icon>
 			</a>
 		</li>
@@ -115,18 +108,12 @@ ga('send', 'pageview');
 </section> <h4 class="title is-4 has-text-primary">Enrichment Results</h4>
 <section id="enrich-result">
 	<p class="select-redundancy">
-		<b-tooltip label="Enriched gene sets are post-processed by two methods to reduce redundancy." type="is-dark" animated multilined dashed>
+		<b-tooltip label="Enriched analyte sets are post-processed by two methods to reduce redundancy." type="is-dark" animated multilined dashed>
 			Redundancy reduction:
 		</b-tooltip>
-		<b-radio v-model="redundancy" native-value="all">All</b-radio>
-		<b-radio v-model="redundancy" native-value="ap">
-			<b-tooltip label="R package apcluster is used to cluster gene sets." type="is-dark" animated multilined dashed>
-				Affinity propagation
-			</b-tooltip>
-		</b-radio>
-		
+		<b-radio v-model="redundancy" native-value="all">None</b-radio>
 		<b-radio v-model="redundancy" native-value="wsc">
-			<b-tooltip label="Find top gene sets while maximizing gene coverage." type="is-dark" animated multilined dashed>
+			<b-tooltip label="Find top analyte sets while maximizing analyte coverage." type="is-dark" animated multilined dashed>
 				Weighted set cover
 			</b-tooltip>
 		</b-radio>
@@ -183,7 +170,7 @@ ga('send', 'pageview');
 </div>
 </div>
 </main>
-	<script type="text/javascript" src="https://www.webgestalt.org/assets/0.4/build/wg.min.js"></script>
+	<script type="text/javascript" src="https://2024.webgestalt.org/assets/1.0/build/wg.min.js"></script>
 <script type="text/javascript">
 var enrichment = [{"geneSet":"WP30","description":"Cytoplasmic Ribosomal Proteins","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP30&label[]=Rplp2&label[]=Rpl28&label[]=Rps28&label[]=Rps5&label[]=Rps10l1&label[]=Fau&label[]=Rps3&colors=steelblue","size":108,"overlap":7,"expect":1.21903599755949,"enrichmentRatio":5.74224224224224,"pValue":0.000157802385081895,"FDR":0.0235125553772024,"overlapId":"100363439;140654;140662;64638;691531;29752;25538"},{"geneSet":"WP293","description":"Eicosanoid Synthesis","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP293&label[]=Alox15&label[]=Ptgds&label[]=Pla2g2a&colors=steelblue","size":18,"overlap":3,"expect":0.203172666259915,"enrichmentRatio":14.7657657657658,"pValue":0.000961643101586085,"FDR":0.0716424110681633,"overlapId":"25526;81639;29692"},{"geneSet":"WP303","description":"Prostaglandin Synthesis and Regulation","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP303&label[]=Ptgds&label[]=S100a6&colors=steelblue","size":32,"overlap":2,"expect":0.361195851128737,"enrichmentRatio":5.53716216216216,"pValue":0.0497397467982635,"FDR":1,"overlapId":"25526;85247"},{"geneSet":"WP173","description":"Oxidative Stress","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP173&label[]=Sod3&label[]=Cyba&colors=steelblue","size":34,"overlap":2,"expect":0.383770591824283,"enrichmentRatio":5.21144674085851,"pValue":0.0554765096615834,"FDR":1,"overlapId":"25352;79129"},{"geneSet":"WP1286","description":"Metapathway biotransformation","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP1286&label[]=Gstm2&label[]=Gstm5&label[]=Gstp1&label[]=Hs3st2&colors=steelblue","size":139,"overlap":4,"expect":1.56894447834045,"enrichmentRatio":2.5494847365351,"pValue":0.069304946121592,"FDR":1,"overlapId":"293451;24424;24426;64352"},{"geneSet":"WP1297","description":"Retinol metabolism","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP1297&label[]=Bco1&label[]=Rbp4&colors=steelblue","size":40,"overlap":2,"expect":0.451494813910921,"enrichmentRatio":4.42972972972973,"pValue":0.0739723007397564,"FDR":1,"overlapId":"114106;25703"},{"geneSet":"WP59","description":"Electron Transport Chain","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP59&label[]=Ndufb7&label[]=Cox4i1&label[]=Ndufs7&colors=steelblue","size":93,"overlap":3,"expect":1.04972544234289,"enrichmentRatio":2.85789014821273,"pValue":0.0859371878756205,"FDR":1,"overlapId":"361385;362837;29445"},{"geneSet":"WP86","description":"Heme Biosynthesis","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP86&label[]=Alas2&colors=steelblue","size":9,"overlap":1,"expect":0.101586333129957,"enrichmentRatio":9.84384384384384,"pValue":0.0972319281777939,"FDR":1,"overlapId":"25748"},{"geneSet":"WP302","description":"Proteasome Degradation","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP302&label[]=Psmb5&label[]=Uchl1&colors=steelblue","size":48,"overlap":2,"expect":0.541793776693106,"enrichmentRatio":3.69144144144144,"pValue":0.10120109694365,"FDR":1,"overlapId":"29425;29545"},{"geneSet":"WP2376","description":"Nuclear factor, erythroid-derived 2, like 2 signaling pathway","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP2376&label[]=Sod3&label[]=Gstm2&label[]=Gstm5&label[]=Gstp1&colors=steelblue","size":162,"overlap":4,"expect":1.82855399633923,"enrichmentRatio":2.18752085418752,"pValue":0.107269638807437,"FDR":1,"overlapId":"24424;24426;25352;64352"}];
 var background = [{"geneSet":"WP547","enrichmentRatio":3.00320659642694,"FDR":1,"overlap":2},{"geneSet":"WP1283","enrichmentRatio":2.95315315315315,"FDR":1,"overlap":2},{"geneSet":"WP81","enrichmentRatio":5.53716216216216,"FDR":1,"overlap":1},{"geneSet":"WP146","enrichmentRatio":5.21144674085851,"FDR":1,"overlap":1},{"geneSet":"WP140","enrichmentRatio":1.96876876876877,"FDR":1,"overlap":3},{"geneSet":"WP469","enrichmentRatio":4.6628733997155,"FDR":1,"overlap":1},{"geneSet":"WP255","enrichmentRatio":4.6628733997155,"FDR":1,"overlap":1},{"geneSet":"WP1301","enrichmentRatio":4.21879021879022,"FDR":1,"overlap":1},{"geneSet":"WP1310","enrichmentRatio":3.85193889541716,"FDR":1,"overlap":1},{"geneSet":"WP1311","enrichmentRatio":3.54378378378378,"FDR":1,"overlap":1},{"geneSet":"WP316","enrichmentRatio":2.46096096096096,"FDR":1,"overlap":1},{"geneSet":"WP590","enrichmentRatio":2.39444850255661,"FDR":1,"overlap":1},{"geneSet":"WP484","enrichmentRatio":2.33143669985775,"FDR":1,"overlap":1},{"geneSet":"WP326","enrichmentRatio":1.34234234234234,"FDR":1,"overlap":2},{"geneSet":"WP564","enrichmentRatio":1.58204633204633,"FDR":1,"overlap":1},{"geneSet":"WP2562","enrichmentRatio":1.47657657657658,"FDR":1,"overlap":1},{"geneSet":"WP429","enrichmentRatio":1.06740475415174,"FDR":1,"overlap":1},{"geneSet":"WP73","enrichmentRatio":1.0422893481717,"FDR":1,"overlap":1},{"geneSet":"WP1288","enrichmentRatio":1.00675675675676,"FDR":1,"overlap":1},{"geneSet":"WP1309","enrichmentRatio":0.984384384384384,"FDR":1,"overlap":1},{"geneSet":"WP2433","enrichmentRatio":0.894894894894895,"FDR":1,"overlap":1},{"geneSet":"WP375","enrichmentRatio":0.868574456809751,"FDR":1,"overlap":1},{"geneSet":"WP457","enrichmentRatio":0.509164336750544,"FDR":1,"overlap":1},{"geneSet":"WP188","enrichmentRatio":0.466287339971551,"FDR":1,"overlap":1},{"geneSet":"WP358","enrichmentRatio":0.378609378609379,"FDR":1,"overlap":1}];

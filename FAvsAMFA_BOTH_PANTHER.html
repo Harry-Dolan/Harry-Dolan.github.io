@@ -5,24 +5,17 @@
 <meta charset="UTF-8">
 <title>WebGestalt (WEB-based GEne SeT AnaLysis Toolkit)</title>
 <link rel="icon" type="image/png" href="https://s3-us-west-2.amazonaws.com/webgestalt/favicon.png">
-<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-42098540-1', 'auto');
-ga('send', 'pageview');
-</script>
 <script src="https://polyfill.io/v3/polyfill.min.js?flags=gated&features=es2015%2Ces2016%2Cfetch"></script>
-<script src="https://www.webgestalt.org/assets/0.4/build/vendor.min.js"></script>
+<script src="https://2024.webgestalt.org/assets/1.0/build/vendor.min.js"></script>
 	
-	<script>window.cytoscape = null;</script>
-	<link rel="stylesheet" href="https://www.webgestalt.org/assets/0.4/build/vendor.css">
-	<link rel="stylesheet" href="https://www.webgestalt.org/assets/0.4/build/wg.css">
+	<script src="https://2024.webgestalt.org/assets/1.0/build/cytoscape.min.js"></script>
+	<link rel="stylesheet" href="https://2024.webgestalt.org/assets/1.0/build/vendor.css">
+	<link rel="stylesheet" href="https://2024.webgestalt.org/assets/1.0/build/wg.css">
 <link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
 </head>
 <body>
 <header>
-	<div id="header-img"><a href="https://www.webgestalt.org"><img border="0" src="https://www.webgestalt.org/images/gsa.png"></a></div>
+	<div id="header-img"><a href="https://2024.webgestalt.org"><img border="0" src="https://2024.webgestalt.org/images/gsa.png"></a></div>
 	<div id="header-title">
 		<p id="header-title-text">WEB-based GEne SeT AnaLysis Toolkit</p>
 		<p id="header-subtitle-text">Translating gene lists into biological insights...</p>
@@ -59,7 +52,7 @@ ga('send', 'pageview');
 		<li><b>Organism: </b>rnorvegicus</li>
 		<li>
 				<b>Enrichment Categories: </b>pathway_Panther
-				<a class="has-text-info" href="https://www.webgestalt.org/api/geneset?organism=rnorvegicus&database=pathway_Panther&fileType=gmt">
+				<a class="has-text-info" href="https://2024.webgestalt.org/api/geneset?organism=rnorvegicus&database=pathway_Panther&fileType=gmt">
 					<b-icon icon="download" size="is-small"></b-icon>
 				</a>
 					</li>
@@ -72,7 +65,7 @@ ga('send', 'pageview');
 		<li>Among <b>1329</b> unique entrezgene IDs, <b>77</b> IDs are annotated to the selected functional categories and also in the reference list, which are used for the enrichment analysis.</li>
 		
 		<li><b>Reference list: </b> all mapped entrezgene IDs from the selected platform genome
-			<a class="has-text-info" href="https://www.webgestalt.org/api/reference?organism=rnorvegicus&referenceSet=genome">
+			<a class="has-text-info" href="https://2024.webgestalt.org/api/reference?organism=rnorvegicus&referenceSet=genome">
 				<b-icon icon="download" size="is-small"></b-icon>
 			</a>
 		</li>
@@ -115,18 +108,12 @@ ga('send', 'pageview');
 </section> <h4 class="title is-4 has-text-primary">Enrichment Results</h4>
 <section id="enrich-result">
 	<p class="select-redundancy">
-		<b-tooltip label="Enriched gene sets are post-processed by two methods to reduce redundancy." type="is-dark" animated multilined dashed>
+		<b-tooltip label="Enriched analyte sets are post-processed by two methods to reduce redundancy." type="is-dark" animated multilined dashed>
 			Redundancy reduction:
 		</b-tooltip>
-		<b-radio v-model="redundancy" native-value="all">All</b-radio>
-		<b-radio v-model="redundancy" native-value="ap">
-			<b-tooltip label="R package apcluster is used to cluster gene sets." type="is-dark" animated multilined dashed>
-				Affinity propagation
-			</b-tooltip>
-		</b-radio>
-		
+		<b-radio v-model="redundancy" native-value="all">None</b-radio>
 		<b-radio v-model="redundancy" native-value="wsc">
-			<b-tooltip label="Find top gene sets while maximizing gene coverage." type="is-dark" animated multilined dashed>
+			<b-tooltip label="Find top analyte sets while maximizing analyte coverage." type="is-dark" animated multilined dashed>
 				Weighted set cover
 			</b-tooltip>
 		</b-radio>
@@ -183,7 +170,7 @@ ga('send', 'pageview');
 </div>
 </div>
 </main>
-	<script type="text/javascript" src="https://www.webgestalt.org/assets/0.4/build/wg.min.js"></script>
+	<script type="text/javascript" src="https://2024.webgestalt.org/assets/1.0/build/wg.min.js"></script>
 <script type="text/javascript">
 var enrichment = [{"geneSet":"P00055","description":"Transcription regulation by bZIP transcription factor","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00055","size":32,"overlap":6,"expect":1.59792477302205,"enrichmentRatio":3.75487012987013,"pValue":0.00408170029427224,"FDR":0.428578530898585,"overlapId":"307485;689030;170844;498109;83830;81646"},{"geneSet":"P00023","description":"General transcription regulation","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00023","size":23,"overlap":4,"expect":1.1485084306096,"enrichmentRatio":3.48277809147374,"pValue":0.0246752720621997,"FDR":0.858073216022302,"overlapId":"307485;170844;498109;83830"},{"geneSet":"P04398","description":"p53 pathway feedback loops 2","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P04398","size":35,"overlap":5,"expect":1.74773022049287,"enrichmentRatio":2.860853432282,"pValue":0.0272580876968505,"FDR":0.858073216022302,"overlapId":"361632;300711;50557;25405;304798"},{"geneSet":"P00060","description":"Ubiquitin proteasome pathway","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00060","size":25,"overlap":4,"expect":1.24837872892348,"enrichmentRatio":3.20415584415584,"pValue":0.0326885034675163,"FDR":0.858073216022302,"overlapId":"361585;297930;287927;117553"},{"geneSet":"P00059","description":"p53 pathway","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00059","size":54,"overlap":6,"expect":2.69649805447471,"enrichmentRatio":2.22510822510823,"pValue":0.0485523248985813,"FDR":1,"overlapId":"361632;300711;50557;25405;492821;304798"},{"geneSet":"P00054","description":"Toll receptor signaling pathway","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00054","size":30,"overlap":4,"expect":1.49805447470817,"enrichmentRatio":2.67012987012987,"pValue":0.0587035508234032,"FDR":1,"overlapId":"317468;252961;309361;29260"},{"geneSet":"P00014","description":"Cholesterol biosynthesis","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00014","size":9,"overlap":2,"expect":0.449416342412451,"enrichmentRatio":4.45021645021645,"pValue":0.0705559822488677,"FDR":1,"overlapId":"89784;291211"},{"geneSet":"P00047","description":"PDGF signaling pathway","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00047","size":95,"overlap":8,"expect":4.74383916990921,"enrichmentRatio":1.6863978127136,"pValue":0.0958153434027849,"FDR":1,"overlapId":"307016;299012;501560;295297;309361;25676;83840;295635"},{"geneSet":"P04375","description":"5HT3 type receptor mediated signaling pathway","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P04375","size":12,"overlap":2,"expect":0.599221789883269,"enrichmentRatio":3.33766233766234,"pValue":0.117520884954357,"FDR":1,"overlapId":"25549;25624"},{"geneSet":"P00032","description":"Insulin/IGF pathway-mitogen activated protein kinase kinase/MAP kinase cascade","link":"http://www.pantherdb.org/pathway/pathwayDiagram.jsp?catAccession=P00032","size":25,"overlap":3,"expect":1.24837872892348,"enrichmentRatio":2.40311688311688,"pValue":0.12527322213102,"FDR":1,"overlapId":"501560;25676;83840"}];
 var background = [{"geneSet":"P00033","enrichmentRatio":2.0025974025974,"FDR":1,"overlap":3},{"geneSet":"P00030","enrichmentRatio":2.35599694423224,"FDR":1,"overlap":2},{"geneSet":"P00031","enrichmentRatio":1.3174982911825,"FDR":1,"overlap":10},{"geneSet":"P00001","enrichmentRatio":2.22510822510823,"FDR":1,"overlap":2},{"geneSet":"P04397","enrichmentRatio":2.22510822510823,"FDR":1,"overlap":2},{"geneSet":"P02756","enrichmentRatio":4.00519480519481,"FDR":1,"overlap":1},{"geneSet":"P02721","enrichmentRatio":4.00519480519481,"FDR":1,"overlap":1},{"geneSet":"P00022","enrichmentRatio":4.00519480519481,"FDR":1,"overlap":1},{"geneSet":"P04373","enrichmentRatio":1.76699770817418,"FDR":1,"overlap":3},{"geneSet":"P00049","enrichmentRatio":1.49447567358015,"FDR":1,"overlap":5},{"geneSet":"P05730","enrichmentRatio":2.107997265892,"FDR":1,"overlap":2},{"geneSet":"P04392","enrichmentRatio":3.33766233766234,"FDR":1,"overlap":1},{"geneSet":"P00048","enrichmentRatio":1.580997949419,"FDR":1,"overlap":3},{"geneSet":"P02775","enrichmentRatio":2.860853432282,"FDR":1,"overlap":1},{"geneSet":"P02744","enrichmentRatio":2.860853432282,"FDR":1,"overlap":1},{"geneSet":"P00015","enrichmentRatio":2.860853432282,"FDR":1,"overlap":1},{"geneSet":"P05912","enrichmentRatio":1.54045954045954,"FDR":1,"overlap":3},{"geneSet":"P05916","enrichmentRatio":1.66883116883117,"FDR":1,"overlap":2},{"geneSet":"P04376","enrichmentRatio":1.66883116883117,"FDR":1,"overlap":2},{"geneSet":"P00043","enrichmentRatio":1.430426716141,"FDR":1,"overlap":3},{"geneSet":"P00044","enrichmentRatio":1.33506493506494,"FDR":1,"overlap":4},{"geneSet":"P05913","enrichmentRatio":1.60207792207792,"FDR":1,"overlap":2},{"geneSet":"P05915","enrichmentRatio":1.60207792207792,"FDR":1,"overlap":2},{"geneSet":"P05917","enrichmentRatio":1.60207792207792,"FDR":1,"overlap":2},{"geneSet":"P04378","enrichmentRatio":1.430426716141,"FDR":1,"overlap":2},{"geneSet":"P00016","enrichmentRatio":1.27825366123238,"FDR":1,"overlap":3},{"geneSet":"P04377","enrichmentRatio":1.38110165696373,"FDR":1,"overlap":2},{"geneSet":"P00040","enrichmentRatio":1.38110165696373,"FDR":1,"overlap":2},{"geneSet":"P00013","enrichmentRatio":1.82054309327037,"FDR":1,"overlap":1},{"geneSet":"P00025","enrichmentRatio":1.82054309327037,"FDR":1,"overlap":1},{"geneSet":"P04374","enrichmentRatio":1.22608004240657,"FDR":1,"overlap":3},{"geneSet":"P00036","enrichmentRatio":1.17799847211612,"FDR":1,"overlap":3},{"geneSet":"P06587","enrichmentRatio":1.430426716141,"FDR":1,"overlap":1},{"geneSet":"P00002","enrichmentRatio":1.33506493506494,"FDR":1,"overlap":1},{"geneSet":"P00019","enrichmentRatio":1.053998632946,"FDR":1,"overlap":3},{"geneSet":"P04391","enrichmentRatio":1.0012987012987,"FDR":1,"overlap":2},{"geneSet":"P04379","enrichmentRatio":1.053998632946,"FDR":1,"overlap":1},{"geneSet":"P04394","enrichmentRatio":0.953617810760668,"FDR":1,"overlap":2},{"geneSet":"P00020","enrichmentRatio":1.0012987012987,"FDR":1,"overlap":1},{"geneSet":"P05734","enrichmentRatio":1.0012987012987,"FDR":1,"overlap":1},{"geneSet":"P00052","enrichmentRatio":0.910271546635183,"FDR":1,"overlap":3},{"geneSet":"P00009","enrichmentRatio":0.953617810760668,"FDR":1,"overlap":1},{"geneSet":"P04380","enrichmentRatio":0.953617810760668,"FDR":1,"overlap":1},{"geneSet":"P00010","enrichmentRatio":0.89004329004329,"FDR":1,"overlap":2},{"geneSet":"P00017","enrichmentRatio":0.870694522868436,"FDR":1,"overlap":1},{"geneSet":"P00039","enrichmentRatio":0.834415584415584,"FDR":1,"overlap":2},{"geneSet":"P05731","enrichmentRatio":0.77022977022977,"FDR":1,"overlap":1},{"geneSet":"P05911","enrichmentRatio":0.690550828481863,"FDR":1,"overlap":1},{"geneSet":"P00006","enrichmentRatio":0.723830386480989,"FDR":1,"overlap":3},{"geneSet":"P00046","enrichmentRatio":0.625811688311688,"FDR":1,"overlap":1},{"geneSet":"P00026","enrichmentRatio":0.721656721656722,"FDR":1,"overlap":4},{"geneSet":"P00053","enrichmentRatio":0.656589312327017,"FDR":1,"overlap":2},{"geneSet":"P00057","enrichmentRatio":0.77022977022977,"FDR":1,"overlap":7},{"geneSet":"P00037","enrichmentRatio":0.588999236058059,"FDR":1,"overlap":1},{"geneSet":"P00004","enrichmentRatio":0.667532467532468,"FDR":1,"overlap":3},{"geneSet":"P00042","enrichmentRatio":0.465720326185442,"FDR":1,"overlap":1},{"geneSet":"P00056","enrichmentRatio":0.455135773317591,"FDR":1,"overlap":1},{"geneSet":"P00012","enrichmentRatio":0.506986684201874,"FDR":1,"overlap":2},{"geneSet":"P00021","enrichmentRatio":0.476808905380334,"FDR":1,"overlap":2},{"geneSet":"P00018","enrichmentRatio":0.465720326185442,"FDR":1,"overlap":2},{"geneSet":"P00029","enrichmentRatio":0.465720326185442,"FDR":1,"overlap":2},{"geneSet":"P04393","enrichmentRatio":0.370851370851371,"FDR":1,"overlap":1},{"geneSet":"P00034","enrichmentRatio":0.513486513486513,"FDR":1,"overlap":3},{"geneSet":"P00005","enrichmentRatio":0.351332877648667,"FDR":1,"overlap":2},{"geneSet":"P00027","enrichmentRatio":0.230183609493954,"FDR":1,"overlap":1}];

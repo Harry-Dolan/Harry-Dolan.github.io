@@ -13,11 +13,11 @@ ga('create', 'UA-42098540-1', 'auto');
 ga('send', 'pageview');
 </script>
 <script src="https://polyfill.io/v3/polyfill.min.js?flags=gated&features=es2015%2Ces2016%2Cfetch"></script>
-<script src="https://www.webgestalt.org/assets/0.4/build/vendor.min.js"></script>
+<script src="https://www.webgestalt.org/assets/1.0/build/vendor.min.js"></script>
 	
-	<script>window.cytoscape = null;</script>
-	<link rel="stylesheet" href="https://www.webgestalt.org/assets/0.4/build/vendor.css">
-	<link rel="stylesheet" href="https://www.webgestalt.org/assets/0.4/build/wg.css">
+	<script src="https://www.webgestalt.org/assets/1.0/build/cytoscape.min.js"></script>
+	<link rel="stylesheet" href="https://www.webgestalt.org/assets/1.0/build/vendor.css">
+	<link rel="stylesheet" href="https://www.webgestalt.org/assets/1.0/build/wg.css">
 <link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.5.94/css/materialdesignicons.min.css">
 </head>
 <body>
@@ -115,22 +115,16 @@ ga('send', 'pageview');
 </section> <h4 class="title is-4 has-text-primary">Enrichment Results</h4>
 <section id="enrich-result">
 	<p class="select-redundancy">
-		<b-tooltip label="Enriched gene sets are post-processed by two methods to reduce redundancy." type="is-dark" animated multilined dashed>
-			Redundancy reduction:
+	<b-tooltip label="Enriched analyte sets are post-processed by two methods to reduce redundancy." type="is-dark" animated multilined dashed>
+		Redundancy reduction:
+	</b-tooltip>
+	<b-radio v-model="redundancy" native-value="all">None</b-radio>
+	<b-radio v-model="redundancy" native-value="wsc">
+		<b-tooltip label="Find top analyte sets while maximizing analyte coverage." type="is-dark" animated multilined dashed>
+			Weighted set cover
 		</b-tooltip>
-		<b-radio v-model="redundancy" native-value="all">All</b-radio>
-		<b-radio v-model="redundancy" native-value="ap">
-			<b-tooltip label="R package apcluster is used to cluster gene sets." type="is-dark" animated multilined dashed>
-				Affinity propagation
-			</b-tooltip>
-		</b-radio>
-		
-		<b-radio v-model="redundancy" native-value="wsc">
-			<b-tooltip label="Find top gene sets while maximizing gene coverage." type="is-dark" animated multilined dashed>
-				Weighted set cover
-			</b-tooltip>
-		</b-radio>
-	</p>
+	</b-radio>
+</p>
 	<b-tabs v-model="activeTab" type="is-toggle">
 		<b-tab-item label="Table">
 			<wg-result-table
@@ -183,7 +177,7 @@ ga('send', 'pageview');
 </div>
 </div>
 </main>
-	<script type="text/javascript" src="https://www.webgestalt.org/assets/0.4/build/wg.min.js"></script>
+	<script type="text/javascript" src="https://www.webgestalt.org/assets/1.0/build/wg.min.js"></script>
 <script type="text/javascript">
 var enrichment = [{"geneSet":"WP255","description":"Blood Clotting Cascade","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP255&label[]=Fga&label[]=Fgb&label[]=F2&label[]=Fgg&colors=steelblue","size":19,"overlap":4,"expect":0.214460036607688,"enrichmentRatio":18.651493598862,"pValue":4.72155506099359e-05,"FDR":0.0053152419996722,"overlapId":"24366;24367;361969;29251"},{"geneSet":"WP557","description":"ACE Inhibitor Pathway","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP557&label[]=Kng2&label[]=Ren&label[]=Kng1&colors=steelblue","size":8,"overlap":3,"expect":0.0902989627821843,"enrichmentRatio":33.222972972973,"pValue":7.13455301969423e-05,"FDR":0.0053152419996722,"overlapId":"24715;24903;288001"},{"geneSet":"WP418","description":"Beta Oxidation of Unsaturated Fatty Acids","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP418&label[]=Decr1&label[]=Eci1&colors=steelblue","size":6,"overlap":2,"expect":0.0677242220866382,"enrichmentRatio":29.5315315315315,"pValue":0.0018076122683528,"FDR":0.0897780759948557,"overlapId":"117543;29740"},{"geneSet":"WP547","description":"Complement and Coagulation Cascades","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP547&label[]=Kng2&label[]=Kng1&label[]=Fgb&label[]=F2&colors=steelblue","size":59,"overlap":4,"expect":0.665954850518609,"enrichmentRatio":6.00641319285387,"pValue":0.00401498952126289,"FDR":0.149558359667043,"overlapId":"24903;288001;24366;29251"},{"geneSet":"WP1302","description":"Estrogen metabolism","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP1302&label[]=Nqo1&label[]=Gstm1&colors=steelblue","size":18,"overlap":2,"expect":0.203172666259915,"enrichmentRatio":9.84384384384384,"pValue":0.0169314671168472,"FDR":0.4666207855305,"overlapId":"24423;24314"},{"geneSet":"WP469","description":"Glutathione metabolism","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP469&label[]=Gstm2&label[]=Gpx2&colors=steelblue","size":19,"overlap":2,"expect":0.214460036607688,"enrichmentRatio":9.32574679943101,"pValue":0.0187900987461946,"FDR":0.4666207855305,"overlapId":"29326;24424"},{"geneSet":"WP2376","description":"Nuclear factor, erythroid-derived 2, like 2 signaling pathway","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP2376&label[]=Gstm2&label[]=Nqo1&label[]=Gstm1&label[]=Cdkn1a&label[]=Gpx2&colors=steelblue","size":162,"overlap":5,"expect":1.82855399633923,"enrichmentRatio":2.7344010677344,"pValue":0.0335469420839718,"FDR":0.714070624358828,"overlapId":"114851;24423;24424;29326;24314"},{"geneSet":"WP303","description":"Prostaglandin Synthesis and Regulation","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP303&label[]=S100a6&label[]=Anxa2&colors=steelblue","size":32,"overlap":2,"expect":0.361195851128737,"enrichmentRatio":5.53716216216216,"pValue":0.0497397467982635,"FDR":0.751454539961447,"overlapId":"56611;85247"},{"geneSet":"WP506","description":"Fatty Acid Beta Oxidation","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP506&label[]=Decr1&label[]=Eci1&colors=steelblue","size":33,"overlap":2,"expect":0.37248322147651,"enrichmentRatio":5.36936936936937,"pValue":0.0525795497049095,"FDR":0.751454539961447,"overlapId":"117543;29740"},{"geneSet":"WP349","description":"Synthesis and Degradation of Ketone Bodies","link":"http://www.wikipathways.org/wpi/PathwayWidget.php?id=WP349&label[]=Hmgcs2&colors=steelblue","size":5,"overlap":1,"expect":0.0564368517388652,"enrichmentRatio":17.7189189189189,"pValue":0.0552100390266972,"FDR":0.751454539961447,"overlapId":"24450"}];
 var background = [{"geneSet":"WP1307","enrichmentRatio":5.21144674085851,"FDR":0.751454539961447,"overlap":2},{"geneSet":"WP1300","enrichmentRatio":14.7657657657658,"FDR":0.787276629301693,"overlap":1},{"geneSet":"WP1286","enrichmentRatio":2.5494847365351,"FDR":0.787276629301693,"overlap":4},{"geneSet":"WP1297","enrichmentRatio":4.42972972972973,"FDR":0.787276629301693,"overlap":2},{"geneSet":"WP1299","enrichmentRatio":3.61610590182019,"FDR":1,"overlap":2},{"geneSet":"WP42","enrichmentRatio":7.38288288288288,"FDR":1,"overlap":1},{"geneSet":"WP1280","enrichmentRatio":6.81496881496882,"FDR":1,"overlap":1},{"geneSet":"WP2562","enrichmentRatio":2.95315315315315,"FDR":1,"overlap":2},{"geneSet":"WP485","enrichmentRatio":2.72598752598753,"FDR":1,"overlap":2},{"geneSet":"WP419","enrichmentRatio":5.53716216216216,"FDR":1,"overlap":1},{"geneSet":"WP348","enrichmentRatio":2.64461476401775,"FDR":1,"overlap":2},{"geneSet":"WP504","enrichmentRatio":4.6628733997155,"FDR":1,"overlap":1},{"geneSet":"WP124","enrichmentRatio":4.21879021879022,"FDR":1,"overlap":1},{"geneSet":"WP1310","enrichmentRatio":3.85193889541716,"FDR":1,"overlap":1},{"geneSet":"WP1311","enrichmentRatio":3.54378378378378,"FDR":1,"overlap":1},{"geneSet":"WP1968","enrichmentRatio":3.40748440748441,"FDR":1,"overlap":1},{"geneSet":"WP1292","enrichmentRatio":3.40748440748441,"FDR":1,"overlap":1},{"geneSet":"WP654","enrichmentRatio":3.28128128128128,"FDR":1,"overlap":1},{"geneSet":"WP1309","enrichmentRatio":1.96876876876877,"FDR":1,"overlap":2},{"geneSet":"WP40","enrichmentRatio":2.95315315315315,"FDR":1,"overlap":1},{"geneSet":"WP173","enrichmentRatio":2.60572337042925,"FDR":1,"overlap":1},{"geneSet":"WP1293","enrichmentRatio":2.60572337042925,"FDR":1,"overlap":1},{"geneSet":"WP655","enrichmentRatio":1.88499137435308,"FDR":1,"overlap":1},{"geneSet":"WP140","enrichmentRatio":1.31251251251251,"FDR":1,"overlap":2},{"geneSet":"WP376","enrichmentRatio":1.52749301025163,"FDR":1,"overlap":1},{"geneSet":"WP439","enrichmentRatio":1.16571834992888,"FDR":1,"overlap":2},{"geneSet":"WP429","enrichmentRatio":1.06740475415174,"FDR":1,"overlap":1},{"geneSet":"WP73","enrichmentRatio":1.0422893481717,"FDR":1,"overlap":1},{"geneSet":"WP59","enrichmentRatio":0.952630049404243,"FDR":1,"overlap":1},{"geneSet":"WP135","enrichmentRatio":0.92286036036036,"FDR":1,"overlap":1},{"geneSet":"WP2433","enrichmentRatio":0.894894894894895,"FDR":1,"overlap":1},{"geneSet":"WP155","enrichmentRatio":0.697595233028304,"FDR":1,"overlap":1},{"geneSet":"WP326","enrichmentRatio":0.671171171171171,"FDR":1,"overlap":1},{"geneSet":"WP351","enrichmentRatio":0.61524024024024,"FDR":1,"overlap":1},{"geneSet":"WP457","enrichmentRatio":0.509164336750544,"FDR":1,"overlap":1},{"geneSet":"WP188","enrichmentRatio":0.466287339971551,"FDR":1,"overlap":1},{"geneSet":"WP358","enrichmentRatio":0.378609378609379,"FDR":1,"overlap":1}];
